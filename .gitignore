@@ -1,0 +1,9 @@
+*/bin/
+target/
+db/
+
+.idea/
+.classpath
+.project
+.settings/
+
