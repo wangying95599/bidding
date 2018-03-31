@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>设置</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/experts.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+   
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/experts.js"></script>
+  
+
+  
+	<div class="container">
+		<ul class="nav nav-pills">
+		  <li role="presentation" class="active"><a href="#">项目信息</a></li>
+		  <li role="presentation"><a href="#">专家抽取</a></li>
+		  <li role="presentation"><a href="#">专家信息维护</a></li>
+		   <li role="presentation"><a href="#">抽取设置</a></li>
+		    <li role="presentation"><a href="#">统计分析</a></li>
+		</ul>
+		<div class="row">
+			
+		</div>
+		
+		<div class="row">
+			<button type="button" class="btn btn-danger">项目添加</button>
+
+			<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+			<button type="button" class="btn btn-primary">抽取设置</button>
+
+			<!-- Indicates a successful or positive action -->
+			<button type="button" class="btn btn-success">抽取专家</button>
+
+			<!-- Contextual button for informational alert messages -->
+			<button type="button" class="btn btn-info">修改</button>
+
+			<!-- Indicates caution should be taken with this action -->
+			<button type="button" class="btn btn-warning">删除</button>
+
+			<fieldset >
+				<legend>项目列表</legend> 
+				
+				<table class="table table-bordered">
+				  <tr>
+				   <th class="active">项目编号</th>
+				   <th class="active">评标时间</th>
+					<th class="active">项目名称</th>
+					<th class="active">抽取时间</th>
+					 <th class="active">建设单位</th>
+					<th class="active">代理机构</th>
+					<th class="active">抽取单位</th>
+					<th class="active">采购方式</th>
+					<th class="active">专家选取状态</th>
+				  </tr>
+				  <tr>
+					  <td class="active">001</td>
+					  <td class="active">单位1</td>
+				  </tr>
+				</table>
+			</fieldset>
+		</div>
+		<button type="submit" class="btn btn-default">确定</button>
+		<button type="submit" class="btn btn-default">关闭</button>
+	</div>
+
+    </body>
+</html>

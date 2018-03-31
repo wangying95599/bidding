@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.quetzaco.experts.app.dao.UdprojectsMapper">
+  <resultMap id="BaseResultMap" type="org.quetzaco.experts.model.Udprojects">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="purchase_code" jdbcType="VARCHAR" property="purchaseCode" />
+    <result column="purchase_project" jdbcType="VARCHAR" property="purchaseProject" />
+    <result column="purchase_company" jdbcType="VARCHAR" property="purchaseCompany" />
+    <result column="proxy_org" jdbcType="VARCHAR" property="proxyOrg" />
+    <result column="extract_company" jdbcType="VARCHAR" property="extractCompany" />
+    <result column="bidding_time" jdbcType="TIMESTAMP" property="biddingTime" />
+    <result column="bidding_location" jdbcType="VARCHAR" property="biddingLocation" />
+    <result column="bidding_period" jdbcType="VARCHAR" property="biddingPeriod" />
+    <result column="purchase_type" jdbcType="VARCHAR" property="purchaseType" />
+    <result column="sms_info" jdbcType="VARCHAR" property="smsInfo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, 
+    bidding_time, bidding_location, bidding_period, purchase_type, sms_info
+  </sql>
+  <select id="selectByExample" parameterType="org.quetzaco.experts.model.UdprojectsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from udprojects
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from udprojects
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from udprojects
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.quetzaco.experts.model.UdprojectsExample">
+    delete from udprojects
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.quetzaco.experts.model.Udprojects">
+    insert into udprojects (id, purchase_code, purchase_project, 
+      purchase_company, proxy_org, extract_company, 
+      bidding_time, bidding_location, bidding_period, 
+      purchase_type, sms_info)
+    values (#{id,jdbcType=INTEGER}, #{purchaseCode,jdbcType=VARCHAR}, #{purchaseProject,jdbcType=VARCHAR}, 
+      #{purchaseCompany,jdbcType=VARCHAR}, #{proxyOrg,jdbcType=VARCHAR}, #{extractCompany,jdbcType=VARCHAR}, 
+      #{biddingTime,jdbcType=TIMESTAMP}, #{biddingLocation,jdbcType=VARCHAR}, #{biddingPeriod,jdbcType=VARCHAR}, 
+      #{purchaseType,jdbcType=VARCHAR}, #{smsInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.quetzaco.experts.model.Udprojects">
+    insert into udprojects
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="purchaseCode != null">
+        purchase_code,
+      </if>
+      <if test="purchaseProject != null">
+        purchase_project,
+      </if>
+      <if test="purchaseCompany != null">
+        purchase_company,
+      </if>
+      <if test="proxyOrg != null">
+        proxy_org,
+      </if>
+      <if test="extractCompany != null">
+        extract_company,
+      </if>
+      <if test="biddingTime != null">
+        bidding_time,
+      </if>
+      <if test="biddingLocation != null">
+        bidding_location,
+      </if>
+      <if test="biddingPeriod != null">
+        bidding_period,
+      </if>
+      <if test="purchaseType != null">
+        purchase_type,
+      </if>
+      <if test="smsInfo != null">
+        sms_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseCode != null">
+        #{purchaseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseProject != null">
+        #{purchaseProject,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseCompany != null">
+        #{purchaseCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="proxyOrg != null">
+        #{proxyOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="extractCompany != null">
+        #{extractCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="biddingTime != null">
+        #{biddingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="biddingLocation != null">
+        #{biddingLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="biddingPeriod != null">
+        #{biddingPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseType != null">
+        #{purchaseType,jdbcType=VARCHAR},
+      </if>
+      <if test="smsInfo != null">
+        #{smsInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.quetzaco.experts.model.UdprojectsExample" resultType="java.lang.Long">
+    select count(*) from udprojects
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update udprojects
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.purchaseCode != null">
+        purchase_code = #{record.purchaseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaseProject != null">
+        purchase_project = #{record.purchaseProject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaseCompany != null">
+        purchase_company = #{record.purchaseCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proxyOrg != null">
+        proxy_org = #{record.proxyOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extractCompany != null">
+        extract_company = #{record.extractCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.biddingTime != null">
+        bidding_time = #{record.biddingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.biddingLocation != null">
+        bidding_location = #{record.biddingLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.biddingPeriod != null">
+        bidding_period = #{record.biddingPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaseType != null">
+        purchase_type = #{record.purchaseType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smsInfo != null">
+        sms_info = #{record.smsInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update udprojects
+    set id = #{record.id,jdbcType=INTEGER},
+      purchase_code = #{record.purchaseCode,jdbcType=VARCHAR},
+      purchase_project = #{record.purchaseProject,jdbcType=VARCHAR},
+      purchase_company = #{record.purchaseCompany,jdbcType=VARCHAR},
+      proxy_org = #{record.proxyOrg,jdbcType=VARCHAR},
+      extract_company = #{record.extractCompany,jdbcType=VARCHAR},
+      bidding_time = #{record.biddingTime,jdbcType=TIMESTAMP},
+      bidding_location = #{record.biddingLocation,jdbcType=VARCHAR},
+      bidding_period = #{record.biddingPeriod,jdbcType=VARCHAR},
+      purchase_type = #{record.purchaseType,jdbcType=VARCHAR},
+      sms_info = #{record.smsInfo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.quetzaco.experts.model.Udprojects">
+    update udprojects
+    <set>
+      <if test="purchaseCode != null">
+        purchase_code = #{purchaseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseProject != null">
+        purchase_project = #{purchaseProject,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseCompany != null">
+        purchase_company = #{purchaseCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="proxyOrg != null">
+        proxy_org = #{proxyOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="extractCompany != null">
+        extract_company = #{extractCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="biddingTime != null">
+        bidding_time = #{biddingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="biddingLocation != null">
+        bidding_location = #{biddingLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="biddingPeriod != null">
+        bidding_period = #{biddingPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseType != null">
+        purchase_type = #{purchaseType,jdbcType=VARCHAR},
+      </if>
+      <if test="smsInfo != null">
+        sms_info = #{smsInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.quetzaco.experts.model.Udprojects">
+    update udprojects
+    set purchase_code = #{purchaseCode,jdbcType=VARCHAR},
+      purchase_project = #{purchaseProject,jdbcType=VARCHAR},
+      purchase_company = #{purchaseCompany,jdbcType=VARCHAR},
+      proxy_org = #{proxyOrg,jdbcType=VARCHAR},
+      extract_company = #{extractCompany,jdbcType=VARCHAR},
+      bidding_time = #{biddingTime,jdbcType=TIMESTAMP},
+      bidding_location = #{biddingLocation,jdbcType=VARCHAR},
+      bidding_period = #{biddingPeriod,jdbcType=VARCHAR},
+      purchase_type = #{purchaseType,jdbcType=VARCHAR},
+      sms_info = #{smsInfo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
