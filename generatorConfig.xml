@@ -56,7 +56,9 @@
         <table tableName="udsetresult"></table>  
         <table tableName="udsetsms"></table>  
          <table tableName="udsetsms"></table>  
+         <table tableName="udmajor"></table>  
+          <table tableName="udexpert"></table>  
          -->  
-        <table tableName="udsetcompany"></table>  
+        <table tableName="udexpert_major"></table>  
     </context>  
 </generatorConfiguration> 
