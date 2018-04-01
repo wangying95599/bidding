@@ -1,296 +1,320 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
+<head>
     <title>设置</title>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.min.css"media="screen">
-	<link rel="stylesheet" href="css/bootstrap-table.css">
-	<link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="css/bootstrap-table.css">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
     <link rel="stylesheet" href="css/bootstrap-editable.css">
-	<link href="css/bootstrap-editable.css" rel="stylesheet" />
-	<link href="css/experts.css" rel="stylesheet" media="screen">
-	<style type="text/css">
-		
-	</style>
-  </head>
-  <body>
-   
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-	<script src="js/bootstrap-table.js"></script>
-	<script src="js/bootstrap-table-zh-CN.js"></script>
-	<script src="js/bootstrap-datetimepicker.js"></script>
-    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
-    <script src="js/bootstrap-editable.js"></script>
-	<script src="js/bootstrap-table-editable.js"></script>	
-	<script src="js/experts.js"></script>
-	<script src="js/udset.js"></script>
-	<script src="js/udlist.js"></script>
-  
-     <!--顶部导航-->
-    <div class="row top" style="">
-        <nav class="navbar" role="navigation" id="nav" style="background:#E1ECFC ;color:#ffffff;margin-bottom: 10px;font-size:14px;">
-            <div class="container-fluid">
-				<!--顶部导航left-->
-                <div class="navbar-header">
-                    <img src="img/backgrounds/logo.png" alt="" class="img-responsive"
-                         style="float:left;margin-top:7px;margin-right:10px;"/>
-                    <a class="navbar-brand" href="#" style="font-weight:600"></a>
-									
-                </div>
-				<!--顶部导航middle-->
-                <div>
-                    <ul class="nav navbar-nav readOnly">
-                        <li class="active"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                            档案列表
-                        </a></li>
-                        <li><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                            协查借阅
-                        </a></li>
-                        <li><a data-toggle="collapse" data-parent="#accordion" href="#turnOverP">
-                            移交流程
-                        </a></li>
-                        <li> <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                            销毁流程
-                        </a></li>
-                        <li><a data-toggle="collapse" data-parent="#accordion" href="#report">
-                            数据统计
-                        </a></li>
-                        <li><a data-toggle="collapse" data-parent="#accordion" href="#recycleOne">
-                            回收站
-                        </a></li>
-                    </ul>
-                </div>
-				<!--顶部导航right-->
-				<div class="collapse navbar-collapse" id="example-navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right people">
-                        <li><a href="#">欢迎 <span id="loginName"></span></a></li>
-                        <li class="dropdown">
-                            <a href="#" onclick="logOut()"><span class="glyphicon glyphicon-user"></span>
-                                退出登录<!--<b class="caret"></b>-->
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-				
-            </div>
-        </nav>
-    </div> 
-  
-  
-    <!-- *********************************************************************************************************************************-->
-    <!--主页面-->
-    <div class="row middle" style="    margin-left: 0px;">
-	
-		<!--左侧导航-->
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 left" >
-            <div class="panel-group" id="accordion">
-			
-			
-                <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion"
-                               href="#collapseOne">
-                                项目信息
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
-                        <div class="panel-body" id="lefttree">
+    <link href="css/bootstrap-editable.css" rel="stylesheet"/>
+    <link href="css/experts.css" rel="stylesheet" media="screen">
+    <style type="text/css">
 
-                        </div>
-                    </div>
-                </div>
-				
-                <div class="panel panel-info" id="easyUser">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a id="assistLending" data-toggle="collapse" data-parent="#accordion"
-                               href="#collapseTwo">
-                                专家抽取
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse">
-                        <div class="panel-body" id="jieyueliucheng">
-                            <ul>
-                                <li id="assistToHome" href="#myHelpSearchByme" ><a href="#" onclick="getTurnOverFromMe()"><span class="glyphicon glyphicon-random"></span> &nbsp;&nbsp;请求协查</a></li>
-                                <li id="getTurnOverToMe" href="#myHelpSearchTome" ><a href="#" onclick="getTurnOverToMe()"><span class="glyphicon glyphicon-random"></span> &nbsp;&nbsp;协查待审批</a></li>
-                                <li href="#myHelpSearchTomeBefore" ><a href="#" onclick="getTurnOverToMeEnd()"><span class="glyphicon glyphicon-random"></span> &nbsp;&nbsp;协查已审批</a></li>
-                                <li href="#myLiuChengTable1" onclick="getFlowStartByme('get',queryparams)"><a href="#"><span class="glyphicon glyphicon-random"></span> &nbsp;&nbsp;（借阅）由我发起</a></li>
-                                <li href="#myLiuCheng1Table1" class="sP" onclick="getFlowWillProcessByme()"><a href="#"><span class="glyphicon glyphicon-retweet"></span> &nbsp;&nbsp;（借阅）未审批</a></li>
-                                <li href="#myLiuCheng1Table2" class="sP" onclick="getFlowProcessedByme()"><a href="#"><span class="glyphicon glyphicon-retweet"></span> &nbsp;&nbsp;（借阅）已审批</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-				
-				<div class="panel panel-danger">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a href="searchgoogle?type=1">
-                                抽取设置
-                            </a>
-                        </h4>
-                    </div>
-                </div>
-				
-				<div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a href="searchgoogle?type=1">
-                                专家信息维护
-                            </a>
-                        </h4>
-                    </div>
-                </div>
-				
-				<div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a href="searchgoogle?type=1">
-                                专业信息维护
-                            </a>
-                        </h4>
-                    </div>
-                </div>
-				
-				<div class="panel panel-danger">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a href="searchgoogle?type=1">
-                                统计分析
-                            </a>
-                        </h4>
-                    </div>
-                </div>
-				
+    </style>
+</head>
+<body>
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/bootstrap-table-zh-CN.js"></script>
+<script src="js/bootstrap-datetimepicker.js"></script>
+<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="js/bootstrap-editable.js"></script>
+<script src="js/bootstrap-table-editable.js"></script>
+<script src="js/experts.js"></script>
+<script src="js/udset.js"></script>
+<script src="js/udlist.js"></script>
+
+<!--顶部导航-->
+<div class="row top" style="">
+    <nav class="navbar" role="navigation" id="nav"
+         style="background:#E1ECFC ;color:#ffffff;margin-bottom: 10px;font-size:14px;">
+        <div class="container-fluid">
+            <!--顶部导航left-->
+            <div class="navbar-header">
+                <img src="img/backgrounds/logo.png" alt="" class="img-responsive"
+                     style="float:left;margin-top:7px;margin-right:10px;"/>
+                <a class="navbar-brand" href="#" style="font-weight:600"></a>
+
             </div>
-			<!--accordion.end-->
-        </div>  
-		<!--左侧导航.end-->
- 
-		<!--右侧列表-->
-		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" >
-		
-			<div id="myHelpSearchByme" >
-                <div class="row panel panel-primary">
-				
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
+            <!--顶部导航middle-->
+            <div>
+                <ul class="nav navbar-nav readOnly">
+                    <li class="active"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        档案列表
+                    </a></li>
+                    <li><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        协查借阅
+                    </a></li>
+                    <li><a data-toggle="collapse" data-parent="#accordion" href="#turnOverP">
+                        移交流程
+                    </a></li>
+                    <li><a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        销毁流程
+                    </a></li>
+                    <li><a data-toggle="collapse" data-parent="#accordion" href="#report">
+                        数据统计
+                    </a></li>
+                    <li><a data-toggle="collapse" data-parent="#accordion" href="#recycleOne">
+                        回收站
+                    </a></li>
+                </ul>
+            </div>
+            <!--顶部导航right-->
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right people">
+                    <li><a href="#">欢迎 <span id="loginName"></span></a></li>
+                    <li class="dropdown">
+                        <a href="#" onclick="logOut()"><span class="glyphicon glyphicon-user"></span>
+                            退出登录<!--<b class="caret"></b>-->
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</div>
+
+
+<!-- *********************************************************************************************************************************-->
+<!--主页面-->
+<div class="row middle" style="    margin-left: 0px;">
+
+    <!--左侧导航-->
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 left">
+        <div class="panel-group" id="accordion">
+
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseOne">
                             项目信息
-                        </h3>
-                    </div>
-					
-                    <div class="panel-body">
-                        <div class="btn-toolbar toolBar_1 btn-group" role="toolbar" id="toolBarSearchByme" style="margin-bottom: 10px;">
-                            <button  type="button" class="btn btn-default" onclick="showSearchHelpStart()">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新建项目
-                            </button>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body" id="lefttree">
 
-                            <button  type="button" class="btn btn-info" data-toggle="modal" data-target="#flow-status" data-whatever="8">
-                                <span class="glyphicon glyphicon-tasks" aria-hidden="true" ></span>状态
-                            </button>
-                        </div>
-						
-                        <table id="project_list_table"  data-height="568" class="table table-striped table-bordered table-hover" >
-					
-						</table>
                     </div>
-					
                 </div>
             </div>
-		
-            <!-- 用户列表-->
-            <div id="depart" class="hidden">
-                <div class="btn-toolbar toolBar_1" role="toolbar" id="toolBar1">
-                    <button type="button" class="btn btn-info" data-toggle="modal" id="creatDepart1" data-target="#creatDepart">创建部门</button>
-                    <button type="button" class="btn btn-info" data-toggle="modal" id="writeDepart1" data-target="#writeDepart">编辑部门</button>
-                    <button type="button" class="btn btn-info" data-toggle="modal" id="creatUser1" data-target="#creatUser">创建用户</button>
-                    <!--<button type="button" class="btn btn-danger">搜索用户</button>-->
+
+            <div class="panel panel-info" id="easyUser">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a id="assistLending" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseTwo">
+                            专家抽取
+                        </a>
+                    </h4>
                 </div>
-                <div class="btn-toolbar toolBar_1" role="toolbar" id="toolBar2" style="display: none">
-                    <button type="button"  class="btn btn-info" data-toggle="modal" id="writeUser1" data-target="#writeUser">编辑用户</button>
-                    <button type="button" class="btn btn-info" id="closeUser" onclick="closeUser()">关闭用户</button>
-                    <button type="button" onclick="activateUser()" id="activateUser" class="btn btn-info">激活用户</button>
-                    <!--<button type="button" class="btn btn-info" data-toggle="modal" data-target="#assignRoleToUser">分配角色</button>-->
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" id="assignRoles" data-toggle="dropdown">分配角色
-                            <span class="caret"></span>
-                        </button>
-                        <ul id ="dropDownMenu" class="dropdown-menu" role="menu">
-
-
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" id="updateDept" data-toggle="dropdown">更改部门
-                            <span class="caret"></span>
-                        </button>
-                        <ul id ="updateDeptDropDownMenu" class="dropdown-menu" role="menu">
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body" id="jieyueliucheng">
+                        <ul>
+                            <li id="assistToHome" href="#myHelpSearchByme"><a href="#"
+                                                                              onclick="getTurnOverFromMe()"><span
+                                    class="glyphicon glyphicon-random"></span> &nbsp;&nbsp;请求协查</a></li>
+                            <li id="getTurnOverToMe" href="#myHelpSearchTome"><a href="#"
+                                                                                 onclick="getTurnOverToMe()"><span
+                                    class="glyphicon glyphicon-random"></span> &nbsp;&nbsp;协查待审批</a></li>
+                            <li href="#myHelpSearchTomeBefore"><a href="#" onclick="getTurnOverToMeEnd()"><span
+                                    class="glyphicon glyphicon-random"></span> &nbsp;&nbsp;协查已审批</a></li>
+                            <li href="#myLiuChengTable1" onclick="getFlowStartByme('get',queryparams)"><a href="#"><span
+                                    class="glyphicon glyphicon-random"></span> &nbsp;&nbsp;（借阅）由我发起</a></li>
+                            <li href="#myLiuCheng1Table1" class="sP" onclick="getFlowWillProcessByme()"><a
+                                    href="#"><span class="glyphicon glyphicon-retweet"></span> &nbsp;&nbsp;（借阅）未审批</a>
+                            </li>
+                            <li href="#myLiuCheng1Table2" class="sP" onclick="getFlowProcessedByme()"><a href="#"><span
+                                    class="glyphicon glyphicon-retweet"></span> &nbsp;&nbsp;（借阅）已审批</a></li>
                         </ul>
                     </div>
                 </div>
-				
-                <table id="deptTable"></table>
-
             </div>
-			
-			
-            <!-- 角色列表-->
-            <div id="pole" style="display: none">
-                <div class="btn-toolbar" role="toolbar" id="toolBar3">
-                    <!--<button type="button" class="btn btn-info">添加用户</button>-->
-                    <button type="button" onclick="removeUser()" class="btn btn-danger">移除用户</button>
+
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="searchgoogle?type=1">
+                            抽取设置
+                        </a>
+                    </h4>
                 </div>
-                <table id="roleTable"></table>
-
             </div>
-			
-			
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="searchgoogle?type=1">
+                            专家信息维护
+                        </a>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="searchgoogle?type=1">
+                            专业信息维护
+                        </a>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="searchgoogle?type=1">
+                            统计分析
+                        </a>
+                    </h4>
+                </div>
+            </div>
+
         </div>
-		<!--右侧列表.end-->
- 
-  <!-- 各种模态框*********************************************************************************************************************************-->
-        
-        <!--新建项目-->
-        <div class="modal fade" id="creatDepart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-				
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">新建项目</h4>
+        <!--accordion.end-->
+    </div>
+    <!--左侧导航.end-->
+
+    <!--右侧列表-->
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+
+        <div id="myHelpSearchByme">
+            <div class="row panel panel-primary">
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        项目信息
+                    </h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="btn-toolbar toolBar_1 btn-group" role="toolbar" id="toolBarSearchByme"
+                         style="margin-bottom: 10px;">
+                        <button type="button" class="btn btn-default" onclick="showSearchHelpStart()">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新建项目
+                        </button>
+
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#flow-status"
+                                data-whatever="8">
+                            <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>状态
+                        </button>
                     </div>
-					
-                    <div class="modal-body">
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <label  class="col-sm-3 control-label">请输入部门名称</label>
-                                <div class="col-sm-9">
-                                    <input id ="createDept" type="text" class="form-control"  placeholder="请输入部门名称">
-                                </div>
+
+                    <table id="project_list_table" data-height="568"
+                           class="table table-striped table-bordered table-hover">
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 用户列表-->
+        <div id="depart" class="hidden">
+            <div class="btn-toolbar toolBar_1" role="toolbar" id="toolBar1">
+                <button type="button" class="btn btn-info" data-toggle="modal" id="creatDepart1"
+                        data-target="#creatDepart">创建部门
+                </button>
+                <button type="button" class="btn btn-info" data-toggle="modal" id="writeDepart1"
+                        data-target="#writeDepart">编辑部门
+                </button>
+                <button type="button" class="btn btn-info" data-toggle="modal" id="creatUser1" data-target="#creatUser">
+                    创建用户
+                </button>
+                <!--<button type="button" class="btn btn-danger">搜索用户</button>-->
+            </div>
+            <div class="btn-toolbar toolBar_1" role="toolbar" id="toolBar2" style="display: none">
+                <button type="button" class="btn btn-info" data-toggle="modal" id="writeUser1" data-target="#writeUser">
+                    编辑用户
+                </button>
+                <button type="button" class="btn btn-info" id="closeUser" onclick="closeUser()">关闭用户</button>
+                <button type="button" onclick="activateUser()" id="activateUser" class="btn btn-info">激活用户</button>
+                <!--<button type="button" class="btn btn-info" data-toggle="modal" data-target="#assignRoleToUser">分配角色</button>-->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" id="assignRoles"
+                            data-toggle="dropdown">分配角色
+                        <span class="caret"></span>
+                    </button>
+                    <ul id="dropDownMenu" class="dropdown-menu" role="menu">
+
+
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" id="updateDept"
+                            data-toggle="dropdown">更改部门
+                        <span class="caret"></span>
+                    </button>
+                    <ul id="updateDeptDropDownMenu" class="dropdown-menu" role="menu">
+                    </ul>
+                </div>
+            </div>
+
+            <table id="deptTable"></table>
+
+        </div>
+
+
+        <!-- 角色列表-->
+        <div id="pole" style="display: none">
+            <div class="btn-toolbar" role="toolbar" id="toolBar3">
+                <!--<button type="button" class="btn btn-info">添加用户</button>-->
+                <button type="button" onclick="removeUser()" class="btn btn-danger">移除用户</button>
+            </div>
+            <table id="roleTable"></table>
+
+        </div>
+
+
+    </div>
+    <!--右侧列表.end-->
+
+    <!-- 各种模态框*********************************************************************************************************************************-->
+
+    <!--新建项目-->
+    <div class="modal fade" id="creatDepart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">新建项目</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">请输入部门名称</label>
+                            <div class="col-sm-9">
+                                <input id="createDept" type="text" class="form-control" placeholder="请输入部门名称">
                             </div>
-                        </form>
-                    </div>
-					
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button id = "createDeptButton" type="button"  class="btn btn-primary">提交</button>
-                    </div>
-					
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal -->
-        </div>
-  <!-- 各种模态框.end*********************************************************************************************************************************-->
-         
- 
- </div>
-  
-  
-    </body>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button id="createDeptButton" type="button" class="btn btn-primary">提交</button>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!-- 各种模态框.end*********************************************************************************************************************************-->
+
+
+</div>
+
+
+</body>
 </html>

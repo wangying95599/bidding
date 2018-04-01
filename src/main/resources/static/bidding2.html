@@ -10,40 +10,40 @@
 </head>
 
 <body>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/experts.js"></script>
-    <ul class="nav nav-tabs navbar-fixed-top nav_panel">
-        <li>
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-            <img alt="Brand" src="img/brand.jpg" width="30" height="30">
-          </a>
-                </div>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/experts.js"></script>
+<ul class="nav nav-tabs navbar-fixed-top nav_panel">
+    <li>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img alt="Brand" src="img/brand.jpg" width="30" height="30">
+                </a>
             </div>
-        </li>
-        <li class="active" id='nav1'>
-            <a href="#" onclick="change_panel('1','2')">首页</a>
-        </li>
-        <li id='nav2'>
-            <a href="#" onclick="change_panel('2','1')">查询</a>
-        </li>
-    </ul>
-    <!-- home panel -->
-    <div id='panel1' class="content_panel home_panel">
-        <p>项目简介 这是一个……的项目……</p>
-    </div>
-    <!-- search panel -->
-    <div id='panel2' class="row-fluid content_panel search_panel" style='display:none'>
-        <!--div class="span12"-->
-        <form class="form-search ">
-            <input type="text" class="input-large search-query">
-            <button type="submit" class="btn">搜索</button>
-        </form>
-        <!--/div -->
-        <div class="row-fluid">
-          <div class="col-md-8">
+        </div>
+    </li>
+    <li class="active" id='nav1'>
+        <a href="#" onclick="change_panel('1','2')">首页</a>
+    </li>
+    <li id='nav2'>
+        <a href="#" onclick="change_panel('2','1')">查询</a>
+    </li>
+</ul>
+<!-- home panel -->
+<div id='panel1' class="content_panel home_panel">
+    <p>项目简介 这是一个……的项目……</p>
+</div>
+<!-- search panel -->
+<div id='panel2' class="row-fluid content_panel search_panel" style='display:none'>
+    <!--div class="span12"-->
+    <form class="form-search ">
+        <input type="text" class="input-large search-query">
+        <button type="submit" class="btn">搜索</button>
+    </form>
+    <!--/div -->
+    <div class="row-fluid">
+        <div class="col-md-8">
             <div class="col-sm-6 col-md-4 home_picture">
                 <div class="thumbnail">
                     <img src="img/tomcat.gif" alt="tomcat">
@@ -77,15 +77,16 @@
                     </div>
                 </div>
             </div>
-            </div>
-            <div class="col-md-4">
-                <p>共选定了
-                    <font style="size:3;color:blue; padding-left: 2px; padding-right: 2px;font-style:italic;" id="total">0</font>位专家</p>
-                <ul id="expert_list">
-                </ul>
-            </div>
+        </div>
+        <div class="col-md-4">
+            <p>共选定了
+                <font style="size:3;color:blue; padding-left: 2px; padding-right: 2px;font-style:italic;"
+                      id="total">0</font>位专家</p>
+            <ul id="expert_list">
+            </ul>
         </div>
     </div>
+</div>
 </body>
 
 </html>

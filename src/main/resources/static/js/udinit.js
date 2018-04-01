@@ -1,4 +1,3 @@
-
 var usrId;
 var username;
 var loginName;
@@ -8,18 +7,18 @@ var roleId;
 var roleName;
 var simpleDeptName;
 
-var ARCHIVE_API  = new Object();
+var ARCHIVE_API = new Object();
 ARCHIVE_API.dept_create = "/depts";
 ARCHIVE_API.dept_list_root = "/depts";
 ARCHIVE_API.dept_list_child = "/depts/{0}";
 ARCHIVE_API.dept_update = "/depts";
 ARCHIVE_API.dept_list_users = "/depts/{0}/users";
-ARCHIVE_API.config_list="/config";
+ARCHIVE_API.config_list = "/config";
 ARCHIVE_API.user_detail = "/users/detail";
 ARCHIVE_API.dept_byuser = "/depts/{0}/byuser";
 BOSS_DEPT_ID = 4;
-KMHK_DEPT_ID=174;
-INIT_PASSWORD="0fedf119cd212806b710ca35cbfb4091";
+KMHK_DEPT_ID = 174;
+INIT_PASSWORD = "0fedf119cd212806b710ca35cbfb4091";
 
 
 //退出登录
@@ -33,43 +32,43 @@ function logOut() {
             window.location.href = "/";
         }
     })
-}   
+}
 
 
-$(document).keydown(function(event){
+$(document).keydown(function (event) {
     if (event.keyCode == 13) {
-        $('form').each(function() {
+        $('form').each(function () {
             event.preventDefault();
         });
     }
 });
 
 
-window.onload=function(){
+window.onload = function () {
 
-    $.ajaxSetup({ cache: false });
-   
+    $.ajaxSetup({cache: false});
+
     getSessionUser();
 
 }
 
 function getSessionUser() {
-  $.axx({
-    url: ARCHIVE_API.user_detail,
-    type: 'get',
-    data: {},
-    dataType: 'json',
-    success: function (json) {
-      contextUser = json.content;
-      usrId = contextUser.id;
-      username = contextUser.name;
-      loginName = contextUser.loginName;
-      $('#loginName').html(username)
-      loadingUser(usrId);
-     
-     
-    }
-  })
+    $.axx({
+        url: ARCHIVE_API.user_detail,
+        type: 'get',
+        data: {},
+        dataType: 'json',
+        success: function (json) {
+            contextUser = json.content;
+            usrId = contextUser.id;
+            username = contextUser.name;
+            loginName = contextUser.loginName;
+            $('#loginName').html(username)
+            loadingUser(usrId);
+
+
+        }
+    })
 }
 
 
@@ -95,7 +94,6 @@ function loadingUser(userId) {
                 $('.notglobal').remove();
             }
 
-           
 
         }
     })
