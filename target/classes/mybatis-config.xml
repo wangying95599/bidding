@@ -39,7 +39,7 @@
    </plugins>-->
 
   <typeAliases>
-    <package name="org.quetzaco.archives.model"/>
+    <package name="org.quetzaco.experts.model"/>
   </typeAliases>
 
 

@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringRunner.class)
 @Transactional
-@ContextConfiguration(classes= QarchivesApplication.class)
+@ContextConfiguration(classes= ExpertsApplication.class)
 @AutoConfigureMockMvc
 @WebMvcTest(UserController.class)
 public class UserControllerTest {

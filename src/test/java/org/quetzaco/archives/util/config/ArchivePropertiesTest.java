@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class ArchivePropertiesTest extends QarchivesApplicationTests {
     final static Logger logger = LoggerFactory.getLogger(ArchivePropertiesTest.class);
     @Autowired
-    ArchiveProperties archiveProperties;
+    ExpertsProperties archiveProperties;
     @Test
     public void getFileStorage() throws Exception {
         assertEquals("I:/docs",archiveProperties.getFileStorage());

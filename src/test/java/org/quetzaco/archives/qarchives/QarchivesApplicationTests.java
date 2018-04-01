@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Rollback
 @RunWith(SpringRunner.class)
 @Transactional
-@SpringBootTest(classes = {QarchivesApplication.class})
+@SpringBootTest(classes = {ExpertsApplication.class})
 @ComponentScan(basePackages = "org.quetzaco.archives")
 @ActiveProfiles("dev")
 public class QarchivesApplicationTests {
