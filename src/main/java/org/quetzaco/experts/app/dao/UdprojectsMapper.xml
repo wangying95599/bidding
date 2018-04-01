@@ -107,7 +107,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.quetzaco.experts.model.Udprojects">
-      <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
       SELECT nextval('projects_id_seq')
     </selectKey>
     insert into udprojects (id, purchase_code, purchase_project, 
