@@ -3,18 +3,18 @@ package org.quetzaco.experts.model;
 import java.util.Date;
 
 public class Udsetcompany {
-    private String projectId;
+    private Integer projectId;
 
     private String companyName;
 
     private Date createdTime;
 
-    public String getProjectId() {
+    public Integer getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(String projectId) {
-        this.projectId = projectId == null ? null : projectId.trim();
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 
     public String getCompanyName() {

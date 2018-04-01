@@ -55,7 +55,8 @@
          <table tableName="udsetregion"></table>  
         <table tableName="udsetresult"></table>  
         <table tableName="udsetsms"></table>  
+         <table tableName="udsetsms"></table>  
          -->  
-        <table tableName="udsetsms"></table>  
+        <table tableName="udsetcompany"></table>  
     </context>  
 </generatorConfiguration> 
