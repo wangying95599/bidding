@@ -1,10 +1,5 @@
 package org.quetzaco.experts;
 
-import java.io.File;
-
-import org.quetzaco.converter.client.ConversionManager;
-import org.quetzaco.converter.client.ConversionServer;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration;
@@ -67,37 +62,6 @@ public class ExpertsApplication extends SpringBootServletInitializer{
 		return resolver;
 	}
 
-    @Value("${SERVER_CONVIG}")
-    private String serverConfig;
-    @Value("${RETURN_PATH}")
-    private String returnpath;
-
-    @Bean(name = "conversionManager")
-    public ConversionManager getConversionManager() {
-        ConversionManager confMgr = null;
-        File tmpFolder = new File(returnpath);
-        if (!tmpFolder.exists() || !tmpFolder.isDirectory()) {
-            if (!tmpFolder.mkdirs()) {
-                return null;
-            }
-        }
-
-        String[] arrayOfString = serverConfig.split(",");
-        ConversionServer[] arrayOfConversionServer = new ConversionServer[arrayOfString.length];
-
-        for (int i = 0; i < arrayOfConversionServer.length; i++) {
-            ConversionServer localConversionServer = new ConversionServer();
-            localConversionServer.setRetuenPath(returnpath);
-            localConversionServer.setMaxCon(Integer.parseInt(arrayOfString[i].substring(arrayOfString[i].indexOf("+") + 1)));
-            localConversionServer.setHost(arrayOfString[i].substring(0, arrayOfString[i].indexOf(":")));
-            localConversionServer.setPort(Integer.parseInt(arrayOfString[i].substring(arrayOfString[i].indexOf(":") + 1, arrayOfString[i].indexOf("+"))));
-            arrayOfConversionServer[i] = localConversionServer;
-        }
-
-        confMgr = new ConversionManager(arrayOfConversionServer);
-
-        return confMgr;
-    }
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
