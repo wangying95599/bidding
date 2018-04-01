@@ -59,6 +59,6 @@
          <table tableName="udmajor"></table>  
           <table tableName="udexpert"></table>  
          -->  
-        <table tableName="udexpert_major"></table>  
+        <table tableName="udexpert"></table>  
     </context>  
 </generatorConfiguration> 

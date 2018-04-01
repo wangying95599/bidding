@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.quetzaco.experts.app.biz.ExpertService;
+import org.quetzaco.experts.model.Udexpert;
 import org.quetzaco.experts.model.User;
 import org.quetzaco.experts.model.api.APIEntity;
 import org.quetzaco.experts.web.config.session.WebSecurityConfig;
@@ -29,7 +30,16 @@ public class ExpertController extends BaseRestContoller {
   @Autowired
   ExpertService expertService;
 
-
+  @RequestMapping(value = "/search/{type}/{value}", method = RequestMethod.GET)
+  HttpEntity<APIEntity<List<Udexpert>>> getExpertList(@PathVariable String type, @PathVariable String value) {
+	Udexpert expert = new Udexpert();
+	if("name".equals(type)) {
+		expert.setName(value);
+	}else if("phone".equals(type)) {
+		expert.setPhone(value);
+	}
+    return buildEntity(APIEntity.create(expertService.selectByExample(expert)), HttpStatus.OK);
+  }
 
  
 

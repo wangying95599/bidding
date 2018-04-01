@@ -1,8 +1,12 @@
 package org.quetzaco.experts.app.biz.Impl;
 
+import java.util.List;
+
 import org.quetzaco.experts.app.biz.ExpertService;
 import org.quetzaco.experts.app.dao.UdexpertMapper;
 import org.quetzaco.experts.model.Udexpert;
+import org.quetzaco.experts.model.UdexpertExample;
+import org.quetzaco.experts.model.UdexpertExample.Criteria;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +43,11 @@ public class ExpertServiceImpl implements ExpertService {
 		return expertMapper.selectByPrimaryKey(id);
 	}
 
+	public List<Udexpert> selectByExample(Udexpert expert){
+		UdexpertExample example = new UdexpertExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andNameLike(expert.getName());
+		criteria.andPhoneLike(expert.getPhone());
+		return expertMapper.selectByExample(example);
+	}
 }

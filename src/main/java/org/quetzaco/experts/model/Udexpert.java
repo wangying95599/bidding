@@ -11,6 +11,10 @@ public class Udexpert {
 
     private String phone;
 
+    private String company;
+
+    private String region;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +53,21 @@ public class Udexpert {
 
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company == null ? null : company.trim();
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region == null ? null : region.trim();
     }
 }

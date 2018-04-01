@@ -7,6 +7,8 @@
     <result column="card" jdbcType="VARCHAR" property="card" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, no, card, name, phone
+    id, no, card, name, phone, company, region
   </sql>
   <select id="selectByExample" parameterType="org.quetzaco.experts.model.UdexpertExample" resultMap="BaseResultMap">
     select
@@ -101,9 +103,11 @@
   </delete>
   <insert id="insert" parameterType="org.quetzaco.experts.model.Udexpert">
     insert into udexpert (id, no, card, 
-      name, phone)
+      name, phone, company, 
+      region)
     values (#{id,jdbcType=INTEGER}, #{no,jdbcType=VARCHAR}, #{card,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
+      #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
+      #{region,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.quetzaco.experts.model.Udexpert">
     insert into udexpert
@@ -123,6 +127,12 @@
       <if test="phone != null">
         phone,
       </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="region != null">
+        region,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -139,6 +149,12 @@
       </if>
       <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -166,6 +182,12 @@
       <if test="record.phone != null">
         phone = #{record.phone,jdbcType=VARCHAR},
       </if>
+      <if test="record.company != null">
+        company = #{record.company,jdbcType=VARCHAR},
+      </if>
+      <if test="record.region != null">
+        region = #{record.region,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +199,9 @@
       no = #{record.no,jdbcType=VARCHAR},
       card = #{record.card,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
-      phone = #{record.phone,jdbcType=VARCHAR}
+      phone = #{record.phone,jdbcType=VARCHAR},
+      company = #{record.company,jdbcType=VARCHAR},
+      region = #{record.region,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +221,12 @@
       <if test="phone != null">
         phone = #{phone,jdbcType=VARCHAR},
       </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        region = #{region,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -205,7 +235,9 @@
     set no = #{no,jdbcType=VARCHAR},
       card = #{card,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR}
+      phone = #{phone,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      region = #{region,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
