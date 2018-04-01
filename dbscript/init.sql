@@ -1,0 +1,1 @@
+INSERT INTO `users` VALUES ('100112', 'admin', '0fedf119cd212806b710ca35cbfb4091', 'admin', '0', '2018-03-21 18:08:01', '2018-03-21 18:08:04');

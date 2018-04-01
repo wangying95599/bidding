@@ -107,6 +107,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.quetzaco.experts.model.Udprojects">
+      <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT nextval('projects_id_seq')
+    </selectKey>
     insert into udprojects (id, purchase_code, purchase_project, 
       purchase_company, proxy_org, extract_company, 
       bidding_time, bidding_location, bidding_period, 
@@ -117,6 +120,9 @@
       #{purchaseType,jdbcType=VARCHAR}, #{smsInfo,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.quetzaco.experts.model.Udprojects">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT nextval('projects_id_seq')
+    </selectKey>
     insert into udprojects
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

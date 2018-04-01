@@ -40,5 +40,6 @@
 	<classpathentry kind="lib" path="indexlib/icepdf-viewer.jar"/>
 	<classpathentry kind="lib" path="indexlib/poi-scratchpad-3.8-20120326.jar"/>
 	<classpathentry kind="lib" path="indexlib/lucene-demos.jar"/>
+	<classpathentry kind="lib" path="mysql-connector-java-5.1.30.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

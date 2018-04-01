@@ -100,12 +100,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.quetzaco.experts.model.Udset">
+      <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT nextval('set_id_seq')
+    </selectKey>
     insert into udset (id, project_id, created_time, 
       updated_time, record_flag)
     values (#{id,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, 
       #{updatedTime,jdbcType=TIMESTAMP}, #{recordFlag,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.quetzaco.experts.model.Udset">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT nextval('set_id_seq')
+    </selectKey>
     insert into udset
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

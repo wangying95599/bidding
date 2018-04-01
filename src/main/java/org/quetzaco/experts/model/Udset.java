@@ -1,8 +1,9 @@
 package org.quetzaco.experts.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Udset {
+public class Udset  implements Serializable  {
     private Integer id;
 
     private Integer projectId;
@@ -12,8 +13,45 @@ public class Udset {
     private Date updatedTime;
 
     private String recordFlag;
+    
+    private Udsetcompany setCompany;
+    private Udsetexpert setExpert;
+    private Udsetmajor setMajor;
+    private Udsetregion setRegion;
+    
+    public Udsetcompany getSetCompany() {
+		return setCompany;
+	}
 
-    public Integer getId() {
+	public void setSetCompany(Udsetcompany setCompany) {
+		this.setCompany = setCompany;
+	}
+
+	public Udsetexpert getSetExpert() {
+		return setExpert;
+	}
+
+	public void setSetExpert(Udsetexpert setExpert) {
+		this.setExpert = setExpert;
+	}
+
+	public Udsetmajor getSetMajor() {
+		return setMajor;
+	}
+
+	public void setSetMajor(Udsetmajor setMajor) {
+		this.setMajor = setMajor;
+	}
+
+	public Udsetregion getSetRegion() {
+		return setRegion;
+	}
+
+	public void setSetRegion(Udsetregion setRegion) {
+		this.setRegion = setRegion;
+	}
+
+	public Integer getId() {
         return id;
     }
 
