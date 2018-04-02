@@ -21,7 +21,7 @@ public class ExtractSetController extends BaseRestContoller {
 	ExtractSetService service;
 
     //
-	@RequestMapping(value = "/extractset", method = RequestMethod.POST)
+	@RequestMapping(value = "/extractset/create", method = RequestMethod.POST)
     public HttpEntity<APIEntity> createExtractSet(@SessionAttribute(WebSecurityConfig.SESSION_KEY)User user,@RequestBody Udset set){
 		
 		System.out.println("                 Udset "+set);

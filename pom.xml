@@ -4,13 +4,13 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.quetzaco.archives</groupId>
-  <artifactId>qarchives</artifactId>
+  <groupId>org.quetzaco.experts</groupId>
+  <artifactId>experts</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>qarchives</name>
-  <description>archives</description>
+  <name>experts</name>
+  <description>experts</description>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -247,16 +247,6 @@
       <version>${commons-collections4.version}</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
-    <dependency>
-      <groupId>com.oracle</groupId>
-      <artifactId>ojdbc6</artifactId>
-      <version>1.0</version>
-      <scope>system</scope>
-      <type>jar</type>
-      <optional>true</optional>
-      <systemPath>${project.basedir}/lib/ojdbc6.jar</systemPath>
-    </dependency>
     <dependency>
       <groupId>com.kmhk.oa</groupId>
       <artifactId>password.encoder</artifactId>
@@ -266,24 +256,8 @@
       <type>jar</type>
       <optional>true</optional>
     </dependency>
-    <dependency>
-      <groupId>org.quetzaco</groupId>
-      <artifactId>quetzaco-converter-client</artifactId>
-      <version>1.0</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/lib/QuetzacoConverter-client.jar</systemPath>
-      <type>jar</type>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.quetzaco</groupId>
-      <artifactId>quetzaco-server</artifactId>
-      <version>1.0</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/lib/QuetzacoServer.jar</systemPath>
-      <type>jar</type>
-      <optional>true</optional>
-    </dependency>
+
+
     <!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
     <dependency>
       <groupId>com.itextpdf</groupId>

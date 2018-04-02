@@ -43,6 +43,6 @@ CREATE TABLE `udmajor` (
 
 
 ALTER TABLE `udexpert`
-ADD COLUMN `company`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL AFTER `company`;
+ADD COLUMN `company`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL AFTER `phone`;
 ALTER TABLE `udexpert`
-MODIFY COLUMN `region`  varchar(255) CHARACTER SET utf8 NULL DEFAULT NULL AFTER `company`;
+add COLUMN `region`  varchar(255) CHARACTER SET utf8 NULL DEFAULT NULL AFTER `company`;

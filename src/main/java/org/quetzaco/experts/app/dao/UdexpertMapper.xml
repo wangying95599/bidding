@@ -240,4 +240,10 @@
       region = #{region,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+<!--     <select id="selectByExample" parameterType="org.quetzaco.experts.model.UdexpertExample" resultMap="BaseResultMap">
+    select distinct company from udexpert where company like '%%';
+
+  </select> -->
 </mapper>
