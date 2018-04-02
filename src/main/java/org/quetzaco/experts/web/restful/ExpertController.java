@@ -1,25 +1,17 @@
 package org.quetzaco.experts.web.restful;
 
-import java.util.Date;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.quetzaco.experts.app.biz.ExpertService;
 import org.quetzaco.experts.model.Udexpert;
-import org.quetzaco.experts.model.User;
 import org.quetzaco.experts.model.api.APIEntity;
-import org.quetzaco.experts.web.config.session.WebSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 /**
  *
@@ -30,14 +22,18 @@ public class ExpertController extends BaseRestContoller {
   @Autowired
   ExpertService expertService;
 
-  @RequestMapping(value = "/search/{type}/{value}", method = RequestMethod.GET)
+  @RequestMapping(value = "/expert/search/{type}/{value}", method = RequestMethod.GET)
   HttpEntity<APIEntity<List<Udexpert>>> getExpertList(@PathVariable String type, @PathVariable String value) {
+
 	Udexpert expert = new Udexpert();
 	if("name".equals(type)) {
 		expert.setName(value);
 	}else if("phone".equals(type)) {
 		expert.setPhone(value);
+	}else if("company".equals(type)) {
+		expert.setCompany(value);
 	}
+	
     return buildEntity(APIEntity.create(expertService.selectByExample(expert)), HttpStatus.OK);
   }
 

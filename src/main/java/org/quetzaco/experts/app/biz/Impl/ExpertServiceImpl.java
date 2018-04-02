@@ -45,9 +45,28 @@ public class ExpertServiceImpl implements ExpertService {
 
 	public List<Udexpert> selectByExample(Udexpert expert){
 		UdexpertExample example = new UdexpertExample();
+		example.setDistinct(true);
+		
 		Criteria criteria = example.createCriteria();
-		criteria.andNameLike(expert.getName());
-		criteria.andPhoneLike(expert.getPhone());
+		
+		if(expert.getName()!=null)
+			criteria.andNameLike("%"+expert.getName()+"%");
+		
+		if(expert.getPhone()!=null)
+			criteria.andPhoneLike("%"+expert.getPhone()+"%");
+		
+		if(expert.getCompany()!=null)
+			criteria.andCompanyLike("%"+expert.getCompany()+"%");
+		
+		
+		return expertMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<Udexpert> getCompanyList(Udexpert expert) {
+		UdexpertExample example = new UdexpertExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andCompanyLike(expert.getCompany());
 		return expertMapper.selectByExample(example);
 	}
 }

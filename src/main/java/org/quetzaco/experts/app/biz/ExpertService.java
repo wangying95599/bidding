@@ -10,4 +10,5 @@ public interface ExpertService {
 	Udexpert updateExpert(Udexpert expert);
 	Udexpert getExpert(Integer expertId);
 	public List<Udexpert> selectByExample(Udexpert expert);
+	public List<Udexpert> getCompanyList(Udexpert expert) ;
 }

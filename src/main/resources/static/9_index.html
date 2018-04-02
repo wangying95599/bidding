@@ -498,61 +498,61 @@
                                 <legend>区域设置</legend>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" name="set_region" value="">
                                         大连市区及高新园区
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" name="set_region" value="">
                                         金州
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" name="set_region" value="">
                                         瓦房店
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" name="set_region" value="">
                                         开发区
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" name="set_region" value="">
                                         庄河
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" name="set_region" value="">
                                         普兰店
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" name="set_region" value="">
                                         旅顺
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" name="set_region" value="">
                                         保税区
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" name="set_region" value="">
                                         长海县
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" name="set_region" value="">
                                         外省市
                                     </label>
                                 </div>
@@ -565,11 +565,11 @@
                                 <legend>回避单位</legend>
                                 <form class="form-inline" style="    margin-bottom: 15px;">
                                     <div class="form-group">
-                                        <label for="exampleInputName2">单位名称</label>
-                                        <input type="text" class="form-control" id="exam style=" margin-bottom: 15px;"pleInputName2"
+                                        <label for="search_set_company_input">单位名称</label>
+                                        <input type="text" class="form-control" id="search_set_company_input" style=" margin-bottom: 15px;"pleInputName2"
                                         >
                                     </div>
-                                    <button type="submit" class="btn btn-default">添加</button>
+                                    <button type="button" id="search_set_company_button" class="btn btn-default">添加</button>
 
                                 </form>
 
@@ -584,16 +584,16 @@
                                 <form class="form-inline" style="    margin-bottom: 15px;">
                                     <div class="form-group">
                                         <label class="radio-inline">
-                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                                                   value="option1"> 姓名
+                                            <input type="radio" name="search_set_expert_radio" id="search_set_expert_name"
+                                                   value="name"> 姓名
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                                                   value="option2"> 电话
+                                            <input type="radio" name="search_set_expert_radio" id="search_set_expert_phone"
+                                                   value="phone"> 电话
                                         </label>
-                                        <input type="text" class="form-control" id="exampleInputName2">
+                                        <input type="text" class="form-control" id="search_set_expert_input">
                                     </div>
-                                    <button type="submit" class="btn btn-default">添加</button>
+                                    <button type="button" id="search_set_expert_button"  class="btn btn-default">添加</button>
 
                                 </form>
 
@@ -609,16 +609,16 @@
                                 <form class="form-inline" style="    margin-bottom: 15px;">
                                     <div class="form-group">
                                         <label class="radio-inline">
-                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                                                   value="option1"> 名称
+                                            <input type="radio" name="search_set_major_radio" 
+                                                   value="name"> 名称
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                                                   value="option2"> 编号
+                                            <input type="radio" name="search_set_major_radio" 
+                                                   value="code"> 编号
                                         </label>
-                                        <input type="text" class="form-control" id="exampleInputName2">
+                                        <input type="text" class="form-control"  id="search_set_major_input">
                                     </div>
-                                    <button type="submit" class="btn btn-default">查询</button>
+                                    <button type="button"  id="search_set_major_button"  class="btn btn-default">查询</button>
 
                                 </form>
 
@@ -641,7 +641,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button id="createDeptButton" type="button" class="btn btn-primary">提交</button>
+                    <button id="set_extract_submit_button" type="button" class="btn btn-primary">提交</button>
                 </div>
 
             </div><!-- /.modal-content -->

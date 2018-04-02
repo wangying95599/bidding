@@ -27,4 +27,8 @@ public interface UdexpertMapper {
     int updateByPrimaryKeySelective(Udexpert record);
 
     int updateByPrimaryKey(Udexpert record);
+    
+    
+    //自定义mapper方法
+//    List<String> getCompanyList(String name);
 }
