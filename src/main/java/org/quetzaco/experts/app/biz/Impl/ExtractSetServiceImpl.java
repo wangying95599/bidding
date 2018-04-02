@@ -42,25 +42,32 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 	@Override
 	public void extractSet(Udset set) {
 		setMapper.insert(set);
-		Udsetcompany company = set.getSetCompany();
-		if(company != null) {
-			companyMapper.insert(company);
-		}
 		
-		Udsetmajor major = set.getSetMajor();
-		if(major != null) {
-			majorMapper.insert(major);
+		if(set.getCompanyList()!= null) {
+			for(Udsetcompany company:set.getCompanyList()) {
+				company.setProjectId(set.getProjectId());
+				companyMapper.insertSelective(company);
+			}
 		}
-		
-		Udsetregion region = set.getSetRegion();
-		if(region != null) {
-			regionMapper.insert(region);
+		if(set.getMajorList() !=null) {
+			for(Udsetmajor major:set.getMajorList()) {
+				major.setProjectId(set.getProjectId());
+				majorMapper.insert(major);
+			}
 		}
-		
-		Udsetexpert expert = set.getSetExpert();
-		if(expert != null) {
-			expertMapper.insert(expert);
+		if(set.getRegionList() !=null) {
+			for(Udsetregion region:set.getRegionList()) {
+				region.setProjectId(set.getProjectId());
+				regionMapper.insert(region);
+			}
 		}
+		if(set.getExpertList() !=null) {
+			for(Udsetexpert expert:set.getExpertList()) {
+				expert.setProjectId(set.getProjectId());
+				expertMapper.insert(expert);
+			}
+		}
+
 	}
 	
 	

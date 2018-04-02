@@ -222,7 +222,7 @@ function set_extract_submit(){
     
     var companyArray = $("#set_table_cor").bootstrapTable("getData");
     var companyIds = $.map(companyArray,function (obj) {
-        return obj.id;
+        return obj.company;
     });
     
     var expertArray = $("#set_table_person").bootstrapTable("getData");
@@ -240,15 +240,16 @@ function set_extract_submit(){
         return obj.id;
     });
 
-    deliver.companyList = companyIds;
+//    deliver.companyList = companyIds;
     deliver.expertList = expertIds;
-    deliver.majorList = majorArray;
-    deliver.regionList = regionIds;
+    deliver.majorList = majorIds;
+//    deliver.regionList = regionIds;
     console.log(deliver);
+    var data = {set: deliver, expertList: expertIds,majorList:majorIds};
     $.axx({
         type:'post',
         url:'/extractset/create',
-        data:deliver,
+        data: deliver,
         success:function (json) {
             alert("设置成功");
            // $("#turnOver").removeClass("hidden").hide().fadeIn(500).siblings().addClass("hidden");

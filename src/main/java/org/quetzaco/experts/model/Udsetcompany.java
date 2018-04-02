@@ -1,8 +1,17 @@
 package org.quetzaco.experts.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Udsetcompany {
+public class Udsetcompany   implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public Udsetcompany() {
+		super();
+	}
     private Integer projectId;
 
     private String companyName;
