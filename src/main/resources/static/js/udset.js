@@ -242,7 +242,7 @@ function set_extract_submit(){
 
     deliver.companyList = companyIds;
     deliver.expertList = expertIds;
-    deliver.majorList = majorIds;
+    deliver.majorList = majorArray;
     deliver.regionList = regionIds;
     console.log(deliver);
     $.axx({
