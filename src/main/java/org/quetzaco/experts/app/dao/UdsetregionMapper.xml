@@ -3,7 +3,7 @@
 <mapper namespace="org.quetzaco.experts.app.dao.UdsetregionMapper">
   <resultMap id="BaseResultMap" type="org.quetzaco.experts.model.Udsetregion">
     <id column="project_id" jdbcType="INTEGER" property="projectId" />
-    <result column="region_name" jdbcType="VARCHAR" property="regionName" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
     <result column="created_dt" jdbcType="TIMESTAMP" property="createdDt" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    project_id, region_name, created_dt
+    project_id, region, created_dt
   </sql>
   <select id="selectByExample" parameterType="org.quetzaco.experts.model.UdsetregionExample" resultMap="BaseResultMap">
     select
@@ -98,9 +98,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.quetzaco.experts.model.Udsetregion">
-    insert into udsetregion (project_id, region_name, created_dt
+    insert into udsetregion (project_id, region, created_dt
       )
-    values (#{projectId,jdbcType=INTEGER}, #{regionName,jdbcType=VARCHAR}, #{createdDt,jdbcType=TIMESTAMP}
+    values (#{projectId,jdbcType=INTEGER}, #{region,jdbcType=VARCHAR}, #{createdDt,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="org.quetzaco.experts.model.Udsetregion">
@@ -109,8 +109,8 @@
       <if test="projectId != null">
         project_id,
       </if>
-      <if test="regionName != null">
-        region_name,
+      <if test="region != null">
+        region,
       </if>
       <if test="createdDt != null">
         created_dt,
@@ -120,8 +120,8 @@
       <if test="projectId != null">
         #{projectId,jdbcType=INTEGER},
       </if>
-      <if test="regionName != null">
-        #{regionName,jdbcType=VARCHAR},
+      <if test="region != null">
+        #{region,jdbcType=VARCHAR},
       </if>
       <if test="createdDt != null">
         #{createdDt,jdbcType=TIMESTAMP},
@@ -140,8 +140,8 @@
       <if test="record.projectId != null">
         project_id = #{record.projectId,jdbcType=INTEGER},
       </if>
-      <if test="record.regionName != null">
-        region_name = #{record.regionName,jdbcType=VARCHAR},
+      <if test="record.region != null">
+        region = #{record.region,jdbcType=VARCHAR},
       </if>
       <if test="record.createdDt != null">
         created_dt = #{record.createdDt,jdbcType=TIMESTAMP},
@@ -154,7 +154,7 @@
   <update id="updateByExample" parameterType="map">
     update udsetregion
     set project_id = #{record.projectId,jdbcType=INTEGER},
-      region_name = #{record.regionName,jdbcType=VARCHAR},
+      region = #{record.region,jdbcType=VARCHAR},
       created_dt = #{record.createdDt,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -163,8 +163,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="org.quetzaco.experts.model.Udsetregion">
     update udsetregion
     <set>
-      <if test="regionName != null">
-        region_name = #{regionName,jdbcType=VARCHAR},
+      <if test="region != null">
+        region = #{region,jdbcType=VARCHAR},
       </if>
       <if test="createdDt != null">
         created_dt = #{createdDt,jdbcType=TIMESTAMP},
@@ -174,7 +174,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="org.quetzaco.experts.model.Udsetregion">
     update udsetregion
-    set region_name = #{regionName,jdbcType=VARCHAR},
+    set region = #{region,jdbcType=VARCHAR},
       created_dt = #{createdDt,jdbcType=TIMESTAMP}
     where project_id = #{projectId,jdbcType=INTEGER}
   </update>

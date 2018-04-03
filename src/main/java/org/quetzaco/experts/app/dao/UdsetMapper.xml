@@ -100,7 +100,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.quetzaco.experts.model.Udset">
-      <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
       SELECT nextval('set_id_seq')
     </selectKey>
     insert into udset (id, project_id, created_time, 

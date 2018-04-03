@@ -1,7 +1,7 @@
 package org.quetzaco.experts.model;
 
 public class Udexpert {
-    private Integer id;
+    private Integer expertId;
 
     private String no;
 
@@ -15,12 +15,14 @@ public class Udexpert {
 
     private String region;
 
-    public Integer getId() {
-        return id;
+    private String recordFlag;
+
+    public Integer getExpertId() {
+        return expertId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setExpertId(Integer expertId) {
+        this.expertId = expertId;
     }
 
     public String getNo() {
@@ -69,5 +71,13 @@ public class Udexpert {
 
     public void setRegion(String region) {
         this.region = region == null ? null : region.trim();
+    }
+
+    public String getRecordFlag() {
+        return recordFlag;
+    }
+
+    public void setRecordFlag(String recordFlag) {
+        this.recordFlag = recordFlag == null ? null : recordFlag.trim();
     }
 }

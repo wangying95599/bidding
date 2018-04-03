@@ -7,8 +7,6 @@ public class UdexpertMajor {
 
     private Integer expertId;
 
-    private String name;
-
     private String majorCode;
 
     private Date createdDt;
@@ -27,14 +25,6 @@ public class UdexpertMajor {
 
     public void setExpertId(Integer expertId) {
         this.expertId = expertId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
     }
 
     public String getMajorCode() {

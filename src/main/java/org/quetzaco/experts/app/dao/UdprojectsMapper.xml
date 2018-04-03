@@ -13,6 +13,7 @@
     <result column="bidding_period" jdbcType="VARCHAR" property="biddingPeriod" />
     <result column="purchase_type" jdbcType="VARCHAR" property="purchaseType" />
     <result column="sms_info" jdbcType="VARCHAR" property="smsInfo" />
+    <result column="record_flag" jdbcType="VARCHAR" property="recordFlag" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -74,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, 
-    bidding_time, bidding_location, bidding_period, purchase_type, sms_info
+    bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag
   </sql>
   <select id="selectByExample" parameterType="org.quetzaco.experts.model.UdprojectsExample" resultMap="BaseResultMap">
     select
@@ -107,17 +108,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.quetzaco.experts.model.Udprojects">
-      <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
       SELECT nextval('projects_id_seq')
     </selectKey>
     insert into udprojects (id, purchase_code, purchase_project, 
       purchase_company, proxy_org, extract_company, 
       bidding_time, bidding_location, bidding_period, 
-      purchase_type, sms_info)
+      purchase_type, sms_info, record_flag
+      )
     values (#{id,jdbcType=INTEGER}, #{purchaseCode,jdbcType=VARCHAR}, #{purchaseProject,jdbcType=VARCHAR}, 
       #{purchaseCompany,jdbcType=VARCHAR}, #{proxyOrg,jdbcType=VARCHAR}, #{extractCompany,jdbcType=VARCHAR}, 
       #{biddingTime,jdbcType=TIMESTAMP}, #{biddingLocation,jdbcType=VARCHAR}, #{biddingPeriod,jdbcType=VARCHAR}, 
-      #{purchaseType,jdbcType=VARCHAR}, #{smsInfo,jdbcType=VARCHAR})
+      #{purchaseType,jdbcType=VARCHAR}, #{smsInfo,jdbcType=VARCHAR}, #{recordFlag,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="org.quetzaco.experts.model.Udprojects">
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
@@ -158,6 +161,9 @@
       <if test="smsInfo != null">
         sms_info,
       </if>
+      <if test="recordFlag != null">
+        record_flag,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -192,6 +198,9 @@
       </if>
       <if test="smsInfo != null">
         #{smsInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="recordFlag != null">
+        #{recordFlag,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -237,6 +246,9 @@
       <if test="record.smsInfo != null">
         sms_info = #{record.smsInfo,jdbcType=VARCHAR},
       </if>
+      <if test="record.recordFlag != null">
+        record_flag = #{record.recordFlag,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -254,7 +266,8 @@
       bidding_location = #{record.biddingLocation,jdbcType=VARCHAR},
       bidding_period = #{record.biddingPeriod,jdbcType=VARCHAR},
       purchase_type = #{record.purchaseType,jdbcType=VARCHAR},
-      sms_info = #{record.smsInfo,jdbcType=VARCHAR}
+      sms_info = #{record.smsInfo,jdbcType=VARCHAR},
+      record_flag = #{record.recordFlag,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -292,6 +305,9 @@
       <if test="smsInfo != null">
         sms_info = #{smsInfo,jdbcType=VARCHAR},
       </if>
+      <if test="recordFlag != null">
+        record_flag = #{recordFlag,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -306,7 +322,8 @@
       bidding_location = #{biddingLocation,jdbcType=VARCHAR},
       bidding_period = #{biddingPeriod,jdbcType=VARCHAR},
       purchase_type = #{purchaseType,jdbcType=VARCHAR},
-      sms_info = #{smsInfo,jdbcType=VARCHAR}
+      sms_info = #{smsInfo,jdbcType=VARCHAR},
+      record_flag = #{recordFlag,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

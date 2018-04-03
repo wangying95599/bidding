@@ -25,6 +25,8 @@ public class Udprojects {
 
     private String smsInfo;
 
+    private String recordFlag;
+
     public Integer getId() {
         return id;
     }
@@ -111,5 +113,13 @@ public class Udprojects {
 
     public void setSmsInfo(String smsInfo) {
         this.smsInfo = smsInfo == null ? null : smsInfo.trim();
+    }
+
+    public String getRecordFlag() {
+        return recordFlag;
+    }
+
+    public void setRecordFlag(String recordFlag) {
+        this.recordFlag = recordFlag == null ? null : recordFlag.trim();
     }
 }

@@ -165,73 +165,73 @@ public class UdsetcompanyExample {
             return (Criteria) this;
         }
 
-        public Criteria andCompanyNameIsNull() {
-            addCriterion("company_name is null");
+        public Criteria andCompanyIsNull() {
+            addCriterion("company is null");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyNameIsNotNull() {
-            addCriterion("company_name is not null");
+        public Criteria andCompanyIsNotNull() {
+            addCriterion("company is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyNameEqualTo(String value) {
-            addCriterion("company_name =", value, "companyName");
+        public Criteria andCompanyEqualTo(String value) {
+            addCriterion("company =", value, "company");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyNameNotEqualTo(String value) {
-            addCriterion("company_name <>", value, "companyName");
+        public Criteria andCompanyNotEqualTo(String value) {
+            addCriterion("company <>", value, "company");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyNameGreaterThan(String value) {
-            addCriterion("company_name >", value, "companyName");
+        public Criteria andCompanyGreaterThan(String value) {
+            addCriterion("company >", value, "company");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyNameGreaterThanOrEqualTo(String value) {
-            addCriterion("company_name >=", value, "companyName");
+        public Criteria andCompanyGreaterThanOrEqualTo(String value) {
+            addCriterion("company >=", value, "company");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyNameLessThan(String value) {
-            addCriterion("company_name <", value, "companyName");
+        public Criteria andCompanyLessThan(String value) {
+            addCriterion("company <", value, "company");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyNameLessThanOrEqualTo(String value) {
-            addCriterion("company_name <=", value, "companyName");
+        public Criteria andCompanyLessThanOrEqualTo(String value) {
+            addCriterion("company <=", value, "company");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyNameLike(String value) {
-            addCriterion("company_name like", value, "companyName");
+        public Criteria andCompanyLike(String value) {
+            addCriterion("company like", value, "company");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyNameNotLike(String value) {
-            addCriterion("company_name not like", value, "companyName");
+        public Criteria andCompanyNotLike(String value) {
+            addCriterion("company not like", value, "company");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyNameIn(List<String> values) {
-            addCriterion("company_name in", values, "companyName");
+        public Criteria andCompanyIn(List<String> values) {
+            addCriterion("company in", values, "company");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyNameNotIn(List<String> values) {
-            addCriterion("company_name not in", values, "companyName");
+        public Criteria andCompanyNotIn(List<String> values) {
+            addCriterion("company not in", values, "company");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyNameBetween(String value1, String value2) {
-            addCriterion("company_name between", value1, value2, "companyName");
+        public Criteria andCompanyBetween(String value1, String value2) {
+            addCriterion("company between", value1, value2, "company");
             return (Criteria) this;
         }
 
-        public Criteria andCompanyNameNotBetween(String value1, String value2) {
-            addCriterion("company_name not between", value1, value2, "companyName");
+        public Criteria andCompanyNotBetween(String value1, String value2) {
+            addCriterion("company not between", value1, value2, "company");
             return (Criteria) this;
         }
 

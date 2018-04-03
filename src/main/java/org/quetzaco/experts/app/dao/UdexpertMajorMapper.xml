@@ -4,7 +4,6 @@
   <resultMap id="BaseResultMap" type="org.quetzaco.experts.model.UdexpertMajor">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="expert_id" jdbcType="INTEGER" property="expertId" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="major_code" jdbcType="VARCHAR" property="majorCode" />
     <result column="created_dt" jdbcType="TIMESTAMP" property="createdDt" />
   </resultMap>
@@ -67,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, expert_id, name, major_code, created_dt
+    id, expert_id, major_code, created_dt
   </sql>
   <select id="selectByExample" parameterType="org.quetzaco.experts.model.UdexpertMajorExample" resultMap="BaseResultMap">
     select
@@ -100,10 +99,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.quetzaco.experts.model.UdexpertMajor">
-    insert into udexpert_major (id, expert_id, name, 
-      major_code, created_dt)
-    values (#{id,jdbcType=INTEGER}, #{expertId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{majorCode,jdbcType=VARCHAR}, #{createdDt,jdbcType=TIMESTAMP})
+    insert into udexpert_major (id, expert_id, major_code, 
+      created_dt)
+    values (#{id,jdbcType=INTEGER}, #{expertId,jdbcType=INTEGER}, #{majorCode,jdbcType=VARCHAR}, 
+      #{createdDt,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.quetzaco.experts.model.UdexpertMajor">
     insert into udexpert_major
@@ -113,9 +112,6 @@
       </if>
       <if test="expertId != null">
         expert_id,
-      </if>
-      <if test="name != null">
-        name,
       </if>
       <if test="majorCode != null">
         major_code,
@@ -130,9 +126,6 @@
       </if>
       <if test="expertId != null">
         #{expertId,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
       </if>
       <if test="majorCode != null">
         #{majorCode,jdbcType=VARCHAR},
@@ -157,9 +150,6 @@
       <if test="record.expertId != null">
         expert_id = #{record.expertId,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
       <if test="record.majorCode != null">
         major_code = #{record.majorCode,jdbcType=VARCHAR},
       </if>
@@ -175,7 +165,6 @@
     update udexpert_major
     set id = #{record.id,jdbcType=INTEGER},
       expert_id = #{record.expertId,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
       major_code = #{record.majorCode,jdbcType=VARCHAR},
       created_dt = #{record.createdDt,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -187,9 +176,6 @@
     <set>
       <if test="expertId != null">
         expert_id = #{expertId,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="majorCode != null">
         major_code = #{majorCode,jdbcType=VARCHAR},
@@ -203,7 +189,6 @@
   <update id="updateByPrimaryKey" parameterType="org.quetzaco.experts.model.UdexpertMajor">
     update udexpert_major
     set expert_id = #{expertId,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
       major_code = #{majorCode,jdbcType=VARCHAR},
       created_dt = #{createdDt,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}

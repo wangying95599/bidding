@@ -107,7 +107,7 @@ public class ExtractServiceImpl implements ExtractService {
 		for(Udexpert expert:expertList) {
 			
 			//已经加入map
-			if(expertMap.get(expert.getId()) !=null) {
+			if(expertMap.get(expert.getExpertId()) !=null) {
 				continue;
 			}
 			
