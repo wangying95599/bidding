@@ -42,6 +42,12 @@ public class ExtractServiceImpl implements ExtractService {
 	 * 子查询 做回避，冻着查询。生成的临时表都是符合条件的
 	 * 外层查询 条件
 	 * 
+	 * 逻辑复杂需要边界测试
+	 * 边界1：白名单 > 设置总数 
+	 * 边界2：专业人数 <设置人数
+	 * 边界3：有的专业人数不够，有的专业够。不够的可以用白名单
+	 * 边界4：什么都够。
+	 * 
 	 */
 	@Override
 	public void extract(Udset set) {
@@ -66,28 +72,34 @@ public class ExtractServiceImpl implements ExtractService {
 		setmajorExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
 		List<Udsetmajor> setmajorList =  setmajorMapper.selectByExample(setmajorExample);
 		
+		int BIDDING_NUMBER=0;
 		HashMap<String,Long> setmajorMap = new HashMap<String,Long>();
 		for(Udsetmajor setmajor:setmajorList) {
 			setmajorMap.put(setmajor.getMajorCode(), setmajor.getMajorNumber());
+			BIDDING_NUMBER+=setmajor.getMajorNumber();
 		}
 		
 		/**
 		 * 查询所有的 专家和专业的对应关系，过滤条件majorcode,多对多，用map不合适。
 		 */
-		HashMap<Integer,UdexpertMajor> pmMap = new HashMap<Integer,UdexpertMajor>();
+		HashMap<String,List<UdexpertMajor>> mpMap = new HashMap<String,List<UdexpertMajor>>();
 		for(Udsetmajor setmajor:setmajorList) {
 			UdexpertMajorExample expertMajorExample = new UdexpertMajorExample ();
-			expertMajorExample.createCriteria().andMajorCodeLike("'%"+setmajor.getMajorCode()+"'");
+			expertMajorExample.createCriteria().andMajorCodeLike("'"+setmajor.getMajorCode()+"%'");
 			List<UdexpertMajor> list = expertMajorMapper.selectByExample(expertMajorExample);
-			for(UdexpertMajor pm:list) {
-				pmMap.put(pm.getExpertId(), pm);
-			}
+
+			mpMap.put(setmajor.getMajorCode(), list);
 		}
+		
+		/**
+		 * 校验白名单 和 设置减法， 列出 要设置的值。 
+		 */
+		
 		
 		
 		/**
 		 * 随机逻辑
-		 * 1 加入白名单
+		 * 1 加入白名单，边界。白名单可能比总人数还多
 		 * 2
 		 */
 		HashMap<Integer,Udexpert> expertMap = new HashMap<Integer,Udexpert>();
@@ -99,14 +111,19 @@ public class ExtractServiceImpl implements ExtractService {
 				continue;
 			}
 			
+			// 
+			
+			
 			
 			/**
 			 * 两个退出条件 1：map满员 2 各专业满员
-			 * 其中白名单 可能符合各专业，算哪个呢？
+			 * 其中白名单 可能符合各专业，算哪个呢？ 白名单可能比还多
 			 */
-			if(1==1) {
+			if(expertMap.size()==BIDDING_NUMBER) {
 				break;
 			}
+			
+			
 		}
 		System.out.println(expertList);
 		
