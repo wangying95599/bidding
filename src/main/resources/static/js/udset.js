@@ -27,7 +27,7 @@ function set_add (id) {
 
 var set_col_cor=[  
 	{   field: 'id',  
-        visible: false
+        visible: true
     },
     {   field: 'state',  
         checkbox: true  
@@ -237,7 +237,7 @@ function set_extract_submit(){
     
     var regionArray = $("input[name='set_region']:checked");
     var regionIds = $.map(regionArray,function (obj) {
-        return obj.id;
+        return obj.value;
     });
 
 //    deliver.companyList = companyIds;
@@ -300,17 +300,42 @@ function initSet(){
 	
 	$("#set_extract_submit_button").click(set_extract_submit);
 	
-	loadJSData();
+	//loadJSData();
 }
 //已经设置过了，需要加载各表格数据
-function loadJSData(){
-//	$('#set_table_cor').bootstrapTable("load", set_data_cor); 
-//	$('#set_table_person').bootstrapTable("load", set_data_person); 
-//	$('#set_table_major_from').bootstrapTable("load", set_data_major_from); 
-//	$('#set_table_major_to').bootstrapTable("load", set_data_major_to); 
-	
+function loadExtractSetData(projectId){
 
 }
+$('#extractSet').on('show.bs.modal', function (event) {
+    console.log("show.bs.modal");
+    console.log(event);
+	projectId=123;
+    $.axx({
+        type:'GET',
+        url:"/extractset/get/"+projectId,
+        success:function (json) {
+            var models = json.content;
+            console.log(models);
+            console.log(models.companyList);
+            if(models.companyList){
+            	$('#set_table_cor').bootstrapTable("load", models.companyList);
+            }
+            if(models.expertList){
+            	$('#set_table_person').bootstrapTable("load", models.expertList);
+            }
+            if(models.majorList){
+            	$('#set_table_major_to').bootstrapTable("load", models.majorList);
+            }
+            
+            if(models.regionList){
+	           
+	            $.each(models.regionList,function(i,item){	
+	            	$("input[name='set_region'][value="+item.regionName+"]").attr("checked","checked");	
+	            });
+            }
+        }
+    });	
+});
 
 
 

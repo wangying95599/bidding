@@ -73,7 +73,7 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 	
 	@Override
 	public Udset serachExtractSet(Udset set) {
-//		setMapper.insert(set);
+
 		if(set.getProjectId() != null) {
 			UdsetExample example = new UdsetExample();
 			UdsetExample.Criteria criteria = example.createCriteria();
@@ -89,9 +89,7 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 			UdsetcompanyExample.Criteria criteria = example.createCriteria();
 			criteria.andProjectIdEqualTo(set.getProjectId());
 			List<Udsetcompany> list = companyMapper.selectByExample(example);
-			if(list!=null && list.size()==1) {
-				set.setSetCompany(list.get(0));
-			}
+			set.setCompanyList(list);
 		}
 		
 		if(set.getProjectId() != null) {
@@ -99,9 +97,7 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 			UdsetmajorExample.Criteria criteria = example.createCriteria();
 			criteria.andProjectIdEqualTo(set.getProjectId());
 			List<Udsetmajor> list = majorMapper.selectByExample(example);
-			if(list!=null && list.size()==1) {
-				set.setSetMajor(list.get(0));
-			}
+			set.setMajorList(list);
 		}
 		
 		if(set.getProjectId() != null) {
@@ -109,9 +105,7 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 			UdsetregionExample.Criteria criteria = example.createCriteria();
 			criteria.andProjectIdEqualTo(set.getProjectId());
 			List<Udsetregion> list = regionMapper.selectByExample(example);
-			if(list!=null && list.size()==1) {
-				set.setSetRegion(list.get(0));
-			}
+			set.setRegionList(list);
 		}
 		
 		if(set.getProjectId() != null) {
@@ -119,9 +113,7 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 			UdsetexpertExample.Criteria criteria = example.createCriteria();
 			criteria.andProjectIdEqualTo(set.getProjectId());
 			List<Udsetexpert> list = expertMapper.selectByExample(example);
-			if(list!=null && list.size()==1) {
-				set.setSetExpert(list.get(0));
-			}
+			set.setExpertList(list);
 		}
 		
 		return set;

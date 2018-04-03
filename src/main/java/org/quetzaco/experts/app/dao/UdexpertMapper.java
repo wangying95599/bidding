@@ -30,5 +30,5 @@ public interface UdexpertMapper {
     
     
     //自定义mapper方法
-//    List<String> getCompanyList(String name);
+    List<Udexpert> extractExpert(Integer id);
 }

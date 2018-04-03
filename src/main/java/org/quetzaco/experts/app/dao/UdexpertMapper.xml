@@ -242,8 +242,13 @@
   </update>
   
   
-<!--     <select id="selectByExample" parameterType="org.quetzaco.experts.model.UdexpertExample" resultMap="BaseResultMap">
-    select distinct company from udexpert where company like '%%';
-
-  </select> -->
+   <select id="extractExpert" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+     
+	select <include refid="Base_Column_List" /> 
+	from udexpert where 
+	company not in (select company_name from udsetcompany where project_id=#{id,jdbcType=INTEGER} and company_name is not null)
+	and id not in (select expert_id from udsetexpert where project_id=#{id,jdbcType=INTEGER} and expert_id is not null)
+	and region in (select region_name from udsetregion where project_id=#{id,jdbcType=INTEGER} and region_name is not null) 
+	
+  </select>
 </mapper>
