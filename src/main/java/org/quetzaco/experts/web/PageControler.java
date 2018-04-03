@@ -13,18 +13,14 @@ public class PageControler {
 
   @RequestMapping("/")
   public String home() {
-    return "0login.html";
-  }
-  @RequestMapping("/index")
-  public String index() {
     return "login.html";
   }
 
   //loginAdmin.html
   @RequestMapping("/main")
   public String main() {
-    logger.debug(" goto main 9_index.html");
-    return "9_index.html";
+    logger.debug(" goto project_parent.html");
+    return "project.html";
   }
 
   @RequestMapping("/admin")
