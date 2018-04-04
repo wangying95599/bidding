@@ -1,20 +1,11 @@
 package org.quetzaco.experts.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Udsetcompany   implements Serializable  {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	public Udsetcompany() {
-		super();
-	}
+public class Udsetcompany {
     private Integer projectId;
 
-    private String companyName;
+    private String company;
 
     private Date createdTime;
 
@@ -26,12 +17,12 @@ public class Udsetcompany   implements Serializable  {
         this.projectId = projectId;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getCompany() {
+        return company;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName == null ? null : companyName.trim();
+    public void setCompany(String company) {
+        this.company = company == null ? null : company.trim();
     }
 
     public Date getCreatedTime() {

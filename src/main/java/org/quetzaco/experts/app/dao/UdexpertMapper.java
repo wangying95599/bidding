@@ -10,7 +10,7 @@ public interface UdexpertMapper {
 
     int deleteByExample(UdexpertExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer expertId);
 
     int insert(Udexpert record);
 
@@ -18,7 +18,7 @@ public interface UdexpertMapper {
 
     List<Udexpert> selectByExample(UdexpertExample example);
 
-    Udexpert selectByPrimaryKey(Integer id);
+    Udexpert selectByPrimaryKey(Integer expertId);
 
     int updateByExampleSelective(@Param("record") Udexpert record, @Param("example") UdexpertExample example);
 
@@ -28,7 +28,6 @@ public interface UdexpertMapper {
 
     int updateByPrimaryKey(Udexpert record);
     
-    
-    //自定义mapper方法
+    //以下是自定义的
     List<Udexpert> extractExpert(Integer id);
 }

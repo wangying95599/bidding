@@ -5,7 +5,7 @@ import java.util.Date;
 public class Udsetregion {
     private Integer projectId;
 
-    private String regionName;
+    private String region;
 
     private Date createdDt;
 
@@ -17,12 +17,12 @@ public class Udsetregion {
         this.projectId = projectId;
     }
 
-    public String getRegionName() {
-        return regionName;
+    public String getRegion() {
+        return region;
     }
 
-    public void setRegionName(String regionName) {
-        this.regionName = regionName == null ? null : regionName.trim();
+    public void setRegion(String region) {
+        this.region = region == null ? null : region.trim();
     }
 
     public Date getCreatedDt() {

@@ -7,6 +7,7 @@
     <result column="major_name" jdbcType="VARCHAR" property="majorName" />
     <result column="major_desc" jdbcType="VARCHAR" property="majorDesc" />
     <result column="created_dt" jdbcType="TIMESTAMP" property="createdDt" />
+    <result column="record_flag" jdbcType="VARCHAR" property="recordFlag" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, major_code, major_name, major_desc, created_dt
+    id, major_code, major_name, major_desc, created_dt, record_flag
   </sql>
   <select id="selectByExample" parameterType="org.quetzaco.experts.model.UdmajorExample" resultMap="BaseResultMap">
     select
@@ -101,9 +102,11 @@
   </delete>
   <insert id="insert" parameterType="org.quetzaco.experts.model.Udmajor">
     insert into udmajor (id, major_code, major_name, 
-      major_desc, created_dt)
+      major_desc, created_dt, record_flag
+      )
     values (#{id,jdbcType=INTEGER}, #{majorCode,jdbcType=VARCHAR}, #{majorName,jdbcType=VARCHAR}, 
-      #{majorDesc,jdbcType=VARCHAR}, #{createdDt,jdbcType=TIMESTAMP})
+      #{majorDesc,jdbcType=VARCHAR}, #{createdDt,jdbcType=TIMESTAMP}, #{recordFlag,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="org.quetzaco.experts.model.Udmajor">
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
@@ -126,6 +129,9 @@
       <if test="createdDt != null">
         created_dt,
       </if>
+      <if test="recordFlag != null">
+        record_flag,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -142,6 +148,9 @@
       </if>
       <if test="createdDt != null">
         #{createdDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordFlag != null">
+        #{recordFlag,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -169,6 +178,9 @@
       <if test="record.createdDt != null">
         created_dt = #{record.createdDt,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.recordFlag != null">
+        record_flag = #{record.recordFlag,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -180,7 +192,8 @@
       major_code = #{record.majorCode,jdbcType=VARCHAR},
       major_name = #{record.majorName,jdbcType=VARCHAR},
       major_desc = #{record.majorDesc,jdbcType=VARCHAR},
-      created_dt = #{record.createdDt,jdbcType=TIMESTAMP}
+      created_dt = #{record.createdDt,jdbcType=TIMESTAMP},
+      record_flag = #{record.recordFlag,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -200,6 +213,9 @@
       <if test="createdDt != null">
         created_dt = #{createdDt,jdbcType=TIMESTAMP},
       </if>
+      <if test="recordFlag != null">
+        record_flag = #{recordFlag,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -208,7 +224,8 @@
     set major_code = #{majorCode,jdbcType=VARCHAR},
       major_name = #{majorName,jdbcType=VARCHAR},
       major_desc = #{majorDesc,jdbcType=VARCHAR},
-      created_dt = #{createdDt,jdbcType=TIMESTAMP}
+      created_dt = #{createdDt,jdbcType=TIMESTAMP},
+      record_flag = #{recordFlag,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

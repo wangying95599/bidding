@@ -104,63 +104,63 @@ public class UdexpertExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andIdIsNull() {
-            addCriterion("id is null");
+        public Criteria andExpertIdIsNull() {
+            addCriterion("expert_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andIdIsNotNull() {
-            addCriterion("id is not null");
+        public Criteria andExpertIdIsNotNull() {
+            addCriterion("expert_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
-            addCriterion("id =", value, "id");
+        public Criteria andExpertIdEqualTo(Integer value) {
+            addCriterion("expert_id =", value, "expertId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
-            addCriterion("id <>", value, "id");
+        public Criteria andExpertIdNotEqualTo(Integer value) {
+            addCriterion("expert_id <>", value, "expertId");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
-            addCriterion("id >", value, "id");
+        public Criteria andExpertIdGreaterThan(Integer value) {
+            addCriterion("expert_id >", value, "expertId");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("id >=", value, "id");
+        public Criteria andExpertIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("expert_id >=", value, "expertId");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
-            addCriterion("id <", value, "id");
+        public Criteria andExpertIdLessThan(Integer value) {
+            addCriterion("expert_id <", value, "expertId");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
-            addCriterion("id <=", value, "id");
+        public Criteria andExpertIdLessThanOrEqualTo(Integer value) {
+            addCriterion("expert_id <=", value, "expertId");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
-            addCriterion("id in", values, "id");
+        public Criteria andExpertIdIn(List<Integer> values) {
+            addCriterion("expert_id in", values, "expertId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
-            addCriterion("id not in", values, "id");
+        public Criteria andExpertIdNotIn(List<Integer> values) {
+            addCriterion("expert_id not in", values, "expertId");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
-            addCriterion("id between", value1, value2, "id");
+        public Criteria andExpertIdBetween(Integer value1, Integer value2) {
+            addCriterion("expert_id between", value1, value2, "expertId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("id not between", value1, value2, "id");
+        public Criteria andExpertIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("expert_id not between", value1, value2, "expertId");
             return (Criteria) this;
         }
 
@@ -581,6 +581,76 @@ public class UdexpertExample {
 
         public Criteria andRegionNotBetween(String value1, String value2) {
             addCriterion("region not between", value1, value2, "region");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagIsNull() {
+            addCriterion("record_flag is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagIsNotNull() {
+            addCriterion("record_flag is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagEqualTo(String value) {
+            addCriterion("record_flag =", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagNotEqualTo(String value) {
+            addCriterion("record_flag <>", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagGreaterThan(String value) {
+            addCriterion("record_flag >", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagGreaterThanOrEqualTo(String value) {
+            addCriterion("record_flag >=", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagLessThan(String value) {
+            addCriterion("record_flag <", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagLessThanOrEqualTo(String value) {
+            addCriterion("record_flag <=", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagLike(String value) {
+            addCriterion("record_flag like", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagNotLike(String value) {
+            addCriterion("record_flag not like", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagIn(List<String> values) {
+            addCriterion("record_flag in", values, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagNotIn(List<String> values) {
+            addCriterion("record_flag not in", values, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagBetween(String value1, String value2) {
+            addCriterion("record_flag between", value1, value2, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagNotBetween(String value1, String value2) {
+            addCriterion("record_flag not between", value1, value2, "recordFlag");
             return (Criteria) this;
         }
     }

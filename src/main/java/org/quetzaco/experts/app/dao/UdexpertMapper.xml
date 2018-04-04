@@ -2,13 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.quetzaco.experts.app.dao.UdexpertMapper">
   <resultMap id="BaseResultMap" type="org.quetzaco.experts.model.Udexpert">
-    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="expert_id" jdbcType="INTEGER" property="expertId" />
     <result column="no" jdbcType="VARCHAR" property="no" />
     <result column="card" jdbcType="VARCHAR" property="card" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="company" jdbcType="VARCHAR" property="company" />
     <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="record_flag" jdbcType="VARCHAR" property="recordFlag" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, no, card, name, phone, company, region
+    expert_id, no, card, name, phone, company, region, record_flag
   </sql>
   <select id="selectByExample" parameterType="org.quetzaco.experts.model.UdexpertExample" resultMap="BaseResultMap">
     select
@@ -89,11 +90,11 @@
     select 
     <include refid="Base_Column_List" />
     from udexpert
-    where id = #{id,jdbcType=INTEGER}
+    where expert_id = #{expertId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from udexpert
-    where id = #{id,jdbcType=INTEGER}
+    where expert_id = #{expertId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="org.quetzaco.experts.model.UdexpertExample">
     delete from udexpert
@@ -102,18 +103,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.quetzaco.experts.model.Udexpert">
-    insert into udexpert (id, no, card, 
+    insert into udexpert (expert_id, no, card, 
       name, phone, company, 
-      region)
-    values (#{id,jdbcType=INTEGER}, #{no,jdbcType=VARCHAR}, #{card,jdbcType=VARCHAR}, 
+      region, record_flag)
+    values (#{expertId,jdbcType=INTEGER}, #{no,jdbcType=VARCHAR}, #{card,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
-      #{region,jdbcType=VARCHAR})
+      #{region,jdbcType=VARCHAR}, #{recordFlag,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.quetzaco.experts.model.Udexpert">
     insert into udexpert
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
+      <if test="expertId != null">
+        expert_id,
       </if>
       <if test="no != null">
         no,
@@ -133,10 +134,13 @@
       <if test="region != null">
         region,
       </if>
+      <if test="recordFlag != null">
+        record_flag,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
+      <if test="expertId != null">
+        #{expertId,jdbcType=INTEGER},
       </if>
       <if test="no != null">
         #{no,jdbcType=VARCHAR},
@@ -156,6 +160,9 @@
       <if test="region != null">
         #{region,jdbcType=VARCHAR},
       </if>
+      <if test="recordFlag != null">
+        #{recordFlag,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="org.quetzaco.experts.model.UdexpertExample" resultType="java.lang.Long">
@@ -167,8 +174,8 @@
   <update id="updateByExampleSelective" parameterType="map">
     update udexpert
     <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
+      <if test="record.expertId != null">
+        expert_id = #{record.expertId,jdbcType=INTEGER},
       </if>
       <if test="record.no != null">
         no = #{record.no,jdbcType=VARCHAR},
@@ -188,6 +195,9 @@
       <if test="record.region != null">
         region = #{record.region,jdbcType=VARCHAR},
       </if>
+      <if test="record.recordFlag != null">
+        record_flag = #{record.recordFlag,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -195,13 +205,14 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update udexpert
-    set id = #{record.id,jdbcType=INTEGER},
+    set expert_id = #{record.expertId,jdbcType=INTEGER},
       no = #{record.no,jdbcType=VARCHAR},
       card = #{record.card,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       company = #{record.company,jdbcType=VARCHAR},
-      region = #{record.region,jdbcType=VARCHAR}
+      region = #{record.region,jdbcType=VARCHAR},
+      record_flag = #{record.recordFlag,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,8 +238,11 @@
       <if test="region != null">
         region = #{region,jdbcType=VARCHAR},
       </if>
+      <if test="recordFlag != null">
+        record_flag = #{recordFlag,jdbcType=VARCHAR},
+      </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where expert_id = #{expertId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.quetzaco.experts.model.Udexpert">
     update udexpert
@@ -237,12 +251,14 @@
       name = #{name,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       company = #{company,jdbcType=VARCHAR},
-      region = #{region,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+      region = #{region,jdbcType=VARCHAR},
+      record_flag = #{recordFlag,jdbcType=VARCHAR}
+    where expert_id = #{expertId,jdbcType=INTEGER}
   </update>
   
   
-   <select id="extractExpert" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <!-- 以下是自定义的 -->
+  <select id="extractExpert" parameterType="java.lang.Integer" resultMap="BaseResultMap">
      
 	select <include refid="Base_Column_List" /> 
 	from udexpert where 
@@ -251,4 +267,6 @@
 	and region in (select region_name from udsetregion where project_id=#{id,jdbcType=INTEGER} and region_name is not null) 
 	
   </select>
+  
+  
 </mapper>

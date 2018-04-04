@@ -254,6 +254,8 @@ function set_extract_submit() {
     });
 
     deliver.companyList = [{projectId:7}];//有关不能传递复杂类型的问题：companyIds; 这里的格式要正确
+    console.log(deliver.companyList);
+    console.log(companyArray);
 //    deliver.expertList = [1, 2, 3];//expertIds;
 //    deliver.majorList = [4, 5, 6];//majorIds;
 //    deliver.regionList = regionIds;

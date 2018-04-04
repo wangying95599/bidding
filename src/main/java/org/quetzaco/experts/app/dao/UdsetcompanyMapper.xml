@@ -3,7 +3,7 @@
 <mapper namespace="org.quetzaco.experts.app.dao.UdsetcompanyMapper">
   <resultMap id="BaseResultMap" type="org.quetzaco.experts.model.Udsetcompany">
     <result column="project_id" jdbcType="INTEGER" property="projectId" />
-    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    project_id, company_name, created_time
+    project_id, company, created_time
   </sql>
   <select id="selectByExample" parameterType="org.quetzaco.experts.model.UdsetcompanyExample" resultMap="BaseResultMap">
     select
@@ -88,9 +88,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.quetzaco.experts.model.Udsetcompany">
-    insert into udsetcompany (project_id, company_name, created_time
+    insert into udsetcompany (project_id, company, created_time
       )
-    values (#{projectId,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}
+    values (#{projectId,jdbcType=INTEGER}, #{company,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="org.quetzaco.experts.model.Udsetcompany">
@@ -99,8 +99,8 @@
       <if test="projectId != null">
         project_id,
       </if>
-      <if test="companyName != null">
-        company_name,
+      <if test="company != null">
+        company,
       </if>
       <if test="createdTime != null">
         created_time,
@@ -110,8 +110,8 @@
       <if test="projectId != null">
         #{projectId,jdbcType=INTEGER},
       </if>
-      <if test="companyName != null">
-        #{companyName,jdbcType=VARCHAR},
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
       </if>
       <if test="createdTime != null">
         #{createdTime,jdbcType=TIMESTAMP},
@@ -130,8 +130,8 @@
       <if test="record.projectId != null">
         project_id = #{record.projectId,jdbcType=INTEGER},
       </if>
-      <if test="record.companyName != null">
-        company_name = #{record.companyName,jdbcType=VARCHAR},
+      <if test="record.company != null">
+        company = #{record.company,jdbcType=VARCHAR},
       </if>
       <if test="record.createdTime != null">
         created_time = #{record.createdTime,jdbcType=TIMESTAMP},
@@ -144,7 +144,7 @@
   <update id="updateByExample" parameterType="map">
     update udsetcompany
     set project_id = #{record.projectId,jdbcType=INTEGER},
-      company_name = #{record.companyName,jdbcType=VARCHAR},
+      company = #{record.company,jdbcType=VARCHAR},
       created_time = #{record.createdTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />

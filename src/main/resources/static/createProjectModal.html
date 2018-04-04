@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create project</title>
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.js"></script>
+    <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/udcreate.js"></script>
+    <script src="js/ajax.js"></script>
+</head>
+<body>
+<!--新建项目-->
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">新建项目</h4>
+</div>
+
+<div class="modal-body">
+    <form class="form-horizontal" role="form" id="createProjectForm">
+        <fieldset>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">采购编号</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="project_code_input" name="purchaseCode">
+                </div>
+            </div>
+            <!-- 采购项目-->
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">采购项目</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="project_name_input" name="purchaseProject">
+                </div>
+            </div>
+            <!-- 采购单位-->
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">采购单位</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="project_purchaser_input" name="purchaseCompany">
+                </div>
+            </div>
+            <!-- 代理机构-->
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">代理机构</label>
+                <div class="col-sm-8">
+                    <select class="form-control" name="proxyOrg">
+                        <option>XX代理</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+            <!-- 代理机构-->
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">抽取单位</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="project_extract_input" name="extractCompany">
+                </div>
+            </div>
+            <!-- 详细时间-->
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label  ">评标时间</label>
+                <!--指定 date标记-->
+                <div class='col-sm-8 input-group date' id='datetimepicker1' style="padding-left: 13px;">
+                    <input type='text' class="form-control" name="biddingTime"/>
+                    <span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar"></span>
+									</span>
+                </div>
+            </div>
+            <!-- 评标地点 -->
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">评标地点</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="bidding_location_input" name="biddingLocation">
+                </div>
+            </div>
+            <!-- 评标时长 -->
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">评标时长</label>
+                <div class="col-sm-8">
+                    <input type="input" class="form-control" id="bidding_period_input" placeholder="两个小时"
+                           name="biddingPeriod">
+                </div>
+            </div>
+            <!-- 评标时长 -->
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">采购方式</label>
+                <div class="col-sm-8">
+                    <select class="form-control" name="purchaseType">
+                        <option>竞争性谈判</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+            <!-- 评标时长 -->
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">短信信息</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="4" name="smsInfo"></textarea>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+    <button id="createProjectButton" type="button" class="btn btn-primary" onclick="createProject()">提交</button>
+</div>
+
+
+</body>
+</html>
