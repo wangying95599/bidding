@@ -34,14 +34,36 @@ function toggle_expert(name) {
 }
 
 function showCreateProjectModal() {
-    $('#createProject').modal({
+    $('#modal').modal({
         backdrop: 'static',//点击空白不关闭
         keyboard: true, //esc时关闭
         remote: 'createProjectModal.html'
     })
 }
 
+function showCreateExtractModal() {
+    $('#modal').modal({
+        backdrop: 'static',//点击空白不关闭
+        keyboard: true, //esc时关闭
+        remote: 'createExtractModal.html'
+    })
+}
+
 function createProject() {
+    let t = JSON.stringify($('#createProjectForm').serializeJson());
+    console.log(t);
+    let t2 = {purchaseCode:'aaa'};
+    $.axx({
+        type: 'post',
+        url: '/projects/create',
+        data: JSON.stringify($('#createProjectForm').serializeJson()),
+        contentType: 'application/json',        //有关不能传递复杂类型的问题：这个要设置
+        success: function (json) {
+            $("#createProject").hideModal();
+        }
+    })
+}
+function createExtract() {
     let t = JSON.stringify($('#createProjectForm').serializeJson());
     console.log(t);
     let t2 = {purchaseCode:'aaa'};
