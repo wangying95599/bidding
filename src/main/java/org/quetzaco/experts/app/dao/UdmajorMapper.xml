@@ -106,6 +106,9 @@
       #{majorDesc,jdbcType=VARCHAR}, #{createdDt,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.quetzaco.experts.model.Udmajor">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT nextval('projects_id_seq')
+    </selectKey>
     insert into udmajor
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
