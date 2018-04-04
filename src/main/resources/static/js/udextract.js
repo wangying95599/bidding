@@ -275,7 +275,6 @@ function createExtractSet(assigneeId) {
         url:'/flowFormDelivers',
         data:deliver,
         success:function (json) {
-            alert("发起移交成功");
             $("#turnOver").removeClass("hidden").hide().fadeIn(500).siblings().addClass("hidden");
             getTurnOverFromMe1();
         }
