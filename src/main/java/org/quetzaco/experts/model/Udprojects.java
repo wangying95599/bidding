@@ -1,8 +1,9 @@
 package org.quetzaco.experts.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Udprojects {
+public class Udprojects implements Serializable{
     private Integer id;
 
     private String purchaseCode;

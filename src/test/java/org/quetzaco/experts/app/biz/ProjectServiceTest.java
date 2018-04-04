@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.quetzaco.experts.boot.ExpertsApplicationTests;
 import org.quetzaco.experts.model.Udprojects;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 
 /**
  * @Description Created by dong on 2017/7/21.
@@ -14,6 +15,7 @@ public class ProjectServiceTest extends ExpertsApplicationTests {
 	@Autowired
 	ProjectService projectService;
 
+	@Rollback(false)
 	@Test
 	public void remainToBeDone() {
 		Udprojects p = new Udprojects();

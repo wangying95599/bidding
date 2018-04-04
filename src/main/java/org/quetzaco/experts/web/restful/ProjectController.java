@@ -5,6 +5,7 @@ import org.quetzaco.experts.model.Udprojects;
 import org.quetzaco.experts.model.User;
 import org.quetzaco.experts.model.api.APIEntity;
 import org.quetzaco.experts.web.config.session.WebSecurityConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 @RestController
 public class ProjectController extends BaseRestContoller {
+	@Autowired
     ProjectService projectService;
 
     @RequestMapping(value = "projects/create", method = RequestMethod.POST)

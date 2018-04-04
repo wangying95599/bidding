@@ -119,7 +119,7 @@ function redirect(e) {
 function sessionout(status) {
     if (status == "405") {
         alert("会话超时 ！请重新登录...");
-        location.href = "/";
+       // location.href = "/";
     }
 }
 
