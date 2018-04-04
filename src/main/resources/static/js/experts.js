@@ -32,10 +32,26 @@ function toggle_expert(name) {
     $("#expert_list").empty();
     $("#expert_list").append(content);
 }
+
 function showCreateProjectModal() {
     $('#createProject').modal({
         backdrop: 'static',//点击空白不关闭
-        keyboard:true, //esc时关闭
+        keyboard: true, //esc时关闭
         remote: 'createProject.html'
+    })
+}
+
+function createProject() {
+    let t = JSON.stringify($('#createProjectForm').serializeJson());
+    console.log(t);
+    let t2 = {purchaseCode:'aaa'};
+    $.axx({
+        type: 'post',
+        url: '/projects/create',
+        data: JSON.stringify($('#createProjectForm').serializeJson()),
+        contentType: 'application/json',        //有关不能传递复杂类型的问题：这个要设置
+        success: function (json) {
+            $("#createProject").hideModal();
+        }
     })
 }
