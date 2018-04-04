@@ -37,7 +37,7 @@ function showCreateProjectModal() {
     $('#createProject').modal({
         backdrop: 'static',//点击空白不关闭
         keyboard: true, //esc时关闭
-        remote: 'createProject.html'
+        remote: 'createProjectModal.html'
     })
 }
 
