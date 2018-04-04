@@ -81,6 +81,7 @@ public class ExtractServiceImpl implements ExtractService {
 		
 		/**
 		 * 查询所有的 专家和专业的对应关系，过滤条件majorcode,多对多，用map不合适。
+		 * 如何选择的majorcode没有包含关系，那么结果依然可能有重复的人，多专业。
 		 */
 		HashMap<String,List<UdexpertMajor>> mpMap = new HashMap<String,List<UdexpertMajor>>();
 		for(Udsetmajor setmajor:setmajorList) {
@@ -93,6 +94,15 @@ public class ExtractServiceImpl implements ExtractService {
 		
 		/**
 		 * 校验白名单 和 设置减法， 列出 要设置的值。 
+		 * setMajorMap - white?
+		 * setMajorMap-mpMap
+		 * 所选专业不应该是包含关系如 03和0304 这样不行。 0304和0305才行。太难了，先实现最简单的
+		 * 1 只选了一个专业 030401 5个人 共10个人 白名单2个（没有子专业）
+		 * 2只选了两个专业 030401 030402 各 5个， 总数各10个，白名单2个（没有自专业）
+		 * 3只选了两个专业 030401 030402 各 5个， 总数4，8个，白名单2个（0304）
+		 * 4有自专业
+		 * 503和0304
+		 * 先实现1.
 		 */
 		
 		
