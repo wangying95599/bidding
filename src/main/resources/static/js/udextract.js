@@ -3,86 +3,16 @@
 //$("#table_Id").bootstrapTable('remove', {field: 'id', values: [id]});//field:根据field的值来判断要删除的行  values：删除行所对应的值
 //$('#table_Id').bootstrapTable('updateRow', {index: checkIndex, row: data.data});//index---->更新行的索引。row---->要更新的数据
 //
-var ext_data_cor = [{
-    "state": false,
-    "id": '1',
-    'name': "张三"
-
-},
-    {
-        "state": false,
-        "id": '2',
-        'name': "张三2"
-
-    }];
-var ext_data_person = [{
-    "state": false,
-    "id": '1',
-    'name': "张三"
-
-},
-    {
-        "state": false,
-        "id": '2',
-        'name': "张三2"
-
-    }];
-var ext_data_major_to = [{
-    "state": false,
-    "id": '1',
-    'name': "张三",
-    "no": '1'
-
-},
-    {
-        "state": false,
-        "id": '2',
-        'name': "张三2",
-        "no": '2'
-
-    }];
-var ext_data = [{
-    "id": '1',
-    'name': "********",
-    "projectName": '测试',
-    "randomNo": 'DL181',
-    "date": '2018-3-27',
-    "major": '电子信息-计算机'
-},
-    {
-        "id": '2',
-        'name': "********",
-        "projectName": '测试',
-        "randomNo": '3D1LA1',
-        "date": '2018-3-27',
-        "major": '电子信息-计算机'
-
-    }];
-
-function ext_add(id) {
-    //console.log('ext_remove_cor');
-    console.log('ext_add.id ');
-    console.log(id);
-
-    row = $("#ext_table").bootstrapTable('getRowByUniqueId', id);
-    //var selectedData = $('#ext_table').bootstrapTable('getAllSelections');
-
-    console.log(row);
-
-    $("#ext_table").bootstrapTable('remove', {field: 'id', values: [id]});
-    $("#ext_table_major_to").bootstrapTable('append', row);
-
-};
 
 var ext_col_cor = [
     {
-        field: 'id',
+        field: 'projectId',
         visible: false
     },
 
     {
         title: '回避单位名称',
-        field: 'name',
+        field: 'company',
         align: 'center',
         sortable: true
     }
@@ -90,7 +20,7 @@ var ext_col_cor = [
 
 var ext_col_person = [
     {
-        field: 'id',
+        field: 'expertId',
         visible: false
     },
 
@@ -153,32 +83,19 @@ var ext_col_major_to = [
 
     {
         title: '专业名称',
-        field: 'name',
+        field: 'majorCode',
         align: 'center',
         sortable: true
     },
     {
         title: '人数',
-        field: 'size',
-        align: 'center',
-        formatter: nullFormatter,
-        editable: {
-            type: 'text',
-            title: '人数',
-            validate: function (v) {
-                if (!v) return '必须设置人数';
-                if (isNaN(v)) return '人数必须是数字';
-                var age = parseInt(v);
-                if (age <= 0) return '人数必须是正整数';
-
-            }
-        }
-
+        field: 'majorNumber',
+        align: 'center'
     }
 ];
 
 function initExtract() {
-
+	console.log("initExtract");
 
     //
     $('#ext_table_cor').bootstrapTable({
@@ -205,17 +122,10 @@ function initExtract() {
         columns: ext_col_major_to
 
     });
-    loadExtractData();
+   
+    console.log("initExtract.end");
 }
 
-//已经设置过了，需要加载各表格数据
-function loadExtractData() {
-    $('#ext_table_cor').bootstrapTable("load", ext_data_cor);
-    $('#ext_table_person').bootstrapTable("load", ext_data_person);
-
-    $('#ext_table_major_to').bootstrapTable("load", ext_data_major_to);
-    $('#ext_table').bootstrapTable("load", ext_data);
-}
 
 
 $(document).ready(function () {
@@ -223,30 +133,39 @@ $(document).ready(function () {
     initExtract();
 });
 
-function ext_add_common(id) {
-    console.log(id);
+$('#extractExpert').on('show.bs.modal', function (event) {
+    console.log("show.bs.modal");
+    console.log(event);
+	projectId=123;
+    $.axx({
+        type:'GET',
+        url:"/extractset/get/"+projectId,
+        success:function (json) {
+            var models = json.content;
+            console.log(models);
+            console.log(models.companyList);
+            if(models.companyList){
+            	$('#ext_table_cor').bootstrapTable("load", models.companyList);
+            }
+            if(models.expertList){
+            	$('#ext_table_person').bootstrapTable("load", models.expertList);
+            }
+            if(models.majorList){
+            	$('#ext_table_major_to').bootstrapTable("load", models.majorList);
+            }
+            
+            if(models.regionList){
+	           
+	            $.each(models.regionList,function(i,item){	
+	            	$("input[name='extract_region'][value="+item.region+"]").attr("checked","checked");	
+	            });
+            }
+        }
+    });	
+});
 
-    var result = [
-        '<button  type="button" class="btn btn-primary btn-xs" onclick="ext_add(\'' + id + '\')">选择</button>',]
-        .join('');
-    console.log(result);
-    return result;
-}
 
-function nullFormatter(data) {
 
-    if (data == "" || data == null || data == " ") {
-        return '未填';
-    }
-    return data;
-}
-
-function timeFormatter(data) {
-    if (data != null) {
-        data = transfromTime(data, true);
-    }
-    return data;
-}  
 
 
 //创建抽取设置
