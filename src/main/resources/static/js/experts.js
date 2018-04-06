@@ -34,7 +34,7 @@ function toggle_expert(name) {
 }
 
 function showCreateProjectModal() {
-    $('#modal').modal({
+    $('#commonModal').modal({
         backdrop: 'static',//点击空白不关闭
         keyboard: true, //esc时关闭
         remote: 'createProjectModal.html'
@@ -42,27 +42,44 @@ function showCreateProjectModal() {
 }
 
 function showCreateExtractModal() {
-    $('#modal').modal({
+    $('#commonModal').modal({
         backdrop: 'static',//点击空白不关闭
         keyboard: true, //esc时关闭
         remote: 'createExtractModal.html'
     })
 }
-
+function addAProject() {
+    let str = '{"purchaseCode":"1","purchaseProject":"","purchaseCompany":"","proxyOrg":"XX代理","extractCompany":"","biddingTime":null,"biddingLocation":"","biddingPeriod":"","purchaseType":"竞争性谈判","smsInfo":""}';
+    console.log(JSON.stringify(str));
+    let p ={
+        purchaseCode:'1',
+        purchaseProject: 'ttt'
+    };
+    console.log(JSON.stringify(p));
+    $.axx({
+        type: 'post',
+        url: '/projects/create',
+        data: JSON.stringify(p),
+        contentType: 'application/json',        //有关不能传递复杂类型的问题：这个要设置
+        success: function (json) {
+            loadAllProjects();
+        },
+        error: function (res) {
+            console.log(res);
+            alert(res);
+        }
+    })
+}
 function createProject() {
-    let t = JSON.stringify($('#createProjectForm').serializeJson());
-    console.log(t);
-    let t2 = {purchaseCode: 'aaa'};
     $.axx({
         type: 'post',
         url: '/projects/create',
         data: JSON.stringify($('#createProjectForm').serializeJson()),
         contentType: 'application/json',        //有关不能传递复杂类型的问题：这个要设置
         success: function (json) {
-            $('#modal').hide();
+            $('#commonModal').hide();
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
-            loadAllProjects(true);
         },
         error: function (res) {
             console.log(res);
@@ -81,7 +98,7 @@ function createExtract() {
         data: JSON.stringify($('#createProjectForm').serializeJson()),
         contentType: 'application/json',        //有关不能传递复杂类型的问题：这个要设置
         success: function (json) {
-            $('#modal').hide();
+            $('#commonModal').hide();
         }
     })
 }
