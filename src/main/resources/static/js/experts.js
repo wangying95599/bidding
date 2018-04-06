@@ -62,6 +62,11 @@ function createProject() {
             $('#modal').hide();
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
+            loadAllProjects(true);
+        },
+        error: function (res) {
+            console.log(res);
+            alert(res);
         }
     })
 }

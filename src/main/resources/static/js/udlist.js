@@ -38,7 +38,6 @@ function project_list_add(id) {
 };
 //project,no,bid,date,extract,name,build，company,agent,org,purchase,mode,expert,state
 
-
 var project_list_col = [
     {
         field: 'id',
@@ -46,19 +45,19 @@ var project_list_col = [
     },
     {
         title: '项目编号',
-        field: 'projectNo',
+        field: 'purchaseCode',
         align: 'center',
         sortable: true
     },
     {
         title: '评标时间',
-        field: 'bidDate',
+        field: 'biddingTime',
         align: 'center',
         sortable: true
     },
     {
         title: '项目名称',
-        field: 'projectName',
+        field: 'purchaseProject',
         align: 'center',
         sortable: true
     },
@@ -70,13 +69,13 @@ var project_list_col = [
     },
     {
         title: '建设单位',
-        field: 'buildCompany',
+        field: 'purchaseCompany',
         align: 'center',
         sortable: true
     },
     {
         title: '代理机构',
-        field: 'agentOrg',
+        field: 'proxyOrg',
         align: 'center',
         sortable: true
     },
@@ -88,7 +87,7 @@ var project_list_col = [
     },
     {
         title: '采购方式',
-        field: 'purchaseMode',
+        field: 'purchaseType',
         align: 'center',
         sortable: true
     },
@@ -101,8 +100,6 @@ var project_list_col = [
 ];
 
 function init() {
-
-
     $('#project_list_table').bootstrapTable({
         pagination: false,
         clickToSelect: true,
@@ -110,13 +107,23 @@ function init() {
         columns: project_list_col
     });
 
-    loadData();
+    loadAllProjects();
 }
 
 //已经设置过了，需要加载各表格数据
-function loadData() {
-
-    $('#project_list_table').bootstrapTable("load", project_list_data);
+function loadAllProjects(refresh) {
+    $.axx({
+        type: 'get',
+        url: '/projects/all',
+        success: function (json) {
+            let i = json.content.length;
+            $('#project_list_table').bootstrapTable("load", json.content);
+        },
+        error: function (res) {
+            console.log(res);
+            alert(res);
+        }
+    })
 }
 
 

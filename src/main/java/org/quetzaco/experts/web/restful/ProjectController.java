@@ -1,5 +1,7 @@
 package org.quetzaco.experts.web.restful;
 
+import java.util.List;
+
 import org.quetzaco.experts.app.biz.ProjectService;
 import org.quetzaco.experts.model.Udprojects;
 import org.quetzaco.experts.model.User;
@@ -17,12 +19,19 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 @RestController
 public class ProjectController extends BaseRestContoller {
 	@Autowired
-    ProjectService projectService;
+	ProjectService projectService;
 
-    @RequestMapping(value = "projects/create", method = RequestMethod.POST)
-    public HttpEntity<APIEntity> create(@SessionAttribute(WebSecurityConfig.SESSION_KEY) User user,
-            @RequestBody Udprojects project) {
-        projectService.createProject(project);
-        return buildEntity(APIEntity.create(null), HttpStatus.OK);
-    }
+	@RequestMapping(value = "projects/create", method = RequestMethod.POST)
+	public HttpEntity<APIEntity> create(@SessionAttribute(WebSecurityConfig.SESSION_KEY) User user,
+			@RequestBody Udprojects project) {
+		projectService.createProject(project);
+		return buildEntity(APIEntity.create(null), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "projects/all", method = RequestMethod.GET)
+	public HttpEntity<APIEntity> getAll(@SessionAttribute(WebSecurityConfig.SESSION_KEY) User user) {
+		List<Udprojects> all = projectService.getAllProjects();
+		return buildEntity(APIEntity.create(all), HttpStatus.OK);
+	}
+
 }
