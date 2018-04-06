@@ -52,28 +52,31 @@ function showCreateExtractModal() {
 function createProject() {
     let t = JSON.stringify($('#createProjectForm').serializeJson());
     console.log(t);
-    let t2 = {purchaseCode:'aaa'};
+    let t2 = {purchaseCode: 'aaa'};
     $.axx({
         type: 'post',
         url: '/projects/create',
         data: JSON.stringify($('#createProjectForm').serializeJson()),
         contentType: 'application/json',        //有关不能传递复杂类型的问题：这个要设置
         success: function (json) {
-            $("#createProject").hideModal();
+            $('#modal').hide();
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
         }
     })
 }
+
 function createExtract() {
     let t = JSON.stringify($('#createProjectForm').serializeJson());
     console.log(t);
-    let t2 = {purchaseCode:'aaa'};
+    let t2 = {purchaseCode: 'aaa'};
     $.axx({
         type: 'post',
         url: '/projects/create',
         data: JSON.stringify($('#createProjectForm').serializeJson()),
         contentType: 'application/json',        //有关不能传递复杂类型的问题：这个要设置
         success: function (json) {
-            $("#createProject").hideModal();
+            $('#modal').hide();
         }
     })
 }
