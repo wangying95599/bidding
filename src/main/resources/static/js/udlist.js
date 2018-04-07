@@ -144,20 +144,22 @@ function init() {
         var modal = $(this)
         modal.find('.modal-title').text(recipient)
         let selectedProject = $('#project_list_table').bootstrapTable('getSelections')[0];
-        console.log(selectedProject);
-        modal.find('#project_id_input').val(selectedProject.id);
-        modal.find('#project_code_input').val(selectedProject.purchaseCode);
-        modal.find('#project_name_input').val(selectedProject.purchaseProject);
-        modal.find('#project_purchaser_input').val(selectedProject.purchaseCompany);
-        // modal.find('#project_code_input').val(selectedProject.purchaseCode);
-        modal.find('#project_extract_input').val(selectedProject.extractCompany);
-        modal.find('#bidding_time_input').val(selectedProject.biddingTime);
-        modal.find('#bidding_location_input').val(selectedProject.biddingLocation);
-        modal.find('#bidding_period_input').val(selectedProject.biddingPeriod);
-        // modal.find('#project_code_input').val(selectedProject.purchaseCode);
-        modal.find('#messages_text_area').val(selectedProject.smsInfo);
+        if (selectedProject) {
+            console.log(selectedProject);
+            modal.find('#project_id_input').val(selectedProject.id);
+            modal.find('#project_code_input').val(selectedProject.purchaseCode);
+            modal.find('#project_name_input').val(selectedProject.purchaseProject);
+            modal.find('#project_purchaser_input').val(selectedProject.purchaseCompany);
+            // modal.find('#project_code_input').val(selectedProject.purchaseCode);
+            modal.find('#project_extract_input').val(selectedProject.extractCompany);
+            modal.find('#bidding_time_input').val(selectedProject.biddingTime);
+            modal.find('#bidding_location_input').val(selectedProject.biddingLocation);
+            modal.find('#bidding_period_input').val(selectedProject.biddingPeriod);
+            // modal.find('#project_code_input').val(selectedProject.purchaseCode);
+            modal.find('#messages_text_area').val(selectedProject.smsInfo);
 
-        // modal.find('.modal-body input').val(recipient)
+            // modal.find('.modal-body input').val(recipient)
+        }
     })
 }
 
