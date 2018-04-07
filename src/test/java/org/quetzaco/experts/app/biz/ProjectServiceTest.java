@@ -40,4 +40,12 @@ public class ProjectServiceTest extends ExpertsApplicationTests {
 		Udprojects p = projectService.getProject(76);
 		System.out.println("success");
 	}
+	
+	@Test
+	public void testDeleteById() {
+		Udprojects p = this.createProjectModel();
+		Udprojects created = projectService.createProject(p);
+		projectService.getProject(created.getId());
+		System.out.println("success");
+	}
 }

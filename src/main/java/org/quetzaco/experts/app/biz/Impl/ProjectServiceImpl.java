@@ -26,12 +26,13 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public void deleteProejct(Integer id) {
-
+		projectMapper.deleteByPrimaryKey(id);
 	}
 
 	@Override
 	public Udprojects updateProject(Udprojects project) {
-		return null;
+		projectMapper.updateByPrimaryKey(project);
+		return project;
 	}
 
 	@Override
