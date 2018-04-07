@@ -193,4 +193,11 @@
       created_dt = #{createdDt,jdbcType=TIMESTAMP}
     where project_id = #{projectId,jdbcType=INTEGER}
   </update>
+  
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    s.major_number,s.major_code,m.major_name
+    from udsetmajor s, udmajor m
+    where s.major_code=m.major_code and project_id = #{projectId,jdbcType=INTEGER}
+  </select>
 </mapper>

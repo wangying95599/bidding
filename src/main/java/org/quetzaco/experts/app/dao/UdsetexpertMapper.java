@@ -1,7 +1,9 @@
 package org.quetzaco.experts.app.dao;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
+import org.quetzaco.experts.model.Udexpert;
 import org.quetzaco.experts.model.Udsetexpert;
 import org.quetzaco.experts.model.UdsetexpertExample;
 
@@ -27,4 +29,6 @@ public interface UdsetexpertMapper {
     int updateByPrimaryKeySelective(Udsetexpert record);
 
     int updateByPrimaryKey(Udsetexpert record);
+    
+    List<Udsetexpert> selectById(@Param("projectId") Integer projectId);
 }

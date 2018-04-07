@@ -123,7 +123,7 @@ var set_col_major_to = [
     },
     {
         title: '人数',
-        field: 'size',
+        field: 'majorNumber',
         align: 'center',
         formatter: nullFormatter,
         editable: {
@@ -209,28 +209,24 @@ function search_set_major() {
     }
     urlValue += val;
 
-
+    $('#set_table_major_from').bootstrapTable('showLoading');
+  
+    
     $.ajax({
         type: 'GET',
         url: urlValue,
         success: function (json) {
             console.log(json.content);
-
-            $.each(json.content, function (i, field) {
-                console.log(i);
-                console.log(field);
-                row = $('#set_table_major_from').bootstrapTable("getRowByUniqueId", field.id);
-                if (!row) {
-                    $('#set_table_major_from').bootstrapTable("append", field);
-                }
-            });
+            $('#set_table_major_from').bootstrapTable("removeAll");
+            $('#set_table_major_from').bootstrapTable("load", json.content);
+            $('#set_table_major_from').bootstrapTable('hideLoading');
         }
     });
 }
 
 function set_extract_submit() {
     console.log("  set_extract_submit start   ");
-    var deliver = {'projectId': 123};
+    var deliver = {'projectId': getProjectId()};
     console.log(deliver);
 
     var companyArray = $("#set_table_cor").bootstrapTable("getData");
@@ -253,7 +249,11 @@ function set_extract_submit() {
         return obj.id;
     });
 
-    deliver.companyList = [{projectId:7}];//有关不能传递复杂类型的问题：companyIds; 这里的格式要正确
+    deliver.companyList = companyArray;
+    deliver.expertList = expertArray;
+    deliver.majorList = majorArray;
+    deliver.regionList = regionArray;
+    
     console.log(deliver.companyList);
     console.log(companyArray);
 //    deliver.expertList = [1, 2, 3];//expertIds;
@@ -331,7 +331,7 @@ function loadJSData() {
 $('#extractSet').on('show.bs.modal', function (event) {
     console.log("show.bs.modal");
     console.log(event);
-	projectId=123;
+	projectId=getProjectId();
     $.axx({
         type:'GET',
         url:"/extractset/get/"+projectId,

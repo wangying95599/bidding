@@ -27,4 +27,6 @@ public interface UdsetmajorMapper {
     int updateByPrimaryKeySelective(Udsetmajor record);
 
     int updateByPrimaryKey(Udsetmajor record);
+    
+    List<Udsetmajor> selectById(@Param("projectId") Integer projectId);
 }

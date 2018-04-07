@@ -36,7 +36,7 @@ UPDATE sys_sequence
 SET CURRENT_VALUE = CURRENT_VALUE + INCREMENT  
 where name=seq_name;  
 return currval(seq_name);  
-END$$  
+END$$  ;
 
 
 INSERT INTO SYS_SEQUENCE(NAME,CURRENT_VALUE,INCREMENT) VALUES('projects_id_seq', 1,1);

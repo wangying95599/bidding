@@ -10,8 +10,18 @@ public class Udsetmajor {
     private Long majorNumber;
 
     private Date createdDt;
+    
+    private String majorName;
 
-    public Integer getProjectId() {
+    public String getMajorName() {
+		return majorName;
+	}
+
+	public void setMajorName(String majorName) {
+		this.majorName = majorName;
+	}
+
+	public Integer getProjectId() {
         return projectId;
     }
 

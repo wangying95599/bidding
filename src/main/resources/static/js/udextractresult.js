@@ -101,7 +101,7 @@ $('#voiceNotice').on('show.bs.modal', function (event) {
 
 //已经设置过了，需要加载各表格数据
 function loadExtractResultData() {
-	projectId=123;
+	projectId=getProjectId();
     $.axx({
         type:'GET',
         url:"/extract/get/"+projectId,
@@ -117,7 +117,7 @@ function loadExtractResultData() {
 
 
 function loadVoiceData() {
-	projectId=123;
+	projectId=getProjectId();
     $.axx({
         type:'GET',
         url:"/extract/getvoice/"+projectId,

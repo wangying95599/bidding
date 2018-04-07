@@ -104,7 +104,7 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 			UdsetmajorExample example = new UdsetmajorExample();
 			UdsetmajorExample.Criteria criteria = example.createCriteria();
 			criteria.andProjectIdEqualTo(set.getProjectId());
-			List<Udsetmajor> list = setmajorMapper.selectByExample(example);
+			List<Udsetmajor> list = setmajorMapper.selectById(set.getProjectId());
 			set.setMajorList(list);
 		}
 		
@@ -120,7 +120,7 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 			UdsetexpertExample example = new UdsetexpertExample();
 			UdsetexpertExample.Criteria criteria = example.createCriteria();
 			criteria.andProjectIdEqualTo(set.getProjectId());
-			List<Udsetexpert> list = expertMapper.selectByExample(example);
+			List<Udsetexpert> list = expertMapper.selectById(set.getProjectId());
 			set.setExpertList(list);
 		}
 		

@@ -5,6 +5,19 @@
     <id column="project_id" jdbcType="INTEGER" property="projectId" />
     <result column="expert_id" jdbcType="INTEGER" property="expertId" />
     <result column="created_dt" jdbcType="TIMESTAMP" property="createdDt" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+  </resultMap>
+  
+    <resultMap id="BaseResultMap2" type="org.quetzaco.experts.model.Udexpert">
+    <id column="expert_id" jdbcType="INTEGER" property="expertId" />
+    <result column="no" jdbcType="VARCHAR" property="no" />
+    <result column="card" jdbcType="VARCHAR" property="card" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="record_flag" jdbcType="VARCHAR" property="recordFlag" />
   </resultMap>
   
   <sql id="Example_Where_Clause">
@@ -179,4 +192,12 @@
       created_dt = #{createdDt,jdbcType=TIMESTAMP}
     where project_id = #{projectId,jdbcType=INTEGER}
   </update>
+  
+  
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select p.expert_id,p.name,p.phone
+    
+    from udsetexpert s,udexpert p
+    where s.expert_id and p.expert_id and project_id = #{projectId,jdbcType=INTEGER}
+  </select>
 </mapper>

@@ -138,7 +138,7 @@ $(document).ready(function () {
 $('#extractExpert').on('show.bs.modal', function (event) {
     console.log("show.bs.modal");
     console.log(event);
-	projectId=123;
+	projectId=getProjectId();
     $.axx({
         type:'GET',
         url:"/extractset/get/"+projectId,
@@ -171,8 +171,8 @@ $('#extractExpert').on('show.bs.modal', function (event) {
 
 
 //创建抽取
-function extractStart(assigneeId) {
-	projectId=123;
+function extractStart() {
+	projectId=getProjectId();
     $.ajax({
         type:'GET',
         url:"/extract/"+projectId,

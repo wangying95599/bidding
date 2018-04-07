@@ -8,8 +8,28 @@ public class Udsetexpert {
     private Integer expertId;
 
     private Date createdDt;
+    
+    private String name;
 
-    public Integer getProjectId() {
+    private String phone;
+
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Integer getProjectId() {
         return projectId;
     }
 
