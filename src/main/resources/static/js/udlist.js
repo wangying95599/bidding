@@ -6,7 +6,7 @@
 let selectedNum = 0, projectTotal = 0;
 
 function getProjectId() {
-	$table=$("#project_list_table");
+    $table = $("#project_list_table");
     if ($table.bootstrapTable("getSelections").length != 1) {
         throw "select error";
     } else {
@@ -123,6 +123,30 @@ function init() {
     });
 
     loadAllProjects();
+
+    $('#projectModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('title') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text(recipient)
+        let selectedProject = $('#project_list_table').bootstrapTable('getSelections')[0];
+        console.log(selectedProject);
+        modal.find('#project_id_input').val(selectedProject.id);
+        modal.find('#project_code_input').val(selectedProject.purchaseCode);
+        modal.find('#project_name_input').val(selectedProject.purchaseProject);
+        modal.find('#project_purchaser_input').val(selectedProject.purchaseCompany);
+        // modal.find('#project_code_input').val(selectedProject.purchaseCode);
+        modal.find('#project_extract_input').val(selectedProject.extractCompany);
+        modal.find('#bidding_time_input').val(selectedProject.biddingTime);
+        modal.find('#bidding_location_input').val(selectedProject.biddingLocation);
+        modal.find('#bidding_period_input').val(selectedProject.biddingPeriod);
+        // modal.find('#project_code_input').val(selectedProject.purchaseCode);
+        modal.find('#messages_text_area').val(selectedProject.smsInfo);
+
+        // modal.find('.modal-body input').val(recipient)
+    })
 }
 
 //已经设置过了，需要加载各表格数据

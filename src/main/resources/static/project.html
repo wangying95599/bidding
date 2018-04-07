@@ -5,6 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="css/bootstrap-table.css">
@@ -248,13 +249,14 @@
                 </div>
 
                 <div class="panel-body">
-                    <div class="btn-toolbar toolBar_1 btn-group" role="toolbar" id="" style="margin-bottom: 10px;">
+                    <div class="btn-toolbar toolBar_1 btn-group" role="toolbar" style="margin-bottom: 10px;">
                         <button id="createProjectButton" type="button" class="btn btn-link"
-                                onclick="showCreateProjectModal()">
+                                data-target="#projectModal" data-toggle="modal" data-title="新建项目">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新建项目
                         </button>
-                        <button id="editProjectButton" type="button" class="btn btn-link" style="display:none;"
-                                onclick="showEditProjectModal()">
+                        <button id="editProjectButton" type="button" class="btn btn-link"
+                                style="display:none;" data-toggle="modal"
+                                data-target="#projectModal" data-title="编辑项目">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑项目
                         </button>
                         <button id="removeProjectButton" type="button" class="btn btn-link btn-danger"
@@ -281,21 +283,139 @@
                     </table>
                 </div>
                 <!-- modal begin-->
-                <div class="modal fade" id="commonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                <!--project(create/edit) modal begin-->
+                <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog" style="width: 1100px;">
                         <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+                                </button>
+                                <h4 class="modal-title">新建项目</h4>
+                            </div>
+
+                            <div class="modal-body">
+                                <form class="form-horizontal" role="form" id="createProjectForm">
+                                    <fieldset>
+                                        <input type="text" class="form-control" id="project_id_input"
+                                               name="id" style="display: none;">
+                                        <div class="form-group">
+                                            <label for="" class="col-sm-2 control-label">采购编号</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="project_code_input"
+                                                       name="purchaseCode">
+                                            </div>
+                                        </div>
+                                        <!-- 采购项目-->
+                                        <div class="form-group">
+                                            <label for="" class="col-sm-2 control-label">项目名称</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="project_name_input"
+                                                       name="purchaseProject">
+                                            </div>
+                                        </div>
+                                        <!-- 采购单位-->
+                                        <div class="form-group">
+                                            <label for="" class="col-sm-2 control-label">建设单位</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="project_purchaser_input"
+                                                       name="purchaseCompany">
+                                            </div>
+                                        </div>
+                                        <!-- 代理机构-->
+                                        <div class="form-group">
+                                            <label for="" class="col-sm-2 control-label">代理机构</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" name="proxyOrg">
+                                                    <option>XX代理</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- 代理机构-->
+                                        <div class="form-group">
+                                            <label for="" class="col-sm-2 control-label">抽取单位</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="project_extract_input"
+                                                       name="extractCompany">
+                                            </div>
+                                        </div>
+                                        <!-- 详细时间-->
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label  ">评标时间</label>
+                                            <!--指定 date标记-->
+                                            <div class='col-sm-8 input-group date' id='datetimepicker1'
+                                                 style="padding-left: 13px;">
+                                                <input type='text' id="bidding_time_input" class="form-control" name="biddingTime"/>
+                                                <span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar"></span>
+									</span>
+                                            </div>
+                                        </div>
+                                        <!-- 评标地点 -->
+                                        <div class="form-group">
+                                            <label for="" class="col-sm-2 control-label">评标地点</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="bidding_location_input"
+                                                       name="biddingLocation">
+                                            </div>
+                                        </div>
+                                        <!-- 评标时长 -->
+                                        <div class="form-group">
+                                            <label for="" class="col-sm-2 control-label">评标时长</label>
+                                            <div class="col-sm-8">
+                                                <input type="input" class="form-control" id="bidding_period_input"
+                                                       placeholder="两个小时"
+                                                       name="biddingPeriod">
+                                            </div>
+                                        </div>
+                                        <!-- 评标时长 -->
+                                        <div class="form-group">
+                                            <label for="" class="col-sm-2 control-label">采购方式</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" name="purchaseType">
+                                                    <option>竞争性谈判</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- 评标时长 -->
+                                        <div class="form-group">
+                                            <label for="" class="col-sm-2 control-label">短信信息</label>
+                                            <div class="col-sm-8">
+                                                <textarea id="messages_text_area" class="form-control" rows="4" name="smsInfo"></textarea>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button id="" type="button" class="btn btn-primary"
+                                        onclick="createProject()">提交
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!--project modal end-->
                 <div class="modal fade" id="extractSet" tabindex="-1" role="dialog"
-                      aria-labelledby="myModalLabel"
-                      aria-hidden="true">
+                     aria-labelledby="myModalLabel"
+                     aria-hidden="true">
                     <div class="modal-dialog" style="width: 1100px;">
                         <div class="modal-content">
 
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+                                </button>
                                 <h4 class="modal-title">抽取设置</h4>
                             </div>
 
@@ -421,11 +541,13 @@
                                             <form class="form-inline" style="    margin-bottom: 15px;">
                                                 <div class="form-group">
                                                     <label for="search_set_company_input">单位名称</label>
-                                                    <input type="text" class="form-control" id="search_set_company_input"
+                                                    <input type="text" class="form-control"
+                                                           id="search_set_company_input"
                                                            style=" margin-bottom: 15px;" pleInputName2"
                                                     >
                                                 </div>
-                                                <button type="button" id="search_set_company_button" class="btn btn-default">添加
+                                                <button type="button" id="search_set_company_button"
+                                                        class="btn btn-default">添加
                                                 </button>
                                             </form>
 
@@ -449,9 +571,11 @@
                                                                id="search_set_expert_phone"
                                                                value="phone"> 电话
                                                     </label>
-                                                    <input type="text" class="form-control" id="search_set_expert_input">
+                                                    <input type="text" class="form-control"
+                                                           id="search_set_expert_input">
                                                 </div>
-                                                <button type="button" id="search_set_expert_button" class="btn btn-default">添加
+                                                <button type="button" id="search_set_expert_button"
+                                                        class="btn btn-default">添加
                                                 </button>
                                             </form>
 
@@ -475,7 +599,8 @@
                                                     </label>
                                                     <input type="text" class="form-control" id="search_set_major_input">
                                                 </div>
-                                                <button type="button" id="search_set_major_button" class="btn btn-default">查询
+                                                <button type="button" id="search_set_major_button"
+                                                        class="btn btn-default">查询
                                                 </button>
 
                                             </form>
@@ -504,7 +629,7 @@
 
                         </div>
                     </div>
-            </div>
+                </div>
 
                 <!-- modal end-->
             </div>

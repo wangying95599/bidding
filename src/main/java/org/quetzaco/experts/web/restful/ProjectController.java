@@ -40,5 +40,9 @@ public class ProjectController extends BaseRestContoller {
 		Udprojects project = projectService.getProject(id);
 		return buildEntity(APIEntity.create(project), HttpStatus.OK);
 	}
-
+	@RequestMapping(value = "projects", method = RequestMethod.PUT)
+	public HttpEntity<APIEntity> updateProject(@SessionAttribute(WebSecurityConfig.SESSION_KEY) User user, @RequestBody Udprojects project) {
+		Udprojects updatedProject = projectService.updateProject(project);
+		return buildEntity(APIEntity.create(updatedProject), HttpStatus.OK);
+	}
 }

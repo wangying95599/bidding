@@ -31,7 +31,8 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public Udprojects updateProject(Udprojects project) {
-		return null;
+		projectMapper.updateByPrimaryKey(project);
+		return project;
 	}
 
 	@Override

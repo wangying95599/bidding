@@ -22,9 +22,7 @@ $(function () {
                 }
             },
             error: function (e) {
-            	alert(e);
-            	console.log(e);
-                console.log('some error here');
+                console.log('some error here:'+e);
 //                try {
 //                    data.error(e);
 //                } catch (e) {
