@@ -4,38 +4,17 @@
 //$('#table_Id').bootstrapTable('updateRow', {index: checkIndex, row: data.data});//index---->更新行的索引。row---->要更新的数据
 //
 let selectedNum = 0, projectTotal = 0;
-var project_list_data = [{
-    "id": '1',
-    'name': "********",
-    "projectName": '测试',
-    "randomNo": 'DL181',
-    "date": '2018-3-27',
-    "major": '电子信息-计算机'
-},
-    {
-        "id": '2',
-        'name': "********",
-        "projectName": '测试',
-        "randomNo": '3D1LA1',
-        "date": '2018-3-27',
-        "major": '电子信息-计算机'
 
-    }];
+function getProjectId() {
+	$table=$("#project_list_table");
+    if ($table.bootstrapTable("getSelections").length != 1) {
+        alert('请选择一个记录');
+        throw "select error";
+    } else {
+        return $table.bootstrapTable("getSelections")[0].id;
+    }
+}
 
-function project_list_add(id) {
-    //console.log('project_list_remove_cor');
-    console.log('project_list_add.id ');
-    console.log(id);
-
-    row = $("#project_list_table").bootstrapTable('getRowByUniqueId', id);
-    //var selectedData = $('#project_list_table').bootstrapTable('getAllSelections');
-
-    console.log(row);
-
-    $("#project_list_table").bootstrapTable('remove', {field: 'id', values: [id]});
-    $("#project_list_table_major_to").bootstrapTable('append', row);
-
-};
 //project,no,bid,date,extract,name,build，company,agent,org,purchase,mode,expert,state
 
 var project_list_col = [
@@ -170,15 +149,6 @@ $(document).ready(function () {
     init();
 });
 
-function project_list_add_common(id) {
-    console.log(id);
-
-    var result = [
-        '<button  type="button" class="btn btn-primary btn-xs" onclick="ext_add(\'' + id + '\')">选择</button>',]
-        .join('');
-    console.log(result);
-    return result;
-}
 
 function nullFormatter(data) {
 
