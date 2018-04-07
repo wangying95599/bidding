@@ -86,14 +86,26 @@ function toggleProjectRelatedButtons(selectedNum) {
         $('#createProjectButton').hide();
         $('#editProjectButton').show();
         $('#removeProjectButton').show();
+        $('#extractSetButton').show();
+        $('#extractSetButton').show();
+        $('#extractExpertsButton').show();
+        $('#noteButton').show();
     } else if (selectedNum > 1) {
         $('#createProjectButton').hide();
         $('#editProjectButton').hide();
         $('#removeProjectButton').show();
+        $('#extractSetButton').hide();
+        $('#extractSetButton').hide();
+        $('#extractExpertsButton').hide();
+        $('#noteButton').hide();
     } else if (selectedNum === 0) {
         $('#createProjectButton').show();
         $('#editProjectButton').hide();
         $('#removeProjectButton').hide();
+        $('#extractSetButton').hide();
+        $('#extractSetButton').hide();
+        $('#extractExpertsButton').hide();
+        $('#noteButton').hide();
     }
 }
 

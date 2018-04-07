@@ -26,7 +26,7 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public void deleteProejct(Integer id) {
-
+		projectMapper.deleteByPrimaryKey(id);
 	}
 
 	@Override

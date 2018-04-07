@@ -49,6 +49,47 @@ function showCreateExtractModal() {
     });
 }
 
+function deleteProject() {
+    const selectedProject = $('#project_list_table').bootstrapTable('getSelections');
+    const ids = selectedProject.map(function (item) {
+        return item.id;
+    });
+    console.log(JSON.stringify(ids));
+    $.axx({
+        type: 'delete',
+        url: '/projects/delete',
+        data: JSON.stringify(ids),
+        contentType: 'application/json',        //有关不能传递复杂类型的问题：这个要设置
+        success: function (json) {
+            loadAllProjects();
+        },
+        error: function (res) {
+            console.log(res);
+            alert(res);
+        }
+    });
+}
+
+// function deleteProject(){
+//     const selectedProject = $('#project_list_table').bootstrapTable('getSelections');
+//     const ids = selectedProject.map(function (item) {
+//         return item.id;
+//     });
+//     console.log(ids);
+//     $.axx({
+//         type: 'delete',
+//         url: '/projects',
+//         data: JSON.stringify(ids),
+//         contentType: 'application/json',        //有关不能传递复杂类型的问题：这个要设置
+//         success: function (json) {
+//             loadAllProjects();
+//         },
+//         error: function (res) {
+//             console.log(res);
+//             alert(res);
+//         }
+//     });
+// }
 function createProject() {
     const project = $('#createProjectForm').serializeJson();
     if (project.id) {
