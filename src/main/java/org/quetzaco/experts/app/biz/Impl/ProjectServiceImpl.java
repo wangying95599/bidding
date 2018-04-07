@@ -5,6 +5,7 @@ import java.util.List;
 import org.quetzaco.experts.app.biz.ProjectService;
 import org.quetzaco.experts.app.dao.UdprojectsMapper;
 import org.quetzaco.experts.model.Udprojects;
+import org.quetzaco.experts.model.UdprojectsExample;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +41,21 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public List<Udprojects> getAllProjects() {
-		List<Udprojects> all = projectMapper.selectByExample(null);
-		return all;
+		return projectMapper.selectByExample(null);
+	}
+
+	@Override
+	public Udprojects getProject(Integer id) {
+		UdprojectsExample e = new UdprojectsExample();
+		UdprojectsExample.Criteria c = e.createCriteria();
+		c.andIdEqualTo(id);
+		List<Udprojects> result = projectMapper.selectByExample(e);
+		return result.get(0);
+	}
+	
+	public static void main(String[] args) {
+		ProjectServiceImpl s = new ProjectServiceImpl();
+		s.getProject(76);
 	}
 
 }

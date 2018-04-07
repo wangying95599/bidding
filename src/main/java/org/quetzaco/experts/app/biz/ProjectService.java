@@ -9,5 +9,6 @@ public interface ProjectService {
 	void deleteProejct(Integer id);
 	Udprojects updateProject(Udprojects project);
 	Udprojects getProject(String purchaseProject);
+	Udprojects getProject(Integer id);
 	List<Udprojects> getAllProjects();
 }

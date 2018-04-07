@@ -15,9 +15,7 @@ public class ProjectServiceTest extends ExpertsApplicationTests {
 	@Autowired
 	ProjectService projectService;
 
-	@Rollback(false)
-	@Test
-	public void remainToBeDone() {
+	private Udprojects createProjectModel(){
 		Udprojects p = new Udprojects();
 		p.setBiddingLocation("Beijing");
 		p.setBiddingPeriod("2 hours");
@@ -28,6 +26,18 @@ public class ProjectServiceTest extends ExpertsApplicationTests {
 		p.setPurchaseCompany("purchase company");
 		p.setPurchaseProject("project name");
 		p.setPurchaseType("purchase type");
+		return p;
+	}
+	@Rollback(false)
+	@Test
+	public void testCreate() {
+		Udprojects p = this.createProjectModel();
 		projectService.createProject(p);
+	}
+	
+	@Test
+	public void testSelectById() {
+		Udprojects p = projectService.getProject(76);
+		System.out.println("success");
 	}
 }

@@ -8,7 +8,6 @@ let selectedNum = 0, projectTotal = 0;
 function getProjectId() {
 	$table=$("#project_list_table");
     if ($table.bootstrapTable("getSelections").length != 1) {
-        alert('请选择一个记录');
         throw "select error";
     } else {
         return $table.bootstrapTable("getSelections")[0].id;
