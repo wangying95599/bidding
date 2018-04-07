@@ -103,6 +103,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.quetzaco.experts.model.Udexpert">
+    <selectKey keyProperty="expertId" order="BEFORE" resultType="java.lang.Integer">
+      SELECT nextval('expert_id_seq')
+    </selectKey>  
     insert into udexpert (expert_id, no, card, 
       name, phone, company, 
       region, record_flag)
@@ -111,6 +114,9 @@
       #{region,jdbcType=VARCHAR}, #{recordFlag,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.quetzaco.experts.model.Udexpert">
+    <selectKey keyProperty="expertId" order="BEFORE" resultType="java.lang.Integer">
+      SELECT nextval('expert_id_seq')
+    </selectKey>  
     insert into udexpert
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="expertId != null">
@@ -257,15 +263,16 @@
   </update>
   
   
-  <!-- 以下是自定义的 -->
-  <select id="extractExpert" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <!-- 以下是自定义的 ,注意没设置的情况，应该加上set if-->
+  <select id="extractExpert" parameterType="map" resultMap="BaseResultMap">
      
-	select <include refid="Base_Column_List" /> 
-	from udexpert where 
-	company not in (select company_name from udsetcompany where project_id=#{id,jdbcType=INTEGER} and company_name is not null)
-	and id not in (select expert_id from udsetexpert where project_id=#{id,jdbcType=INTEGER} and expert_id is not null)
-	and region in (select region_name from udsetregion where project_id=#{id,jdbcType=INTEGER} and region_name is not null) 
-	
+	select distinct p.expert_id,p.name
+	from udexpert p,udexpert_major em
+	where 
+	p.company not in (select company from udsetcompany where project_id=#{id,jdbcType=INTEGER} and company is not null)
+	and p.expert_id not in (select expert_id from udsetexpert where project_id=#{id,jdbcType=INTEGER} and expert_id is not null)
+	and p.expert_id in (select DISTINCT expert_id from udexpert_region where region in (select region from udsetregion where project_id=#{id,jdbcType=INTEGER} )) 
+	and p.expert_id=em.expert_id and em.major_code in(select major_code from udmajor where major_code like #{majorCode,jdbcType=VARCHAR})
   </select>
   
   

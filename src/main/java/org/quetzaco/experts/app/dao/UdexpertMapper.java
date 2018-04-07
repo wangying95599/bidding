@@ -29,5 +29,5 @@ public interface UdexpertMapper {
     int updateByPrimaryKey(Udexpert record);
     
     //以下是自定义的
-    List<Udexpert> extractExpert(Integer id);
+    List<Udexpert> extractExpert(@Param("id") Integer id, @Param("majorCode") String majorCode);
 }

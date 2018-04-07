@@ -1,13 +1,18 @@
 package org.quetzaco.experts.app.biz.Impl;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.quetzaco.experts.app.biz.ExtractSetService;
+import org.quetzaco.experts.app.dao.UdexpertMajorMapper;
 import org.quetzaco.experts.app.dao.UdsetMapper;
 import org.quetzaco.experts.app.dao.UdsetcompanyMapper;
 import org.quetzaco.experts.app.dao.UdsetexpertMapper;
 import org.quetzaco.experts.app.dao.UdsetmajorMapper;
 import org.quetzaco.experts.app.dao.UdsetregionMapper;
+import org.quetzaco.experts.model.UdexpertMajor;
+import org.quetzaco.experts.model.UdexpertMajorExample;
 import org.quetzaco.experts.model.Udset;
 import org.quetzaco.experts.model.UdsetExample;
 import org.quetzaco.experts.model.Udsetcompany;
@@ -34,10 +39,13 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 	UdsetexpertMapper expertMapper;
 	
 	@Autowired
-	UdsetmajorMapper majorMapper;
+	UdsetmajorMapper setmajorMapper;
 	
 	@Autowired
 	UdsetregionMapper regionMapper;
+	
+	@Autowired
+	UdexpertMajorMapper expertMajorMapper;
 	
 	@Override
 	public void extractSet(Udset set) {
@@ -52,7 +60,7 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 		if(set.getMajorList() !=null) {
 			for(Udsetmajor major:set.getMajorList()) {
 				major.setProjectId(set.getProjectId());
-				majorMapper.insert(major);
+				setmajorMapper.insert(major);
 			}
 		}
 		if(set.getRegionList() !=null) {
@@ -96,7 +104,7 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 			UdsetmajorExample example = new UdsetmajorExample();
 			UdsetmajorExample.Criteria criteria = example.createCriteria();
 			criteria.andProjectIdEqualTo(set.getProjectId());
-			List<Udsetmajor> list = majorMapper.selectByExample(example);
+			List<Udsetmajor> list = setmajorMapper.selectByExample(example);
 			set.setMajorList(list);
 		}
 		
@@ -115,6 +123,34 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 			List<Udsetexpert> list = expertMapper.selectByExample(example);
 			set.setExpertList(list);
 		}
+		
+		HashSet<Integer> expertForMajorSet = new HashSet<Integer>();
+		
+		if(set.getMajorList() !=null && set.getMajorList().size()>0) {
+			//可能 有重复的 0103 下 有的人多个专家
+			Long expertNumForMajor=0l;
+			for(Udsetmajor major:set.getMajorList()) {
+				UdexpertMajorExample example = new UdexpertMajorExample();
+				example.setDistinct(true);
+				example.createCriteria().andMajorCodeLike("'"+major.getMajorCode()+"%'");
+				List<UdexpertMajor> list = expertMajorMapper.selectByExample(example);
+				if(list!=null && list.size()>0) {//not list is id
+					
+					for(UdexpertMajor expert:list) {
+						expertForMajorSet.add(expert.getExpertId());
+					}
+				}			
+			}
+			expertNumForMajor += expertForMajorSet.size();
+			set.setExpertNumForMajor(expertNumForMajor);
+		}
+		
+		//回避 1 指定回避专家  回避2 单位专家 回避3冻结专家 3种可能重复，set
+		Long expertNumForAvoid=0l;
+		
+		
+		
+		set.setExpertNumForAvoid(expertNumForAvoid);
 		
 		return set;
 	}

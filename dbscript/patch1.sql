@@ -44,3 +44,5 @@ select nextval('projects_id_seq')  ;
 
 INSERT INTO SYS_SEQUENCE(NAME,CURRENT_VALUE,INCREMENT) VALUES('set_id_seq', 1,1);
 select nextval('set_id_seq')  ;
+
+INSERT INTO SYS_SEQUENCE(NAME,CURRENT_VALUE,INCREMENT) VALUES('expert_id_seq', 1,1);

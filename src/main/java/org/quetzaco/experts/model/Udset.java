@@ -18,8 +18,56 @@ public class Udset {
     private List<Udsetexpert> expertList;
     private List<Udsetmajor> majorList;
     private List<Udsetregion> regionList;
+    
+    private List<Udsetwhite> whiteList;
+    
+	public List<Udsetwhite> getWhiteList() {
+		return whiteList;
+	}
 
-    public List<Udsetcompany> getCompanyList() {
+	public void setWhiteList(List<Udsetwhite> whiteList) {
+		this.whiteList = whiteList;
+	}
+
+	private Long expertNumForMajor;
+    private Long expertNumForAvoid;
+    private Long expertNumForOption;
+    private Long expertNumForCompany;
+    
+
+    public Long getExpertNumForMajor() {
+		return expertNumForMajor;
+	}
+
+	public void setExpertNumForMajor(Long expertNumForMajor) {
+		this.expertNumForMajor = expertNumForMajor;
+	}
+
+	public Long getExpertNumForAvoid() {
+		return expertNumForAvoid;
+	}
+
+	public void setExpertNumForAvoid(Long expertNumForAvoid) {
+		this.expertNumForAvoid = expertNumForAvoid;
+	}
+
+	public Long getExpertNumForOption() {
+		return expertNumForOption;
+	}
+
+	public void setExpertNumForOption(Long expertNumForOption) {
+		this.expertNumForOption = expertNumForOption;
+	}
+
+	public Long getExpertNumForCompany() {
+		return expertNumForCompany;
+	}
+
+	public void setExpertNumForCompany(Long expertNumForCompany) {
+		this.expertNumForCompany = expertNumForCompany;
+	}
+
+	public List<Udsetcompany> getCompanyList() {
 		return companyList;
 	}
 

@@ -24,16 +24,16 @@ public class MajorServiceTest extends ExpertsApplicationTests{
 	
 	@Test
 	@Rollback(false)
-	public void set() throws Exception {
-		List<String> bankListByExcel = ExcelUtils.getBankListByExcel("E:/1.xls",(2-1), new ExcelUtils.ExcelRunner<String>() {
+	public void initMajorFromExcel() throws Exception {
+		List<String> bankListByExcel = ExcelUtils.getBankListByExcel("C:/1.xls",(2-1), new ExcelUtils.ExcelRunner<String>() {
             @Override
             public String construct(Row row) {
             	String code = ExcelUtils.getCellValue(row.getCell(0));
                 System.out.println(code);
                 int len = code.length()/2;
                 for(int i=0;i<len;i++) {
-                	System.out.println(i*2+":  "+(i*2+2));
-                	String miniCode=code.substring(i*2,i*2+2);
+                	System.out.println(0+":  "+(i*2+2));
+                	String miniCode=code.substring(0,i*2+2);
                 	System.out.println(miniCode);
                 	
                 	UdmajorExample exmaple = new UdmajorExample();
