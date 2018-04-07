@@ -36,6 +36,6 @@ public class ExtractSetController extends BaseRestContoller {
 		set.setProjectId(projectId);
 		set = service.serachExtractSet(set);
 		
-        return buildEntity(APIEntity.create(set), HttpStatus.ACCEPTED);
+        return buildEntity(APIEntity.create(set), HttpStatus.OK);
     }
 }

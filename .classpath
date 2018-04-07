@@ -34,5 +34,23 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.30.jar"/>
+	<classpathentry kind="lib" path="lib/voice/aliyun-java-sdk-core-3.2.3.jar"/>
+	<classpathentry kind="lib" path="lib/voice/aliyun-java-sdk-dyvmsapi-1.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/voice/alicom-mns-receive-sdk-0.0.1-SNAPSHOT-sources.jar"/>
+	<classpathentry kind="lib" path="lib/voice/alicom-mns-receive-sdk-0.0.1-SNAPSHOT.jar" sourcepath="C:/Users/wy/Desktop/徐巍/阿里/java/msg_demo/alicom-mns-receive-samples/lib/alicom-mns-receive-sdk-1.0.1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/voice/aliyun-java-sdk-core-3.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/voice/aliyun-java-sdk-dybaseapi-1.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/voice/aliyun-sdk-mns-1.1.8.jar"/>
+	<classpathentry kind="lib" path="lib/voice/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="lib/voice/commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/voice/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/voice/gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/voice/httpasyncclient-4.1.jar"/>
+	<classpathentry kind="lib" path="lib/voice/httpclient-4.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/voice/httpcore-4.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/voice/httpcore-nio-4.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/voice/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="lib/sms/aliyun-java-sdk-core-3.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/sms/aliyun-java-sdk-dysmsapi-1.0.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

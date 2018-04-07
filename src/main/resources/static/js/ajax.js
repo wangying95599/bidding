@@ -22,12 +22,14 @@ $(function () {
                 }
             },
             error: function (e) {
+            	alert(e);
+            	console.log(e);
                 console.log('some error here');
-                try {
-                    data.error(e);
-                } catch (e) {
-                }
-                redirect(e)
+//                try {
+//                    data.error(e);
+//                } catch (e) {
+//                }
+                //redirect(e)
             }
         });
     };

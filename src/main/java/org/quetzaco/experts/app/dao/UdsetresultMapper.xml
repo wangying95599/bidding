@@ -8,6 +8,10 @@
     <result column="random_code" jdbcType="VARCHAR" property="randomCode" />
     <result column="notice_status" jdbcType="VARCHAR" property="noticeStatus" />
     <result column="confirm_status" jdbcType="VARCHAR" property="confirmStatus" />
+    
+      <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -225,4 +229,11 @@
       confirm_status = #{confirmStatus,jdbcType=VARCHAR}
     where project_id = #{projectId,jdbcType=INTEGER}
   </update>
+  
+  
+    <select id="selectDetailInfo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+	    select u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company
+	    from udsetresult u,udexpert p
+	    where u.expert_id=p.expert_id
+  </select>
 </mapper>

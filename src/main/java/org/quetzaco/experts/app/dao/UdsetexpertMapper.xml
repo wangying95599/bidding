@@ -6,6 +6,7 @@
     <result column="expert_id" jdbcType="INTEGER" property="expertId" />
     <result column="created_dt" jdbcType="TIMESTAMP" property="createdDt" />
   </resultMap>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

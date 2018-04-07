@@ -4,28 +4,9 @@
 //$('#table_Id').bootstrapTable('updateRow', {index: checkIndex, row: data.data});//index---->更新行的索引。row---->要更新的数据
 //
 
-var extractResult_data = [{
-    "id": '1',
-    'name': "********",
-    "projectName": '测试',
-    "randomNo": 'DL181',
-    "date": '2018-3-27',
-    "major": '电子信息-计算机'
-},
-    {
-        "id": '2',
-        'name': "********",
-        "projectName": '测试',
-        "randomNo": '3D1LA1',
-        "date": '2018-3-27',
-        "major": '电子信息-计算机'
-
-    }];
-
-
 var extractResult_col = [
     {
-        field: 'id',
+        field: 'expert_id',
         visible: false
     },
 
@@ -36,15 +17,22 @@ var extractResult_col = [
         sortable: true
     },
     {
+        title: '随机编码',
+        field: 'randomCode',
+        align: 'center',
+        sortable: true
+    },
+    {
         title: '专业',
         field: 'major',
         align: 'center',
         sortable: true
     },
     {
-        title: '姓名',
+        title: '专家姓名',
         field: 'name',
         align: 'center',
+        formatter:nameFormatter,
         sortable: true
     },
     {
@@ -57,13 +45,28 @@ var extractResult_col = [
         title: '电话',
         field: 'phone',
         align: 'center',
+        formatter:phoneFormatter,
         sortable: true
     },
     {
         title: '工作单位',
-        field: 'location',
+        field: 'company',
         align: 'center',
         sortable: true
+    },
+    {
+        title: '通知状态',
+        field: 'noticeStatus',
+        align: 'center',
+        sortable: true,
+        formatter:notifyFormatter
+    },
+    {
+        title: '确认状态',
+        field: 'confirmStatus',
+        align: 'center',
+        sortable: true,
+        formatter:confirmFormatter
     }
 ];
 
@@ -77,14 +80,76 @@ function initExtractResult() {
         columns: extractResult_col
     });
 
-
-    loadExtractResultData();
+    $('#ext_table_voice').bootstrapTable({
+        pagination: false,
+        clickToSelect: true,
+        columns: extractResult_col
+    });
+   
 }
+$('#extractResultInfo').on('show.bs.modal', function (event) {
+    console.log("show.bs.modal");
+    console.log(event);
+    loadExtractResultData();
+});
+$('#voiceNotice').on('show.bs.modal', function (event) {
+    console.log("show.bs.modal");
+    console.log(event);
+    loadExtractResultData();
+});
+
 
 //已经设置过了，需要加载各表格数据
 function loadExtractResultData() {
-    $('#ext_table_extractResult').bootstrapTable("load", extractResult_data);
+	projectId=123;
+    $.axx({
+        type:'GET',
+        url:"/extract/get/"+projectId,
+        success:function (json) {
+            var models = json.content;
+            console.log(models);
+            $('#ext_table_extractResult').bootstrapTable("load", models);
+            
+        }
+    });	
+	
+}
 
+
+function loadVoiceData() {
+	projectId=123;
+    $.axx({
+        type:'GET',
+        url:"/extract/getvoice/"+projectId,
+        success:function (json) {
+            var models = json.content;
+            console.log(models);
+            $('#ext_table_voice').bootstrapTable("load", models);
+            
+        }
+    });	
+	
+}
+
+function notifyFormatter(data) {
+
+    if (data == "" || data == null || data == " ") {
+        return '未通知';
+    }
+    return data;
+}
+function nameFormatter(data) {
+    return "**********";
+}
+function phoneFormatter(data) {
+    return "**********";
+}
+function confirmFormatter(data) {
+
+    if (data == "" || data == null || data == " ") {
+        return '等待通知';
+    }
+    return data;
 }
 
 

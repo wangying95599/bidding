@@ -80,4 +80,30 @@ public class Udexpert {
     public void setRecordFlag(String recordFlag) {
         this.recordFlag = recordFlag == null ? null : recordFlag.trim();
     }
+    
+    
+    public int score;
+    
+    
+    public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	@Override
+    public boolean equals(Object obj) {
+    	if(expertId == null)
+    		return super.equals(obj);
+    	else
+    		return expertId.equals(((Udexpert)obj).getExpertId());
+    }
+	
+	@Override
+	public String toString() {
+		
+		return "Expert@id:"+expertId+", score:"+score;
+	}
 }

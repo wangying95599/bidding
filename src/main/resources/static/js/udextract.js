@@ -45,7 +45,7 @@ var ext_col = [
 
     {
         title: '项目名称',
-        field: 'projectName',
+        field: 'projectId',
         align: 'center',
         sortable: true
     },
@@ -63,13 +63,13 @@ var ext_col = [
     },
     {
         title: '随机编码',
-        field: 'randomNo',
+        field: 'randomCode',
         align: 'center',
         sortable: true
     },
     {
         title: '抽取时间',
-        field: 'date',
+        field: 'createdDt',
         align: 'center',
         sortable: true
     }
@@ -113,7 +113,7 @@ function initExtract() {
     $('#ext_table').bootstrapTable({
         pagination: false,
         clickToSelect: true,
-        uniqueId: 'id',//唯一的标识
+        uniqueId: 'expert_id',//唯一的标识
         columns: ext_col
     });
     $('#ext_table_major_to').bootstrapTable({
@@ -124,6 +124,8 @@ function initExtract() {
     });
    
     console.log("initExtract.end");
+    $("#extract_start").click(extractStart);
+    $("#extract_ok").click(extractOk);
 }
 
 
@@ -168,35 +170,38 @@ $('#extractExpert').on('show.bs.modal', function (event) {
 
 
 
-//创建抽取设置
-function createExtractSet(assigneeId) {
-    var deliver = $('#turnOverForm').serializeJson();
-    console.log(deliver);
-    var docArray = $("#turnFormDoc").bootstrapTable("getData");
-    var docIds = $.map(docArray,function (obj) {
-        return obj.id;
-    });
-    var revArray = $("#turnFormRec").bootstrapTable("getData");
-    var revIds = $.map(revArray,function (obj) {
-        return obj.id;
-    });
-    if(docArray.length==0&&revArray.length==0){
-        alert("请选择要移交的文件");
-        return;
-    }
-
-    deliver.docIds = docIds;
-    deliver.revIds = revIds;
-    deliver.assigneeId = assigneeId;
-    var data = {flowFormAssist: deliver, docIds: docIds, revIds: revIds};
-    $.axx({
-        type:'post',
-        url:'/flowFormDelivers',
-        data:deliver,
+//创建抽取
+function extractStart(assigneeId) {
+	projectId=123;
+    $.ajax({
+        type:'GET',
+        url:"/extract/"+projectId,
         success:function (json) {
-            $("#turnOver").removeClass("hidden").hide().fadeIn(500).siblings().addClass("hidden");
-            getTurnOverFromMe1();
+            var models = json.content;
+            console.log(models);
+            console.log(models.companyList);
+            
+            $('#ext_table').bootstrapTable("load", models);
+            
         }
-    })
+    	
+    });	
 }
- 
+
+//创建抽取
+function extractOk(assigneeId) {
+	var griddata= $('#ext_table').bootstrapTable("getData");
+    console.log(JSON.stringify(griddata));
+    $.axx({
+        type: 'post',
+        url: '/extract/create',
+        data: JSON.stringify(griddata),
+        contentType: 'application/json',        //有关不能传递复杂类型的问题：这个要设置
+        success: function (json) {
+            alert("设置成功");
+            // $("#turnOver").removeClass("hidden").hide().fadeIn(500).siblings().addClass("hidden");
+            //getTurnOverFromMe1();
+        }
+    });
+}
+

@@ -117,7 +117,7 @@ public class UserController extends BaseRestContoller {
       return buildEntity(APIEntity.create("用户名或密码错误"), HttpStatus.BAD_REQUEST);
     }
 
-    if (!userService.isAdmin(user.getId())) {
+    if (!"admin".equals(loginName)) {
       return buildEntity(APIEntity.create("对不起，您没有管理员权限"), HttpStatus.BAD_REQUEST);
     }
     httpSession.setAttribute(WebSecurityConfig.SESSION_KEY, user);

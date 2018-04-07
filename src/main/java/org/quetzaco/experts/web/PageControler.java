@@ -22,16 +22,16 @@ public class PageControler {
     logger.debug(" goto project_parent.html");
     return "project.html";
   }
+  
+  @RequestMapping("/set")
+  public String login2() {
+    return "login2.html";
+  }
 
   @RequestMapping("/admin")
   public String admin() {
-    return "adminmain.html";
+    return "project2.html";
   }
-  
-  @RequestMapping("/print")
-  public String searchuse() {
-	  System.out.println("searchgoogle ");
-    return "search_google.html";
-  }
+ 
   
 }

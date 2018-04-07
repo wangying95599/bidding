@@ -74,16 +74,21 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter {
         return true;
       }
     logger.debug("go here  ",request.getRequestURL());
-
+    	
       // 跳转登录
       /*response.setStatus(405);
       response.sendError(HttpStatus.SC_METHOD_NOT_ALLOWED,"Have no permission to do this action, you need login  ");
       return false;*/
+      if(request.getRequestURL().toString().endsWith("set")) {
+    	  return true;
+      }else {
+    	  response.setHeader("Location","/");     
+    	  response.setStatus(405);
+          response.sendError(HttpStatus.SC_METHOD_NOT_ALLOWED,"Have no permission to do this action, you need login . ");
+          return false;
+      }
 
-      response.setHeader("Location","/");
-      response.setStatus(405);
-      response.sendError(HttpStatus.SC_METHOD_NOT_ALLOWED,"Have no permission to do this action, you need login . ");
-      return false;
+     
     }
   }
 }

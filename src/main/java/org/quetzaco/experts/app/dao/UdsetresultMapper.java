@@ -27,4 +27,11 @@ public interface UdsetresultMapper {
     int updateByPrimaryKeySelective(Udsetresult record);
 
     int updateByPrimaryKey(Udsetresult record);
+    
+    /**
+     * 自定义
+     * @param id
+     * @return
+     */
+    List<Udsetresult> selectDetailInfo(@Param("id") Integer id);
 }
