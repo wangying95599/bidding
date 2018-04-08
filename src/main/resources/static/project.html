@@ -266,8 +266,7 @@
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑专家
                         </button>
                         <button id="deleteExpertButton" type="button" class="btn btn-link"
-                                style="display:none;" data-toggle="modal"
-                                data-target="#expertModal" data-title="删除专家">
+                                style="display:none;" onclick="deleteExperts()" data-title="删除专家">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除专家
                         </button>
                     </div>
@@ -1027,7 +1026,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     <button id="" type="button" class="btn btn-primary"
-                            onclick="createExpert()">提交
+                            onclick="saveExpert()">提交
                     </button>
                 </div>
             </div>
