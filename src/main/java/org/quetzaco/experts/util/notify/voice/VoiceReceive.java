@@ -1,12 +1,15 @@
 package org.quetzaco.experts.util.notify.voice;
 
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
+import org.quetzaco.experts.app.biz.VoiceService;
+import org.quetzaco.experts.model.Udvoicelog;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import com.alicom.mns.tools.DefaultAlicomMessagePuller;
 import com.alicom.mns.tools.MessageListener;
@@ -24,11 +27,16 @@ import com.google.gson.Gson;
  * 
  * 
  */
-public class VoiceReceive {
-
-	private static Log logger=LogFactory.getLog(VoiceReceive.class);
+@Component
+public class VoiceReceive  implements CommandLineRunner{
 	
-	static class MyMessageListener implements MessageListener{
+
+	private  Log logger=LogFactory.getLog(VoiceReceive.class);
+	
+	@Autowired
+	VoiceService voiceService;
+	
+	class MyMessageListener implements MessageListener{
 		private Gson gson=new Gson();
 		@Override
 		public boolean dealMessage(Message message) {
@@ -54,6 +62,7 @@ public class VoiceReceive {
             	
 				//TODO 根据文档中具体的消息格式进行消息体的解析
                 String arg = (String) contentMap.get("arg");
+                
                 System.out.println("1callId          "+callId);
                 System.out.println("1startTime          "+startTime);
                 System.out.println("1endTime          "+endTime);
@@ -62,6 +71,17 @@ public class VoiceReceive {
                 System.out.println("1statusMsg          "+statusMsg);
                 System.out.println("1outId          "+outId);
                 System.out.println("1dtmf          "+dtmf);
+                
+                Udvoicelog log = new Udvoicelog();
+                log.setCallid(callId);
+                log.setStartTime(startTime);
+                log.setEndTime(endTime);
+                log.setDuration(duration);
+                log.setStatusCode(statusCode);
+                log.setStatusMsg(statusMsg);
+                log.setOutId(outId);
+                log.setDtmf(dtmf);
+                
 
                 //TODO 这里开始编写您的业务代码
                 
@@ -73,15 +93,20 @@ public class VoiceReceive {
 				//您自己的代码部分导致的异常，应该return false,这样消息不会被delete掉，而会根据策略进行重推
 				return false;
 			}
-            System.out.println("消息处理成功");
+            System.out.println("****************************消息处理成功");
 			//消息处理成功，返回true, SDK将调用MNS的delete方法将消息从队列中删除掉
 			return true;
 		}
 		
 	}
 	
-	public static void main(String[] args) throws com.aliyuncs.exceptions.ClientException, ParseException {
+	public static void main(String[] args) throws Exception {
+		VoiceReceive t= new VoiceReceive();
+		t.run(null);
+    }
 
+	@Override
+	public void run(String... args) throws Exception {
 		DefaultAlicomMessagePuller puller=new DefaultAlicomMessagePuller();
 
 		//TODO 此处需要替换成开发者自己的AK信息
@@ -99,8 +124,7 @@ public class VoiceReceive {
 		String messageType="VoiceReport";//此处应该替换成相应产品的消息类型
 		String queueName="Alicom-Queue-1983821798243001-VoiceReport";//在云通信页面开通相应业务消息后，就能在页面上获得对应的queueName,每一个消息类型
 		puller.startReceiveMsg(accessKeyId,accessKeySecret, messageType, queueName, new MyMessageListener());
-    }
-
-	
+		
+	}
 	
 }

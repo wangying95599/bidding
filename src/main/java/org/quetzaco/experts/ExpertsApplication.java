@@ -12,6 +12,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
@@ -23,7 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @EnableAsync
 @EnableAutoConfiguration(exclude = {MultipartAutoConfiguration.class})
 @ComponentScan(basePackages = "org.quetzaco.experts")
-
+@EnableScheduling
 public class ExpertsApplication extends SpringBootServletInitializer{
 	
 	public ExpertsApplication() {

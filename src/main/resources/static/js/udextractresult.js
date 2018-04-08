@@ -86,7 +86,9 @@ function initExtractResult() {
         columns: extractResult_col
     });
    
+   
 }
+
 $('#extractResultInfo').on('show.bs.modal', function (event) {
     console.log("show.bs.modal");
     console.log(event);
@@ -95,7 +97,7 @@ $('#extractResultInfo').on('show.bs.modal', function (event) {
 $('#voiceNotice').on('show.bs.modal', function (event) {
     console.log("show.bs.modal");
     console.log(event);
-    loadExtractResultData();
+    loadVoiceData();
 });
 
 
@@ -115,12 +117,34 @@ function loadExtractResultData() {
 	
 }
 
-
+function startVoice(){
+	projectId=getProjectId();
+    $.axx({
+        type:'GET',
+        url:"/voice/start/"+projectId,
+        success:function (json) {
+        	loadVoiceData();
+        }
+    });	
+}
+function pauseVoice(){
+	projectId=getProjectId();
+    $.axx({
+        type:'GET',
+        url:"/voice/pause/"+projectId,
+        success:function (json) {
+        	loadVoiceData();
+        }
+    });	
+}
+function printResult(){
+	
+}
 function loadVoiceData() {
 	projectId=getProjectId();
     $.axx({
         type:'GET',
-        url:"/extract/getvoice/"+projectId,
+        url:"/voice/get/"+projectId,
         success:function (json) {
             var models = json.content;
             console.log(models);
@@ -156,4 +180,8 @@ function confirmFormatter(data) {
 $(document).ready(function () {
 
     initExtractResult();
+    
+    $("#voiceNotice_start").click(startVoice);
+    $("#voiceNotice_pause").click(pauseVoice);
+    $("#voiceNotice_print").click(printResult);
 });  
