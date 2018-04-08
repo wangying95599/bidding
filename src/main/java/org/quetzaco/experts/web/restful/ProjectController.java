@@ -58,11 +58,4 @@ public class ProjectController extends BaseRestContoller {
 		}
 		return buildEntity(APIEntity.create(null), HttpStatus.OK);
 	}
-
-	@RequestMapping(value = "projects/{id}", method = RequestMethod.DELETE)
-	public HttpEntity<APIEntity> deleteProject(@SessionAttribute(WebSecurityConfig.SESSION_KEY) User user,
-			@PathVariable Integer id) {
-		projectService.deleteProejct(id);
-		return buildEntity(APIEntity.create(null), HttpStatus.OK);
-	}
 }
