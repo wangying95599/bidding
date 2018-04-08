@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <title>设置</title>
+    <title>竞标系统</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,10 +25,10 @@
 
 <script src="js/ajax.js"></script>
 <script src="js/udinit.js"></script>
+<script src="js/ud_extract_expert.js"></script>
 <script src="js/udlist.js"></script>
 <script src="js/experts.js"></script>
 <script src="js/udcreate.js"></script>
-
 
 <style>
     body, p {
@@ -144,7 +144,7 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a href="#projectTab" data-toggle="tab" role="tab" aria-controls="projectTab"
-                           aira-expanded="false">
+                           aira-expanded="true" onclick="$('#projectTab').tab('show');">
                             项目信息
                         </a>
                     </h4>
@@ -155,7 +155,7 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a href="#extractExpertTab" data-toggle="tab" role="tab" aria-controls="extractExpertTab"
-                           aira-expanded="false">
+                           aira-expanded="false" >
                             专家抽取
                         </a>
                     </h4>
@@ -176,8 +176,9 @@
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a href="#expertMaintenanceTab" data-toggle="tab" role="tab" aria-controls="expertMaintenanceTab"
-                           aira-expanded="false">
+                        <a href="#expertMaintenanceTab" data-toggle="tab" role="tab"
+                           aria-controls="expertMaintenanceTab"
+                           aira-expanded="false"onclick="showExpertTab()">
                             专家信息维护
                         </a>
                     </h4>
@@ -194,16 +195,15 @@
                     </h4>
                 </div>
             </div>
-
         </div>
         <!--accordion.end-->
     </div>
     <!--左侧导航.end-->
 
     <!--右侧内容 begin-->
-    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 tab-content">
         <!-- project part begin-->
-        <div id="projectTab" role="tabpanel" class="tab-pane">
+        <div id="projectTab" role="tabpanel" class="tab-pane active">
             <div class="row panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">
@@ -246,6 +246,33 @@
             </div>
         </div>
         <!-- project part end-->
+        <!-- expert part begin-->
+        <div id="expertMaintenanceTab" role="tabpanel" class="tab-pane" aria-labelledby="extractExpertTab">
+            <div class="row panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        专家信息
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="btn-toolbar toolBar_1 btn-group" role="toolbar" style="margin-bottom: 10px;">
+                        <button id="createExpertButton" type="button" class="btn btn-link"
+                                data-target="#expertModal" data-toggle="modal" data-title="新建专家">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新建专家
+                        </button>
+                        <button id="editExpertButton" type="button" class="btn btn-link"
+                                style="display:none;" data-toggle="modal"
+                                data-target="#expertModal" data-title="编辑专家">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑专家
+                        </button>
+                    </div>
+
+                    <table id="expert_list_table" data-height="568"
+                           class="table table-bordered table-hover">
+                    </table>
+                </div>
+        </div>
+        <!-- expert part begin-->
     </div>
     <!--右侧内容 end-->
 

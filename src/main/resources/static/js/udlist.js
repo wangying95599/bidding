@@ -109,7 +109,7 @@ function toggleProjectRelatedButtons(selectedNum) {
     }
 }
 
-function init() {
+function setUpProjectPage() {
     $('#project_list_table').bootstrapTable({
         pagination: false,
         clickToSelect: true,
@@ -133,7 +133,6 @@ function init() {
             toggleProjectRelatedButtons(selectedNum);
         },
     });
-
     loadAllProjects();
 
     $('#projectModal').on('show.bs.modal', function (event) {
@@ -161,6 +160,11 @@ function init() {
             // modal.find('.modal-body input').val(recipient)
         }
     })
+}
+
+function init() {
+    setUpProjectPage();
+    setupExpertPage();
 }
 
 //已经设置过了，需要加载各表格数据
