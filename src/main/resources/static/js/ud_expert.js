@@ -45,7 +45,6 @@ function showExpertTab() {
 }
 
 function toggleExpertRelatedButton(selectedNum) {
-
     if (selectedNum === 0) {
         $('#createExpertButton').show();
         $('#editExpertButton').hide();
