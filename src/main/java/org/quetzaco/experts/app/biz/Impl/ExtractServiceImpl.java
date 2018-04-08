@@ -12,6 +12,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.quetzaco.experts.app.biz.ExtractService;
+import org.quetzaco.experts.app.biz.ProjectService;
 import org.quetzaco.experts.app.dao.UdexpertMajorMapper;
 import org.quetzaco.experts.app.dao.UdexpertMapper;
 import org.quetzaco.experts.app.dao.UdmajorMapper;
@@ -19,6 +20,7 @@ import org.quetzaco.experts.app.dao.UdsetmajorMapper;
 import org.quetzaco.experts.app.dao.UdsetresultMapper;
 import org.quetzaco.experts.app.dao.UdsetwhiteMapper;
 import org.quetzaco.experts.model.Udexpert;
+import org.quetzaco.experts.model.Udprojects;
 import org.quetzaco.experts.model.Udset;
 import org.quetzaco.experts.model.Udsetmajor;
 import org.quetzaco.experts.model.UdsetmajorExample;
@@ -26,6 +28,7 @@ import org.quetzaco.experts.model.Udsetresult;
 import org.quetzaco.experts.model.UdsetresultExample;
 import org.quetzaco.experts.model.Udsetwhite;
 import org.quetzaco.experts.model.UdsetwhiteExample;
+import org.quetzaco.experts.util.random.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +52,9 @@ public class ExtractServiceImpl implements ExtractService {
 	
 	@Autowired
 	UdsetwhiteMapper whiteMapper;
+	
+	@Autowired
+	ProjectService projectService;
 	
 	public List<Udsetresult> getExtractResult(Udset set){
 		UdsetresultExample example = new UdsetresultExample();
@@ -92,27 +98,31 @@ public class ExtractServiceImpl implements ExtractService {
 		 * 所有抽取专家，用于判断重复。
 		 */
 		Set<Integer> hashset = new HashSet<Integer>();
+		/**
+		 * 专业 和 抽取专家数量
+		 */
+		HashMap<String,String> majorCodeNameMap = new HashMap<String,String>();
 		
 		
+		Udprojects project = projectService.getProject(set.getProjectId());
 		
 		
 		/**
 		 * 查询 设置要求的专业和对应的人数
 		 */
-		UdsetmajorExample setmajorExample = new UdsetmajorExample ();
-		setmajorExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
-		List<Udsetmajor> setmajorList =  setmajorMapper.selectByExample(setmajorExample);
+		List<Udsetmajor> setmajorList =  setmajorMapper.selectById(set.getProjectId());
 		
 		/**
 		 * 查询 设置要求的专业和对应的人数
 		 */
 		UdsetwhiteExample whiteExample = new UdsetwhiteExample ();
-		setmajorExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
+		whiteExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
 		List<Udsetwhite> whiteList =  whiteMapper.selectByExample(whiteExample);
 		
 		
 		for(Udsetmajor setmajor:setmajorList) {
 			setmajorMap.put(setmajor.getMajorCode(), setmajor.getMajorNumber());
+			majorCodeNameMap.put(setmajor.getMajorCode(), setmajor.getMajorName());
 			
 			List<Udexpert> expertList =expertMapper.extractExpert(set.getProjectId(), setmajor.getMajorCode()+"%");
 			
@@ -182,10 +192,11 @@ public class ExtractServiceImpl implements ExtractService {
             for(Udexpert expert:mapping.getValue()) {
 	            Udsetresult rs = new Udsetresult();
 	            rs.setProjectId(set.getProjectId());
+	            rs.setPurchaseProject(project.getPurchaseProject());
 	            rs.setCreatedDt(new Date());
 	            rs.setExpertId(expert.getExpertId());
-	            rs.setRandomCode("ABCS");
-	            rs.setMajor(mapping.getKey());
+	            rs.setRandomCode(RandomUtil.getRandomValue());
+	            rs.setMajor(majorCodeNameMap.get(mapping.getKey()));
 	            resultList.add(rs);
             }
         }

@@ -41,12 +41,12 @@ public class ExpertServiceTest extends ExpertsApplicationTests {
 	@Test
 	public void initExpertMajor() {
 		int j=0;
-		for(int i=1;i<=30;i++) {
+		for(int i=2;i<=30;i++) {
 			UdexpertMajor em =new UdexpertMajor();
 			em.setId(i);
-			j=i+3;
+			j=i+42;
 			Udmajor major = majorMapper.selectByPrimaryKey(j);
-			Udexpert expert= expertService.getExpert(j);
+			Udexpert expert= expertService.getExpert(i);
 			em.setExpertId(expert.getExpertId());
 			em.setMajorCode(major.getMajorCode());
 			emMapper.insertSelective(em);

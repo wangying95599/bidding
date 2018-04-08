@@ -14,6 +14,18 @@ public class Udsetresult {
 	private String noticeStatus;
 
 	private String confirmStatus;
+	
+	
+	private String purchaseProject;
+	
+
+	public String getPurchaseProject() {
+		return purchaseProject;
+	}
+
+	public void setPurchaseProject(String purchaseProject) {
+		this.purchaseProject = purchaseProject;
+	}
 
 	public Integer getProjectId() {
 		return projectId;

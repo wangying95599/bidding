@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.quetzaco.experts.app.biz.ExtractSetService;
+import org.quetzaco.experts.app.biz.ProjectService;
 import org.quetzaco.experts.app.dao.UdexpertMajorMapper;
 import org.quetzaco.experts.app.dao.UdsetMapper;
 import org.quetzaco.experts.app.dao.UdsetcompanyMapper;
@@ -47,11 +48,15 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 	@Autowired
 	UdexpertMajorMapper expertMajorMapper;
 	
+	@Autowired
+	ProjectService projectService;
+	
 	@Override
 	public void extractSet(Udset set) {
 		setMapper.insert(set);
 		
 		if(set.getCompanyList()!= null) {
+//			companyMapper.deleteByExample(example)
 			for(Udsetcompany company:set.getCompanyList()) {
 				company.setProjectId(set.getProjectId());
 				companyMapper.insertSelective(company);
@@ -81,6 +86,10 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 	
 	@Override
 	public Udset serachExtractSet(Udset set) {
+		
+		if(set.getProjectId() != null) {
+			set.setProject(projectService.getProject(set.getProjectId()));
+		}
 
 		if(set.getProjectId() != null) {
 			UdsetExample example = new UdsetExample();
