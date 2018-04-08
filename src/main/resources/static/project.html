@@ -679,47 +679,49 @@
                         <div class="col-md-6">
                             <form class=" form-horizontal" align="text-center">
                                 <fieldset disabled style="    margin-bottom: 15px;">
+                                    
                                     <legend>信息</legend>
 
                                     <div class="form-group">
                                         <label for="cgxm" class="col-md-2 control-label">采购项目</label>
                                         <div class="col-md-10">
-                                            <input type="email" class="form-control" id="cgxm" value="111">
+                                            <input type="text" class="form-control" id="project_name_extractset" value="">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="cgdw" class="col-md-2 control-label ">采购单位</label>
                                         <div class="col-md-10">
-                                            <input type="password" class="form-control" id="cgdw">
+                                            <input type="text" class="form-control" id="project_purchaser_extractset">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="dljg" class="col-md-2 control-label ">代理机构</label>
                                         <div class="col-md-10">
-                                            <input type="email" class="form-control" id="dljg" value="111">
+                                            <input type="text" class="form-control" id="proxy_org_extractset" value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="pbsj" class="col-md-2 control-label ">评标时间</label>
                                         <div class="col-md-10">
-                                            <input type="password" class="form-control" id="pbsj">
+                                            <input type="text" class="form-control" id="bidding_time_extractset">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="pbdd" class="col-md-2 control-label ">评标地点</label>
                                         <div class="col-md-10">
-                                            <input type="email" class="form-control" id="pbdd"
-                                                   value="大连市政府行政服务中心一楼！南石道街动物园入口附近">
+                                            <input type="text" class="form-control" id="bidding_location_extractset"
+                                                   value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="pbsc" class="col-md-2 control-label ">评标时长</label>
                                         <div class="col-md-10">
-                                            <input type="password" class="form-control" id="pbsc">
+                                            <input type="text" class="form-control" id="bidding_period_extractset">
                                         </div>
                                     </div>
+                                    
                                 </fieldset>
                             </form>
                         </div>
@@ -938,9 +940,9 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">通知开始</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">暂停</button>
-                    <button type="button" class="btn btn-primary" onclick="updateDepart()">打印</button>
+                    <button type="button" class="btn btn-default" id="voiceNotice_start">通知开始</button>
+                    <button type="button" class="btn btn-default" id="voiceNotice_pause">暂停</button>
+                    <button type="button" class="btn btn-primary" id="voiceNotice_print">打印</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
