@@ -26,6 +26,7 @@
 <script src="js/ajax.js"></script>
 <script src="js/udinit.js"></script>
 <script src="js/ud_expert.js"></script>
+<script src="js/ud_project.js"></script>
 <script src="js/udlist.js"></script>
 <script src="js/experts.js"></script>
 <script src="js/udcreate.js"></script>
@@ -40,7 +41,7 @@
     }
 
     @media screen and (max-width: 1060px) {
-         .middle {
+         .middle {
             overflow: hidden;
             height: calc(100% - 100px);
         }
@@ -421,133 +422,17 @@
                             </fieldset>
                         </div>
                     </div>
-                </div>
-                <!--project modal end-->
-                <div class="modal fade" id="extractSet" tabindex="-1" role="dialog"
-                     aria-labelledby="myModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog" style="width: 1100px;">
-                        <div class="modal-content">
-
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
-                                </button>
-                                <h4 class="modal-title">抽取设置</h4>
-                            </div>
-
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <form class=" form-horizontal" align="text-center">
-                                            <fieldset style="    margin-bottom: 15px;">
-                                                <legend>信息</legend>
-
-                                                <div class="form-group">
-                                                    <label for="cgxm" class="col-md-2 control-label">采购项目</label>
-                                                    <div class="col-md-10">
-                                                        <input type="text" class="form-control" id="project_name_set" value="">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="cgdw" class="col-md-2 control-label ">采购单位</label>
-                                                    <div class="col-md-10">
-                                                        <input type="text" class="form-control" id="project_purchaser_set">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="dljg" class="col-md-2 control-label ">代理机构</label>
-                                                    <div class="col-md-10">
-                                                        <input type="text" class="form-control" id="proxy_org_set" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="pbsj" class="col-md-2 control-label ">评标时间</label>
-                                                    <div class="col-md-10">
-                                                        <input type="text" class="form-control" id="bidding_time_set">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="pbdd" class="col-md-2 control-label ">评标地点</label>
-                                                    <div class="col-md-10">
-                                                        <input type="text" class="form-control" id="bidding_location_set"
-                                                               value="">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="pbsc" class="col-md-2 control-label ">评标时长</label>
-                                                    <div class="col-md-10">
-                                                        <input type="text" class="form-control" id="bidding_period_set">
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <fieldset disabled>
-                                            <legend>区域设置</legend>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="set_region" value="0">
-                                                    大连市区及高新园区
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="set_region" value="1">
-                                                    金州
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="set_region" value="2">
-                                                    瓦房店
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="set_region" value="3">
-                                                    开发区
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="set_region" value="4">
-                                                    庄河
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="set_region" value="5">
-                                                    普兰店
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="set_region" value="6">
-                                                    旅顺
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="set_region" value="7">
-                                                    保税区
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="set_region" value="8">
-                                                    长海县
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="set_region" value="9">
-                                                    外省市
-                                                </label>
-                                            </div>
-                                        </fieldset>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset style="    margin-bottom: 15px;">
+                                <legend>回避单位</legend>
+                                <form class="form-inline" style="    margin-bottom: 15px;">
+                                    <div class="form-group">
+                                        <label for="search_set_company_input">单位名称</label>
+                                        <input type="text" class="form-control"
+                                               id="search_set_company_input"
+                                               style=" margin-bottom: 15px;" pleInputName2"
+                                        >
                                     </div>
                                     <button type="button" id="search_set_company_button"
                                             class="btn btn-default">添加
@@ -794,49 +679,47 @@
                         <div class="col-md-6">
                             <form class=" form-horizontal" align="text-center">
                                 <fieldset disabled style="    margin-bottom: 15px;">
-                                   
+                                    <legend>信息</legend>
 
-                                      <legend>信息</legend>
+                                    <div class="form-group">
+                                        <label for="cgxm" class="col-md-2 control-label">采购项目</label>
+                                        <div class="col-md-10">
+                                            <input type="email" class="form-control" id="cgxm" value="111">
+                                        </div>
+                                    </div>
 
-                                      <div class="form-group">
-                                          <label for="cgxm" class="col-md-2 control-label">采购项目</label>
-                                          <div class="col-md-10">
-                                              <input type="text" class="form-control" id="project_name_extractset" value="">
-                                          </div>
-                                      </div>
+                                    <div class="form-group">
+                                        <label for="cgdw" class="col-md-2 control-label ">采购单位</label>
+                                        <div class="col-md-10">
+                                            <input type="password" class="form-control" id="cgdw">
+                                        </div>
+                                    </div>
 
-                                      <div class="form-group">
-                                          <label for="cgdw" class="col-md-2 control-label ">采购单位</label>
-                                          <div class="col-md-10">
-                                              <input type="text" class="form-control" id="project_purchaser_extractset">
-                                          </div>
-                                      </div>
-
-                                      <div class="form-group">
-                                          <label for="dljg" class="col-md-2 control-label ">代理机构</label>
-                                          <div class="col-md-10">
-                                              <input type="text" class="form-control" id="proxy_org_extractset" value="">
-                                          </div>
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="pbsj" class="col-md-2 control-label ">评标时间</label>
-                                          <div class="col-md-10">
-                                              <input type="text" class="form-control" id="bidding_time_extractset">
-                                          </div>
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="pbdd" class="col-md-2 control-label ">评标地点</label>
-                                          <div class="col-md-10">
-                                              <input type="text" class="form-control" id="bidding_location_extractset"
-                                                     value="">
-                                          </div>
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="pbsc" class="col-md-2 control-label ">评标时长</label>
-                                          <div class="col-md-10">
-                                              <input type="text" class="form-control" id="bidding_period_extractset">
-                                          </div>
-                                      </div>
+                                    <div class="form-group">
+                                        <label for="dljg" class="col-md-2 control-label ">代理机构</label>
+                                        <div class="col-md-10">
+                                            <input type="email" class="form-control" id="dljg" value="111">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pbsj" class="col-md-2 control-label ">评标时间</label>
+                                        <div class="col-md-10">
+                                            <input type="password" class="form-control" id="pbsj">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pbdd" class="col-md-2 control-label ">评标地点</label>
+                                        <div class="col-md-10">
+                                            <input type="email" class="form-control" id="pbdd"
+                                                   value="大连市政府行政服务中心一楼！南石道街动物园入口附近">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pbsc" class="col-md-2 control-label ">评标时长</label>
+                                        <div class="col-md-10">
+                                            <input type="password" class="form-control" id="pbsc">
+                                        </div>
+                                    </div>
                                 </fieldset>
                             </form>
                         </div>
@@ -1055,9 +938,9 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" id="voiceNotice_start">通知开始</button>
-                    <button type="button" class="btn btn-default" id="voiceNotice_pause">暂停</button>
-                    <button type="button" class="btn btn-primary" id="voiceNotice_print">打印</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">通知开始</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">暂停</button>
+                    <button type="button" class="btn btn-primary" onclick="updateDepart()">打印</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
