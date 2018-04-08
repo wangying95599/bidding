@@ -20,7 +20,16 @@ public class Udset {
     private List<Udsetregion> regionList;
     
     private List<Udsetwhite> whiteList;
+    private Udprojects project;
     
+	public Udprojects getProject() {
+		return project;
+	}
+
+	public void setProject(Udprojects project) {
+		this.project = project;
+	}
+
 	public List<Udsetwhite> getWhiteList() {
 		return whiteList;
 	}

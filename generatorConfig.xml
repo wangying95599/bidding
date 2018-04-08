@@ -26,7 +26,7 @@
   
         <!-- targetProject:生成PO类的位置 -->  
         <javaModelGenerator targetPackage="org.quetzaco.experts.model"  
-            targetProject="qarchives">  
+            targetProject="bidding">  
             <!-- enableSubPackages:是否让schema作为包的后缀 -->  
             <property name="enableSubPackages" value="false" />  
             <!-- 从数据库返回的值被清理前后的空格 -->  
@@ -34,14 +34,14 @@
         </javaModelGenerator>  
         <!-- targetProject:mapper映射文件生成的位置 -->  
         <sqlMapGenerator targetPackage="org.quetzaco.experts.app.dao"   
-            targetProject="qarchives">  
+            targetProject="bidding">  
             <!-- enableSubPackages:是否让schema作为包的后缀 -->  
             <property name="enableSubPackages" value="false" />  
         </sqlMapGenerator>  
         <!-- targetPackage：mapper接口生成的位置 -->  
         <javaClientGenerator type="XMLMAPPER"  
             targetPackage="org.quetzaco.experts.app.dao"   
-            targetProject="qarchives">  
+            targetProject="bidding">  
             <!-- enableSubPackages:是否让schema作为包的后缀 -->  
             <property name="enableSubPackages" value="false" />  
         </javaClientGenerator>  
@@ -59,6 +59,6 @@
          <table tableName="udmajor"></table>  
           <table tableName="udexpert"></table>  
          -->  
-        <table tableName="udsetwhite"></table>  
+        <table tableName="udvoicelog"></table>  
     </context>  
 </generatorConfiguration> 

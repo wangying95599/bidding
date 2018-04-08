@@ -4,12 +4,17 @@
 //$('#table_Id').bootstrapTable('updateRow', {index: checkIndex, row: data.data});//index---->更新行的索引。row---->要更新的数据
 //
 
-function set_remove(tableName, id) {
+function set_remove(tableName, id, idKey) {
     //console.log('set_remove_cor');
     console.log('1 ' + tableName);
     console.log('2 ' + id);
-
-    $("#" + tableName).bootstrapTable('remove', {field: 'id', values: [id]});
+    
+    var idStr='id';
+    if(idKey){
+    	idStr=idKey;
+    }
+    console.log('3 ' + idStr);
+    $("#" + tableName).bootstrapTable('remove', {field: idStr, values: [id]});
 
 };
 
@@ -51,7 +56,7 @@ var set_col_cor = [
 
 var set_col_person = [
     {
-        field: 'id',
+        field: 'expertId',
         visible: false
     },
     {
@@ -187,9 +192,9 @@ function search_set_expert() {
             console.log(json.content);
 
             $.each(json.content, function (i, field) {
-                console.log(i);
-                console.log(field);
-                row = $('#set_table_person').bootstrapTable("getRowByUniqueId", field.id);
+//                console.log(i);
+//                console.log(field);
+                row = $('#set_table_person').bootstrapTable("getRowByUniqueId", field.expertId);
                 if (!row) {
                     $('#set_table_person').bootstrapTable("append", field);
                 }
@@ -236,23 +241,26 @@ function set_extract_submit() {
 
     var expertArray = $("#set_table_person").bootstrapTable("getData");
     var expertIds = $.map(expertArray, function (obj) {
-        return obj.id;
+        return obj.expert_id;
     });
 
     var majorArray = $("#set_table_major_to").bootstrapTable("getData");
     var majorIds = $.map(majorArray, function (obj) {
         return obj.id;
     });
-
+    $.each(majorArray,function(i,item){	
+    	console.log(item);
+    });
     var regionArray = $("input[name='set_region']:checked");
+    
     var regionIds = $.map(regionArray, function (obj) {
-        return obj.id;
+        return obj.region;
     });
 
     deliver.companyList = companyArray;
     deliver.expertList = expertArray;
-    deliver.majorList = majorArray;
-    deliver.regionList = regionArray;
+//    deliver.majorList = majorArray;
+//    deliver.regionList = regionIds;
     
     console.log(deliver.companyList);
     console.log(companyArray);
@@ -289,7 +297,7 @@ function initSet() {
 
     $('#set_table_person').bootstrapTable({
         pagination: false,
-        uniqueId: 'id',//唯一的标识
+        uniqueId: 'expertId',//唯一的标识
         clickToSelect: true,
         columns: set_col_person
     });
@@ -338,7 +346,20 @@ $('#extractSet').on('show.bs.modal', function (event) {
         success:function (json) {
             var models = json.content;
             console.log(models);
-            console.log(models.companyList);
+            console.log(models.project);
+            let selectedProject = $('#project_list_table').bootstrapTable('getSelections')[0];
+            if(selectedProject){
+            	 var extractSetForm = $('#extractSet');
+            	 
+                 extractSetForm.find('#project_name_set').val(selectedProject.purchaseProject);
+                 extractSetForm.find('#project_purchaser_set').val(selectedProject.purchaseCompany);
+                 extractSetForm.find('#proxy_org_set').val(selectedProject.proxyOrg);
+                 extractSetForm.find('#project_extract_set').val(selectedProject.extractCompany);
+                 extractSetForm.find('#bidding_time_set').val(selectedProject.biddingTime);
+                 extractSetForm.find('#bidding_location_set').val(selectedProject.biddingLocation);
+                 extractSetForm.find('#bidding_period_set').val(selectedProject.biddingPeriod);
+  
+            }
             if(models.companyList){
             	$('#set_table_cor').bootstrapTable("load", models.companyList);
             }
@@ -370,7 +391,14 @@ function set_delete_cor(value, row, index) {
 }
 
 function set_delete_person(value, row, index) {
-    return set_delete_common('set_table_person', row.id);
+   
+    var tableName='set_table_person';
+    var id=row.expertId;
+    var result = [
+        '<button  type="button" class="btn btn-primary btn-xs" onclick="set_remove(\'' + tableName + '\',' + id + ',\'expertId\')">删除</button>',]
+        .join('');
+    //console.log(result);
+    return result;
 }
 
 function set_delete_major_from(value, row, index) {

@@ -59,6 +59,7 @@ var ext_col = [
         title: '专家姓名',
         field: 'name',
         align: 'center',
+        formatter:nameFormatter,
         sortable: true
     },
     {
@@ -83,7 +84,7 @@ var ext_col_major_to = [
 
     {
         title: '专业名称',
-        field: 'majorCode',
+        field: 'majorName',
         align: 'center',
         sortable: true
     },
@@ -145,7 +146,22 @@ $('#extractExpert').on('show.bs.modal', function (event) {
         success:function (json) {
             var models = json.content;
             console.log(models);
-            console.log(models.companyList);
+            //console.log(models.companyList);
+            
+            let selectedProject = $('#project_list_table').bootstrapTable('getSelections')[0];
+            if(selectedProject){
+           	 var extractSetForm = $('#extractExpert');
+           	 
+             extractSetForm.find('#project_name_extractset').val(selectedProject.purchaseProject);
+             extractSetForm.find('#project_purchaser_extractset').val(selectedProject.purchaseCompany);
+             extractSetForm.find('#proxy_org_extractset').val(selectedProject.proxyOrg);
+             extractSetForm.find('#project_extract_extractset').val(selectedProject.extractCompany);
+             extractSetForm.find('#bidding_time_extractset').val(selectedProject.biddingTime);
+             extractSetForm.find('#bidding_location_extractset').val(selectedProject.biddingLocation);
+             extractSetForm.find('#bidding_period_extractset').val(selectedProject.biddingPeriod);
+ 
+           }
+            
             if(models.companyList){
             	$('#ext_table_cor').bootstrapTable("load", models.companyList);
             }

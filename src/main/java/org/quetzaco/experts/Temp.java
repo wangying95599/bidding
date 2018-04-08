@@ -73,9 +73,49 @@ public class Temp {
             e.printStackTrace();
         }
     }
+    
+	public static void random() {
+		
+        //生成一个包含大小写字母的随机6位字符串；方法1  
+          
+        String randomcode = "";  
+        for(int i=0;i<6;i++)  
+        {  
+            //52个字母与6个大小写字母间的符号；范围为91~96  
+            int value = (int)(Math.random()*58+65);  
+            while(value>=91 && value<=96)  
+                value = (int)(Math.random()*58+65);  
+            randomcode = randomcode + (char)value;  
+              
+        }  
+        System.out.println(randomcode);       
+          
+        //用字符数组的方式随机  
+        String randomcode2 = "";  
+        String model = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";  
+        char[] m = model.toCharArray();  
+        String model_num = "1234567890";  
+        char[] m_num = model_num.toCharArray();  
+          
+        for (int j=0;j<2 ;j++ )  
+        {  
+            char c = m[(int)(Math.random()*26)];  
+            randomcode2 = randomcode2 + c;  
+        }  
+        for (int j=0;j<4 ;j++ )  
+        {  
+            char c = m_num[(int)(Math.random()*10)];  
+            randomcode2 = randomcode2 + c;  
+        }  
+          
+        System.out.println("2                      " +randomcode2);  
+  
+          
+    }  
 
     public static void main(String args[]) {
         // Temp.testUdsetJson();
-        Temp.testUdprojectJson();
+        Temp.testUdsetJson();
+        random();
     }
 }
