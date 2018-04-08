@@ -26,7 +26,7 @@ function loadAllExperts() {
         type: 'get',
         url: '/experts/all',
         success: function (json) {
-            $('#expert_list_table').bootstrapTable("load", json.content);
+            $('#expert_table').bootstrapTable("load", json.content);
         },
         error: function (res) {
             console.log(res);
@@ -37,12 +37,12 @@ function loadAllExperts() {
 
 
 function showExpertTab() {
-    $('#extractExpertTab').tab('show');
+    $('#expertMaintenanceTab').tab('show');
     loadAllExperts();
 }
 
 function setupExpertPage() {
-    $('#expert_list_table').bootstrapTable({
+    $('#expert_table').bootstrapTable({
         columns: expert_table_cols,
         pagination: false,
         clickToSelect: true,

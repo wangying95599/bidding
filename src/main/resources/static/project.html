@@ -25,7 +25,7 @@
 
 <script src="js/ajax.js"></script>
 <script src="js/udinit.js"></script>
-<script src="js/ud_extract_expert.js"></script>
+<script src="js/ud_expert.js"></script>
 <script src="js/udlist.js"></script>
 <script src="js/experts.js"></script>
 <script src="js/udcreate.js"></script>
@@ -155,7 +155,7 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a href="#extractExpertTab" data-toggle="tab" role="tab" aria-controls="extractExpertTab"
-                           aira-expanded="false" >
+                           aira-expanded="false">
                             专家抽取
                         </a>
                     </h4>
@@ -178,7 +178,7 @@
                     <h4 class="panel-title">
                         <a href="#expertMaintenanceTab" data-toggle="tab" role="tab"
                            aria-controls="expertMaintenanceTab"
-                           aira-expanded="false"onclick="showExpertTab()">
+                           aira-expanded="false" onclick="showExpertTab()">
                             专家信息维护
                         </a>
                     </h4>
@@ -267,704 +267,704 @@
                         </button>
                     </div>
 
-                    <table id="expert_list_table" data-height="568"
+                    <table id="expert_table" data-height="568"
                            class="table table-bordered table-hover">
                     </table>
                 </div>
-        </div>
-        <!-- expert part begin-->
-    </div>
-    <!--右侧内容 end-->
-
-    <!-- 角色列表-->
-    <div id="pole" style="display: none">
-        <div class="btn-toolbar" role="toolbar" id="toolBar3">
-            <!--<button type="button" class="btn btn-info">添加用户</button>-->
-            <button type="button" onclick="removeUser()" class="btn btn-danger">移除用户</button>
-        </div>
-        <table id="roleTable"></table>
-    </div>
-</div>
-<!--右侧列表.end-->
-<!-- 主页面 end -->
-
-<!-- 各种模态框*********************************************************************************************************************************-->
-<!-- modal extract expert begin-->
-<div class="modal fade" id="extractSet" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" style="width: 1100px;">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
-                </button>
-                <h4 class="modal-title">抽取设置</h4>
             </div>
+            <!-- expert part begin-->
+        </div>
+        <!--右侧内容 end-->
 
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <form class=" form-horizontal" align="text-center">
-                            <fieldset style="    margin-bottom: 15px;">
-                                <legend>信息</legend>
+        <!-- 角色列表-->
+        <div id="pole" style="display: none">
+            <div class="btn-toolbar" role="toolbar" id="toolBar3">
+                <!--<button type="button" class="btn btn-info">添加用户</button>-->
+                <button type="button" onclick="removeUser()" class="btn btn-danger">移除用户</button>
+            </div>
+            <table id="roleTable"></table>
+        </div>
+    </div>
+    <!--右侧列表.end-->
+    <!-- 主页面 end -->
 
-                                <div class="form-group">
-                                    <label for="cgxm" class="col-md-2 control-label">采购项目</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" id="cgxm" value="111">
-                                    </div>
-                                </div>
+    <!-- 各种模态框*********************************************************************************************************************************-->
+    <!-- modal extract expert begin-->
+    <div class="modal fade" id="extractSet" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width: 1100px;">
+            <div class="modal-content">
 
-                                <div class="form-group">
-                                    <label for="cgdw" class="col-md-2 control-label ">采购单位</label>
-                                    <div class="col-md-10">
-                                        <input type="password" class="form-control" id="cgdw">
-                                    </div>
-                                </div>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+                    </button>
+                    <h4 class="modal-title">抽取设置</h4>
+                </div>
 
-                                <div class="form-group">
-                                    <label for="dljg" class="col-md-2 control-label ">代理机构</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" id="dljg" value="111">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form class=" form-horizontal" align="text-center">
+                                <fieldset style="    margin-bottom: 15px;">
+                                    <legend>信息</legend>
+
+                                    <div class="form-group">
+                                        <label for="cgxm" class="col-md-2 control-label">采购项目</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" id="project_name_set" value="">
+                                        </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="cgdw" class="col-md-2 control-label ">采购单位</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" id="project_purchaser_set">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="dljg" class="col-md-2 control-label ">代理机构</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" id="proxy_org_set" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pbsj" class="col-md-2 control-label ">评标时间</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" id="bidding_time_set">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pbdd" class="col-md-2 control-label ">评标地点</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" id="bidding_location_set"
+                                                   value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pbsc" class="col-md-2 control-label ">评标时长</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" id="bidding_period_set">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset disabled>
+                                <legend>区域设置</legend>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="set_region" value="0">
+                                        大连市区及高新园区
+                                    </label>
                                 </div>
-                                <div class="form-group">
-                                    <label for="pbsj" class="col-md-2 control-label ">评标时间</label>
-                                    <div class="col-md-10">
-                                        <input type="password" class="form-control" id="pbsj">
-                                    </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="set_region" value="1">
+                                        金州
+                                    </label>
                                 </div>
-                                <div class="form-group">
-                                    <label for="pbdd" class="col-md-2 control-label ">评标地点</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" id="pbdd"
-                                               value="大连市政府行政服务中心一楼！南石道街动物园入口附近">
-                                    </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="set_region" value="2">
+                                        瓦房店
+                                    </label>
                                 </div>
-                                <div class="form-group">
-                                    <label for="pbsc" class="col-md-2 control-label ">评标时长</label>
-                                    <div class="col-md-10">
-                                        <input type="password" class="form-control" id="pbsc">
-                                    </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="set_region" value="3">
+                                        开发区
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="set_region" value="4">
+                                        庄河
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="set_region" value="5">
+                                        普兰店
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="set_region" value="6">
+                                        旅顺
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="set_region" value="7">
+                                        保税区
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="set_region" value="8">
+                                        长海县
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="set_region" value="9">
+                                        外省市
+                                    </label>
                                 </div>
                             </fieldset>
-                        </form>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <fieldset>
-                            <legend>区域设置</legend>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="set_region" value="0">
-                                    大连市区及高新园区
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="set_region" value="1">
-                                    金州
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="set_region" value="2">
-                                    瓦房店
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="set_region" value="3">
-                                    开发区
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="set_region" value="4">
-                                    庄河
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="set_region" value="5">
-                                    普兰店
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="set_region" value="6">
-                                    旅顺
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="set_region" value="7">
-                                    保税区
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="set_region" value="8">
-                                    长海县
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="set_region" value="9">
-                                    外省市
-                                </label>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <fieldset style="    margin-bottom: 15px;">
-                            <legend>回避单位</legend>
-                            <form class="form-inline" style="    margin-bottom: 15px;">
-                                <div class="form-group">
-                                    <label for="search_set_company_input">单位名称</label>
-                                    <input type="text" class="form-control"
-                                           id="search_set_company_input"
-                                           style=" margin-bottom: 15px;" pleInputName2"
-                                    >
-                                </div>
-                                <button type="button" id="search_set_company_button"
-                                        class="btn btn-default">添加
-                                </button>
-                            </form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset style="    margin-bottom: 15px;">
+                                <legend>回避单位</legend>
+                                <form class="form-inline" style="    margin-bottom: 15px;">
+                                    <div class="form-group">
+                                        <label for="search_set_company_input">单位名称</label>
+                                        <input type="text" class="form-control"
+                                               id="search_set_company_input"
+                                               style=" margin-bottom: 15px;" pleInputName2"
+                                        >
+                                    </div>
+                                    <button type="button" id="search_set_company_button"
+                                            class="btn btn-default">添加
+                                    </button>
+                                </form>
 
-                            <table id="set_table_cor" data-height="168"
-                                   class="table table-striped table-bordered table-hover">
+                                <table id="set_table_cor" data-height="168"
+                                       class="table table-striped table-bordered table-hover">
 
-                            </table>
-                        </fieldset>
+                                </table>
+                            </fieldset>
 
-                        <fieldset>
-                            <legend>需要回避的专家</legend>
-                            <form class="form-inline" style="    margin-bottom: 15px;">
-                                <div class="form-group">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="search_set_expert_radio"
-                                               id="search_set_expert_name"
-                                               value="name"> 姓名
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="search_set_expert_radio"
-                                               id="search_set_expert_phone"
-                                               value="phone"> 电话
-                                    </label>
-                                    <input type="text" class="form-control"
-                                           id="search_set_expert_input">
-                                </div>
-                                <button type="button" id="search_set_expert_button"
-                                        class="btn btn-default">添加
-                                </button>
-                            </form>
+                            <fieldset>
+                                <legend>需要回避的专家</legend>
+                                <form class="form-inline" style="    margin-bottom: 15px;">
+                                    <div class="form-group">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="search_set_expert_radio"
+                                                   id="search_set_expert_name"
+                                                   value="name"> 姓名
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="search_set_expert_radio"
+                                                   id="search_set_expert_phone"
+                                                   value="phone"> 电话
+                                        </label>
+                                        <input type="text" class="form-control"
+                                               id="search_set_expert_input">
+                                    </div>
+                                    <button type="button" id="search_set_expert_button"
+                                            class="btn btn-default">添加
+                                    </button>
+                                </form>
 
-                            <table id="set_table_person" data-height="168"
-                                   class="table table-striped table-bordered table-hover">
-                            </table>
-                        </fieldset>
-                    </div>
-                    <div class="col-md-6">
-                        <fieldset style="    margin-bottom: 15px;">
-                            <legend>专业情况</legend>
-                            <form class="form-inline" style="    margin-bottom: 15px;">
-                                <div class="form-group">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="search_set_major_radio"
-                                               value="name"> 名称
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="search_set_major_radio"
-                                               value="code"> 编号
-                                    </label>
-                                    <input type="text" class="form-control" id="search_set_major_input">
-                                </div>
-                                <button type="button" id="search_set_major_button"
-                                        class="btn btn-default">查询
-                                </button>
+                                <table id="set_table_person" data-height="168"
+                                       class="table table-striped table-bordered table-hover">
+                                </table>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset style="    margin-bottom: 15px;">
+                                <legend>专业情况</legend>
+                                <form class="form-inline" style="    margin-bottom: 15px;">
+                                    <div class="form-group">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="search_set_major_radio"
+                                                   value="name"> 名称
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="search_set_major_radio"
+                                                   value="code"> 编号
+                                        </label>
+                                        <input type="text" class="form-control" id="search_set_major_input">
+                                    </div>
+                                    <button type="button" id="search_set_major_button"
+                                            class="btn btn-default">查询
+                                    </button>
 
-                            </form>
+                                </form>
 
-                            <table id="set_table_major_from" data-height="168"
-                                   class="table table-striped table-bordered table-hover">
-                            </table>
-                        </fieldset>
+                                <table id="set_table_major_from" data-height="168"
+                                       class="table table-striped table-bordered table-hover">
+                                </table>
+                            </fieldset>
 
-                        <fieldset>
-                            <legend>选中专业</legend>
+                            <fieldset>
+                                <legend>选中专业</legend>
 
-                            <table id="set_table_major_to" data-height="168"
-                                   class="table table-striped table-bordered table-hover">
-                            </table>
+                                <table id="set_table_major_to" data-height="168"
+                                       class="table table-striped table-bordered table-hover">
+                                </table>
 
-                        </fieldset>
+                            </fieldset>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button id="set_extract_submit_button" type="button" class="btn btn-primary">提交</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button id="set_extract_submit_button" type="button" class="btn btn-primary">提交</button>
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
-<!-- modal extract expert end-->
-<!--project(create/edit) modal begin-->
-<div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" style="width: 1100px;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
-                </button>
-                <h4 class="modal-title">新建项目</h4>
-            </div>
+    <!-- modal extract expert end-->
+    <!--project(create/edit) modal begin-->
+    <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width: 1100px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+                    </button>
+                    <h4 class="modal-title">新建项目</h4>
+                </div>
 
-            <div class="modal-body">
-                <form class="form-horizontal" role="form" id="createProjectForm">
-                    <fieldset>
-                        <input type="text" class="form-control" id="project_id_input"
-                               name="id" style="display: none;">
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">采购编号</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="project_code_input"
-                                       name="purchaseCode">
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" id="createProjectForm">
+                        <fieldset>
+                            <input type="text" class="form-control" id="project_id_input"
+                                   name="id" style="display: none;">
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">采购编号</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="project_code_input"
+                                           name="purchaseCode">
+                                </div>
                             </div>
-                        </div>
-                        <!-- 采购项目-->
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">项目名称</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="project_name_input"
-                                       name="purchaseProject">
+                            <!-- 采购项目-->
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">项目名称</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="project_name_input"
+                                           name="purchaseProject">
+                                </div>
                             </div>
-                        </div>
-                        <!-- 采购单位-->
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">建设单位</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="project_purchaser_input"
-                                       name="purchaseCompany">
+                            <!-- 采购单位-->
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">建设单位</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="project_purchaser_input"
+                                           name="purchaseCompany">
+                                </div>
                             </div>
-                        </div>
-                        <!-- 代理机构-->
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">代理机构</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" name="proxyOrg">
-                                    <option>XX代理</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                            <!-- 代理机构-->
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">代理机构</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" name="proxyOrg">
+                                        <option>XX代理</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <!-- 代理机构-->
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">抽取单位</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="project_extract_input"
-                                       name="extractCompany">
+                            <!-- 代理机构-->
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">抽取单位</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="project_extract_input"
+                                           name="extractCompany">
+                                </div>
                             </div>
-                        </div>
-                        <!-- 详细时间-->
+                            <!-- 详细时间-->
 
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label  ">评标时间</label>
-                            <!--指定 date标记-->
-                            <div class='col-sm-8 input-group date' id='datetimepicker1'
-                                 style="padding-left: 13px;">
-                                <input type='text' id="bidding_time_input" class="form-control"
-                                       name="biddingTime"/>
-                                <span class="input-group-addon">
-										<span class="glyphicon glyphicon-calendar"></span>
-									</span>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label  ">评标时间</label>
+                                <!--指定 date标记-->
+                                <div class='col-sm-8 input-group date' id='datetimepicker1'
+                                     style="padding-left: 13px;">
+                                    <input type='text' id="bidding_time_input" class="form-control"
+                                           name="biddingTime"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <!-- 评标地点 -->
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">评标地点</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="bidding_location_input"
-                                       name="biddingLocation">
+                            <!-- 评标地点 -->
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">评标地点</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="bidding_location_input"
+                                           name="biddingLocation">
+                                </div>
                             </div>
-                        </div>
-                        <!-- 评标时长 -->
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">评标时长</label>
-                            <div class="col-sm-8">
-                                <input type="input" class="form-control" id="bidding_period_input"
-                                       placeholder="两个小时"
-                                       name="biddingPeriod">
+                            <!-- 评标时长 -->
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">评标时长</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="bidding_period_input"
+                                           placeholder="两个小时"
+                                           name="biddingPeriod">
+                                </div>
                             </div>
-                        </div>
-                        <!-- 评标时长 -->
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">采购方式</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" name="purchaseType">
-                                    <option>竞争性谈判</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                            <!-- 评标时长 -->
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">采购方式</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" name="purchaseType">
+                                        <option>竞争性谈判</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <!-- 评标时长 -->
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">短信信息</label>
-                            <div class="col-sm-8">
+                            <!-- 评标时长 -->
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">短信信息</label>
+                                <div class="col-sm-8">
                                                 <textarea id="messages_text_area" class="form-control" rows="4"
                                                           name="smsInfo"></textarea>
+                                </div>
                             </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
+                        </fieldset>
+                    </form>
+                </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button id="" type="button" class="btn btn-primary"
-                        onclick="createProject()">提交
-                </button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button id="" type="button" class="btn btn-primary"
+                            onclick="createProject()">提交
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!--project modal end-->
-<!-- model.demo-->
-<div class="modal fade" id="writeDepart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">编辑部门</h4>
-            </div>
-            <div class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" onclick="updateDepart()">提交</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div><!-- /.modal.facade -->
-
-<div class="modal fade" id="extractExpert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" style="width: 1100px;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">抽取专家</h4>
-            </div>
-            <div class="modal-body">
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <form class=" form-horizontal" align="text-center">
-                            <fieldset disabled style="    margin-bottom: 15px;">
-                                <legend>信息</legend>
-
-                                <div class="form-group">
-                                    <label for="cgxm" class="col-md-2 control-label">采购项目</label>
-                                    <div class="col-md-10">
-                                        <input type="email" class="form-control" id="cgxm" value="111">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="cgdw" class="col-md-2 control-label ">采购单位</label>
-                                    <div class="col-md-10">
-                                        <input type="password" class="form-control" id="cgdw">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="dljg" class="col-md-2 control-label ">代理机构</label>
-                                    <div class="col-md-10">
-                                        <input type="email" class="form-control" id="dljg" value="111">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="pbsj" class="col-md-2 control-label ">评标时间</label>
-                                    <div class="col-md-10">
-                                        <input type="password" class="form-control" id="pbsj">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="pbdd" class="col-md-2 control-label ">评标地点</label>
-                                    <div class="col-md-10">
-                                        <input type="email" class="form-control" id="pbdd"
-                                               value="大连市政府行政服务中心一楼！南石道街动物园入口附近">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="pbsc" class="col-md-2 control-label ">评标时长</label>
-                                    <div class="col-md-10">
-                                        <input type="password" class="form-control" id="pbsc">
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                    <div class="col-md-6">
-                        <fieldset disabled style="    margin-bottom: 15px;">
-                            <legend>区域设置</legend>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="extract_region" value="0">
-                                            大连市区及高新园区
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="extract_region" value="1">
-                                            金州
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="extract_region" value="2">
-                                            瓦房店
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="extract_region" value="3">
-                                            开发区
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="extract_region" value="4">
-                                            庄河
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="extract_region" value="5">
-                                            普兰店
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="extract_region" value="6">
-                                            旅顺
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="extract_region" value="7">
-                                            保税区
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="extract_region" value="8">
-                                            长海县
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="extract_region" value="9">
-                                            外省市
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </fieldset>
-
-                        <form class=" form-horizontal" align="text-center">
-                            <fieldset disabled style="    margin-bottom: 15px;">
-                                <legend>可用专家</legend>
-
-
-                                <div class="form-group">
-                                    <label for="pbsj" class="col-xs-6 control-label ">本专业专家总人数</label>
-                                    <div class="col-xs-6">
-                                        <input type="password" class="form-control" id="pbsj">
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="pbsj" class="col-md-6 control-label ">回避人数</label>
-                                    <div class="col-md-6">
-                                        <input type="password" class="form-control" id="pbsj">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="pbsj" class="col-md-6 control-label ">可选专家数</label>
-                                    <div class="col-md-6">
-                                        <input type="password" class="form-control" id="pbsj">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="pbsj" class="col-md-6 control-label ">同一单位所涉及的专家数</label>
-                                    <div class="col-md-6">
-                                        <input type="password" class="form-control" id="pbsj">
-                                    </div>
-                                </div>
-
-                            </fieldset>
-                        </form>
-
-                    </div>
+    <!--project modal end-->
+    <!-- model.demo-->
+    <div class="modal fade" id="writeDepart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">编辑部门</h4>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
+                <div class="modal-body">
 
-                        <fieldset style="    margin-bottom: 15px;">
-                            <legend>专业设置情况</legend>
-                            <table id="ext_table_major_to" data-height="168"
-                                   class="table table-striped table-bordered table-hover">
-                            </table>
-                        </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="updateDepart()">提交</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div><!-- /.modal.facade -->
 
-                        <fieldset style="    margin-bottom: 15px;">
-                            <legend>回避单位情况</legend>
+    <div class="modal fade" id="extractExpert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width: 1100px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">抽取专家</h4>
+                </div>
+                <div class="modal-body">
 
-                            <table id="ext_table_cor" data-height="168"
-                                   class="table table-striped table-bordered table-hover">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form class=" form-horizontal" align="text-center">
+                                <fieldset disabled style="    margin-bottom: 15px;">
+                                    <legend>信息</legend>
 
-                            </table>
-                        </fieldset>
+                                    <div class="form-group">
+                                        <label for="cgxm" class="col-md-2 control-label">采购项目</label>
+                                        <div class="col-md-10">
+                                            <input type="email" class="form-control" id="cgxm" value="111">
+                                        </div>
+                                    </div>
 
-                        <fieldset style="    margin-bottom: 15px;">
-                            <legend>需回避专家情况</legend>
+                                    <div class="form-group">
+                                        <label for="cgdw" class="col-md-2 control-label ">采购单位</label>
+                                        <div class="col-md-10">
+                                            <input type="password" class="form-control" id="cgdw">
+                                        </div>
+                                    </div>
 
-                            <table id="ext_table_person" data-height="168"
-                                   class="table table-striped table-bordered table-hover">
-                            </table>
-                        </fieldset>
-
-                    </div>
-                    <div class="col-md-6">
-                        <fieldset style="    margin-bottom: 30px;">
-                            <legend></legend>
-                            <form class="form-inline">
-                                <span>公平、公正、公开</span>
-                                <button type="button" id="extract_start" class="btn btn-default">开始</button>
-                                <button type="button" id="extract_ok" class="btn btn-default">确定</button>
-                                <button type="button" id="extract_cancel" class="btn btn-default"
-                                        data-dismiss="modal">取消
-                                </button>
-
+                                    <div class="form-group">
+                                        <label for="dljg" class="col-md-2 control-label ">代理机构</label>
+                                        <div class="col-md-10">
+                                            <input type="email" class="form-control" id="dljg" value="111">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pbsj" class="col-md-2 control-label ">评标时间</label>
+                                        <div class="col-md-10">
+                                            <input type="password" class="form-control" id="pbsj">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pbdd" class="col-md-2 control-label ">评标地点</label>
+                                        <div class="col-md-10">
+                                            <input type="email" class="form-control" id="pbdd"
+                                                   value="大连市政府行政服务中心一楼！南石道街动物园入口附近">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pbsc" class="col-md-2 control-label ">评标时长</label>
+                                        <div class="col-md-10">
+                                            <input type="password" class="form-control" id="pbsc">
+                                        </div>
+                                    </div>
+                                </fieldset>
                             </form>
-                        </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset disabled style="    margin-bottom: 15px;">
+                                <legend>区域设置</legend>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="extract_region" value="0">
+                                                大连市区及高新园区
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="extract_region" value="1">
+                                                金州
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="extract_region" value="2">
+                                                瓦房店
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="extract_region" value="3">
+                                                开发区
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="extract_region" value="4">
+                                                庄河
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="extract_region" value="5">
+                                                普兰店
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="extract_region" value="6">
+                                                旅顺
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="extract_region" value="7">
+                                                保税区
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
 
-                        <fieldset style="    margin-bottom: 15px;">
-                            <legend>专家抽取情况</legend>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="extract_region" value="8">
+                                                长海县
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="extract_region" value="9">
+                                                外省市
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <table id="ext_table" data-height="368"
-                                   class="table table-striped table-bordered table-hover">
-                            </table>
-                        </fieldset>
+                            </fieldset>
+
+                            <form class=" form-horizontal" align="text-center">
+                                <fieldset disabled style="    margin-bottom: 15px;">
+                                    <legend>可用专家</legend>
+
+
+                                    <div class="form-group">
+                                        <label for="pbsj" class="col-xs-6 control-label ">本专业专家总人数</label>
+                                        <div class="col-xs-6">
+                                            <input type="password" class="form-control" id="pbsj">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="pbsj" class="col-md-6 control-label ">回避人数</label>
+                                        <div class="col-md-6">
+                                            <input type="password" class="form-control" id="pbsj">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="pbsj" class="col-md-6 control-label ">可选专家数</label>
+                                        <div class="col-md-6">
+                                            <input type="password" class="form-control" id="pbsj">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="pbsj" class="col-md-6 control-label ">同一单位所涉及的专家数</label>
+                                        <div class="col-md-6">
+                                            <input type="password" class="form-control" id="pbsj">
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </form>
+
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <fieldset style="    margin-bottom: 15px;">
+                                <legend>专业设置情况</legend>
+                                <table id="ext_table_major_to" data-height="168"
+                                       class="table table-striped table-bordered table-hover">
+                                </table>
+                            </fieldset>
+
+                            <fieldset style="    margin-bottom: 15px;">
+                                <legend>回避单位情况</legend>
+
+                                <table id="ext_table_cor" data-height="168"
+                                       class="table table-striped table-bordered table-hover">
+
+                                </table>
+                            </fieldset>
+
+                            <fieldset style="    margin-bottom: 15px;">
+                                <legend>需回避专家情况</legend>
+
+                                <table id="ext_table_person" data-height="168"
+                                       class="table table-striped table-bordered table-hover">
+                                </table>
+                            </fieldset>
+
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset style="    margin-bottom: 30px;">
+                                <legend></legend>
+                                <form class="form-inline">
+                                    <span>公平、公正、公开</span>
+                                    <button type="button" id="extract_start" class="btn btn-default">开始</button>
+                                    <button type="button" id="extract_ok" class="btn btn-default">确定</button>
+                                    <button type="button" id="extract_cancel" class="btn btn-default"
+                                            data-dismiss="modal">取消
+                                    </button>
+
+                                </form>
+                            </fieldset>
+
+                            <fieldset style="    margin-bottom: 15px;">
+                                <legend>专家抽取情况</legend>
+
+                                <table id="ext_table" data-height="368"
+                                       class="table table-striped table-bordered table-hover">
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+
                 </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div><!-- /.modal.facade -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div><!-- /.modal.facade -->
 
 
-<!-- model.项目抽取明细-->
-<div class="modal fade" id="extractResultInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" style="width: 1100px;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">项目抽取明细</h4>
-            </div>
-            <div class="modal-body">
-                <table id="ext_table_extractResult" data-height="498"
-                       class="table table-striped table-bordered table-hover">
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#voiceNotice">语音通知
-                </button>
-                <button type="button" class="btn btn-primary" id="">专业设置</button>
-                <button type="button" class="btn btn-primary" id="">增补专家</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div><!-- /.modal.facade -->
+    <!-- model.项目抽取明细-->
+    <div class="modal fade" id="extractResultInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width: 1100px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">项目抽取明细</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="ext_table_extractResult" data-height="498"
+                           class="table table-striped table-bordered table-hover">
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#voiceNotice">语音通知
+                    </button>
+                    <button type="button" class="btn btn-primary" id="">专业设置</button>
+                    <button type="button" class="btn btn-primary" id="">增补专家</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div><!-- /.modal.facade -->
 
 
-<!-- model.语音通知-->
-<div class="modal fade" id="voiceNotice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" style="width: 1100px;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">语音通知监控</h4>
-            </div>
-            <div class="modal-body">
-                <table id="ext_table_voice" data-height="498"
-                       class="table table-striped table-bordered table-hover">
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">通知开始</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">暂停</button>
-                <button type="button" class="btn btn-primary" onclick="updateDepart()">打印</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div><!-- /.modal.facade -->
+    <!-- model.语音通知-->
+    <div class="modal fade" id="voiceNotice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width: 1100px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">语音通知监控</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="ext_table_voice" data-height="498"
+                           class="table table-striped table-bordered table-hover">
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">通知开始</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">暂停</button>
+                    <button type="button" class="btn btn-primary" onclick="updateDepart()">打印</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div><!-- /.modal.facade -->
 
-<!-- model.短信通知-->
-<div class="modal fade" id="smsNotice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" style="width: 1100px;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">短信通知监控</h4>
-            </div>
-            <div class="modal-body">
-                <table id="ext_table_sms" data-height="498"
-                       class="table table-striped table-bordered table-hover">
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div><!-- /.modal.facade -->
-<!-- 各种模态框.end*********************************************************************************************************************************-->
+    <!-- model.短信通知-->
+    <div class="modal fade" id="smsNotice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" style="width: 1100px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">短信通知监控</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="ext_table_sms" data-height="498"
+                           class="table table-striped table-bordered table-hover">
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div><!-- /.modal.facade -->
+    <!-- 各种模态框.end*********************************************************************************************************************************-->
 
-<script src="js/udset.js"></script>
-<script src="js/udextract.js"></script>
-<script src="js/udextractresult.js"></script>
+    <script src="js/udset.js"></script>
+    <script src="js/udextract.js"></script>
+    <script src="js/udextractresult.js"></script>
 </body>
 </html>
