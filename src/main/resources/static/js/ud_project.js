@@ -1,4 +1,16 @@
 let selectedNum = 0, projectTotal = 0;
+const project_modal_mapper = {// mapper the modal input id to the java model field name
+        project_id_input: 'id',
+        project_code_input: 'purchaseCode',
+        project_name_input: 'purchaseProject',
+        project_purchaser_input: 'purchaseCompany',
+        project_extract_input: 'extractCompany',
+        bidding_time_input: 'biddingTime',
+        bidding_location_input: 'biddingLocation',
+        bidding_period_input: 'biddingPeriod',
+        messages_text_area: 'smsInfo',
+    }
+;
 
 function getProjectId() {
     $table = $("#project_list_table");
@@ -129,6 +141,7 @@ function setUpProjectPage() {
         columns: project_list_col,
         toolbar: '#project_table_toolbar',
         search: true,
+        showLoading: true,
         onCheck: function () {
             selectedNum++;
             toggleProjectRelatedButtons(selectedNum);
@@ -154,23 +167,73 @@ function setUpProjectPage() {
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         var modal = $(this)
-        modal.find('.modal-title').text(recipient)
+        modal.find('.modal-title').text(recipient);
         let selectedProject = $('#project_list_table').bootstrapTable('getSelections')[0];
         if (selectedProject) {
             console.log(selectedProject);
-            modal.find('#project_id_input').val(selectedProject.id);
-            modal.find('#project_code_input').val(selectedProject.purchaseCode);
-            modal.find('#project_name_input').val(selectedProject.purchaseProject);
-            modal.find('#project_purchaser_input').val(selectedProject.purchaseCompany);
-            // modal.find('#project_code_input').val(selectedProject.purchaseCode);
-            modal.find('#project_extract_input').val(selectedProject.extractCompany);
-            modal.find('#bidding_time_input').val(selectedProject.biddingTime);
-            modal.find('#bidding_location_input').val(selectedProject.biddingLocation);
-            modal.find('#bidding_period_input').val(selectedProject.biddingPeriod);
-            // modal.find('#project_code_input').val(selectedProject.purchaseCode);
-            modal.find('#messages_text_area').val(selectedProject.smsInfo);
-
-            // modal.find('.modal-body input').val(recipient)
+            setModalData(modal, project_modal_mapper, selectedProject);
+        } else {
+            setModalData(modal, project_modal_mapper);
         }
-    })
+    });
+}
+
+function createProject() {
+    const project = $('#createProjectForm').serializeJson();
+    if (project.id) {
+        $.axx({
+            type: 'put',
+            url: '/projects',
+            data: JSON.stringify(project),
+            contentType: 'application/json',        //有关不能传递复杂类型的问题：这个要设置
+            success: function (json) {
+                $('#projectModal').hide();
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+                loadAllProjects();
+            },
+            error: function (res) {
+                console.log(res);
+                alert(res);
+            }
+        });
+    } else {
+        $.axx({
+            type: 'post',
+            url: '/projects/create',
+            data: JSON.stringify(project),
+            contentType: 'application/json',        //有关不能传递复杂类型的问题：这个要设置
+            success: function (json) {
+                $('#projectModal').hide();
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+                loadAllProjects();
+            },
+            error: function (res) {
+                console.log(res);
+                alert(res);
+            }
+        });
+    }
+}
+
+function deleteProject() {
+    const selectedProject = $('#project_list_table').bootstrapTable('getSelections');
+    const ids = selectedProject.map(function (item) {
+        return item.id;
+    });
+    console.log(JSON.stringify(ids));
+    $.axx({
+        type: 'delete',
+        url: '/projects/delete',
+        data: JSON.stringify(ids),
+        contentType: 'application/json',        //有关不能传递复杂类型的问题：这个要设置
+        success: function (json) {
+            loadAllProjects();
+        },
+        error: function (res) {
+            console.log(res);
+            alert(res);
+        }
+    });
 }

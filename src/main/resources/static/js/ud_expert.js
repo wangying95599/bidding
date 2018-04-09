@@ -1,4 +1,11 @@
 let selectedExpertNum = 0, expertTotal = 0;
+    expert_id_input: 'expertId',
+    expert_no_input: 'no',
+    expert_card_input: 'card',
+    expert_name_input: 'name',
+    expert_phone_input: 'phone',
+    expert_company_input: 'company',
+};
 const expert_table_cols = [{
     checkbox: true,
 }, {
@@ -95,12 +102,9 @@ function setupExpertPage() {
         let selectedExpert = $('#expert_table').bootstrapTable('getSelections')[0];
         if (selectedExpert) {
             console.log(selectedExpert);
-            modal.find('#expert_id_input').val(selectedExpert.expertId);
-            modal.find('#expert_no_input').val(selectedExpert.no);
-            modal.find('#expert_card_input').val(selectedExpert.card);
-            modal.find('#expert_name_input').val(selectedExpert.name);
-            modal.find('#expert_phone_input').val(selectedExpert.phone);
-            modal.find('#expert_company_input').val(selectedExpert.company);
+            setModalData(modal, expert_modal_mapper, selectedExpert);
+        } else {
+            setModalData(modal, expert_modal_mapper);
         }
     })
 }
