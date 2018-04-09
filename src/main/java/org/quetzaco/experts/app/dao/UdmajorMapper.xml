@@ -228,4 +228,21 @@
       record_flag = #{recordFlag,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+    <select id="selectMajorCodeTree" parameterType="java.lang.String" resultMap="BaseResultMap">
+     <if test="majorCode != null">
+         select 
+	    <include refid="Base_Column_List" />
+	    from udmajor
+	    where major_code like concat(#{majorCode,jdbcType=VARCHAR},'%') and LENGTH(major_code)=LENGTH(#{majorCode,jdbcType=VARCHAR})+ 2 and record_flag='01' order by major_code
+     </if>
+      <if test="majorCode == null">
+         select 
+	    <include refid="Base_Column_List" />
+	    from udmajor
+	    where LENGTH(major_code)= 2 and record_flag='01' order by major_code
+     </if>
+   
+  </select>
 </mapper>

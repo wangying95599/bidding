@@ -12,6 +12,8 @@ import org.quetzaco.experts.util.excel.ExcelUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 public class MajorServiceTest extends ExpertsApplicationTests{
 	@Autowired
 	MajorService service;
@@ -53,5 +55,18 @@ public class MajorServiceTest extends ExpertsApplicationTests{
                 return "";
             }
         });
+	}
+	
+	
+	@Test
+	@Rollback(false)
+	public void getTreeByParent() throws Exception {
+		
+		List list =service.selectMajorCodeTree(null);
+		System.out.println(list);
+		Udmajor ud= new Udmajor();
+		ud.setMajorCode("02");
+		list =service.selectMajorCodeTree(ud);
+		System.out.println(list);
 	}
 }

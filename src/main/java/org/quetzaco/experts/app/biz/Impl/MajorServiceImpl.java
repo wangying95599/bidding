@@ -35,5 +35,13 @@ public class MajorServiceImpl implements MajorService {
 		return majorMapper.selectByExample(example);
 	}
 
-
+	@Override
+	public  List<Udmajor> selectMajorCodeTree(Udmajor major){
+		if(major == null || major.getMajorCode()==null) {
+			return majorMapper.selectMajorCodeTree(null);
+		}else{
+			return majorMapper.selectMajorCodeTree(major.getMajorCode());
+		}
+		
+	}
 }

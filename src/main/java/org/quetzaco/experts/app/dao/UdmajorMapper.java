@@ -27,4 +27,6 @@ public interface UdmajorMapper {
     int updateByPrimaryKeySelective(Udmajor record);
 
     int updateByPrimaryKey(Udmajor record);
+    
+    List<Udmajor> selectMajorCodeTree(@Param("majorCode") String majorCode);
 }

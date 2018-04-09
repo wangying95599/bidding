@@ -35,4 +35,17 @@ public class MajorController extends BaseRestContoller {
     return buildEntity(APIEntity.create(majorService.selectByExample(major)), HttpStatus.OK);
   }
 
+  @RequestMapping(value = "/major/tree/{value}", method = RequestMethod.GET)
+  HttpEntity<APIEntity<List<Udmajor>>> selectMajorCodeTree(@PathVariable String type, @PathVariable String value) {
+	  
+	  Udmajor major = new Udmajor();
+	  if("0".equals(value)) {
+		major.setMajorCode(null);	 
+	  }else {
+		  major.setMajorCode(value);	
+	  }
+	  List<Udmajor> list = majorService.selectMajorCodeTree(major);
+	
+    return buildEntity(APIEntity.create(list), HttpStatus.OK);
+  }
 }
