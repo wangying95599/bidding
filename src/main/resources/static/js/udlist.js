@@ -13,9 +13,7 @@ $(document).ready(function () {
     init();
 });
 
-
 function nullFormatter(data) {
-
     if (data == "" || data == null || data == " ") {
         return '未填';
     }

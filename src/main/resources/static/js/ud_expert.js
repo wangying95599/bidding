@@ -1,4 +1,12 @@
 let selectedExpertNum = 0, expertTotal = 0;
+const expert_modal_mapper = {// mapper the modal input id to the java model field name
+    expert_id_input: 'expertId',
+    expert_no_input: 'no',
+    expert_card_input: 'card',
+    expert_name_input: 'name',
+    expert_phone_input: 'phone',
+    expert_company_input: 'company',
+};
 const expert_table_cols = [{
     checkbox: true,
 }, {
@@ -44,7 +52,8 @@ function showExpertTab() {
     loadAllExperts();
 }
 
-function toggleExpertRelatedButton(selectedNum) {
+function toggleExpertRelatedButton() {
+    const selectedNum = $('#expert_table').bootstrapTable('getSelections').length;
     if (selectedNum === 0) {
         $('#createExpertButton').show();
         $('#editExpertButton').hide();
@@ -65,24 +74,11 @@ function setupExpertPage() {
         columns: expert_table_cols,
         pagination: false,
         clickToSelect: true,
+        singleSelect: true,
         search: true,
         toolbar: '#expert_table_toolbar',
-        onCheck: function () {
-            selectedExpertNum++;
-            toggleExpertRelatedButton(selectedExpertNum);
-        },
-        onUncheck: function () {
-            selectedExpertNum--;
-            toggleExpertRelatedButton(selectedExpertNum);
-        },
-        onCheckAll: function () {
-            selectedExpertNum = expertTotal;
-            toggleExpertRelatedButton(selectedExpertNum);
-        },
-        onUncheckAll: function () {
-            selectedExpertNum = 0;
-            toggleExpertRelatedButton(selectedExpertNum);
-        },
+        onCheck: toggleExpertRelatedButton,
+        onUncheck: toggleExpertRelatedButton
     });
 
     $('#expertModal').on('show.bs.modal', function (event) {
@@ -95,12 +91,9 @@ function setupExpertPage() {
         let selectedExpert = $('#expert_table').bootstrapTable('getSelections')[0];
         if (selectedExpert) {
             console.log(selectedExpert);
-            modal.find('#expert_id_input').val(selectedExpert.expertId);
-            modal.find('#expert_no_input').val(selectedExpert.no);
-            modal.find('#expert_card_input').val(selectedExpert.card);
-            modal.find('#expert_name_input').val(selectedExpert.name);
-            modal.find('#expert_phone_input').val(selectedExpert.phone);
-            modal.find('#expert_company_input').val(selectedExpert.company);
+            setModalData(modal, expert_modal_mapper, selectedExpert);
+        } else {
+            setModalData(modal, expert_modal_mapper);
         }
     })
 }
