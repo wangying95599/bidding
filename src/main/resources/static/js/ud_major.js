@@ -1,6 +1,5 @@
-function getTree() {
+function getMajorTree() {
 
-    // alert("usrId   "+usrId)
     var tree = [];
     var recycleNodes = [];
     $.ajax({
@@ -14,7 +13,7 @@ function getTree() {
                 var nodes=[];
                 tree.push(new TreeModel(models[i].majorName,models[i].majorCode,nodes));
             }
-           departTree(tree);
+           initMajorTree(tree);
             
         }
     });
@@ -27,7 +26,7 @@ function TreeModel(text,id,node){
     this.href='#';
     this.nodes=node;
 }
-function departTree(depart){
+function initMajorTree(depart){
    var list = {
         bootstrap2: false,
         showTags: true,
@@ -58,12 +57,10 @@ function departTree(depart){
         }
     });
     $('#majorTree').on("nodeExpanded",function(event, node) {
-    	 getChildDepts( $('#majorTree'),node);
-        if(node.nodes.length == 0)
-          getChildDepts( $('#majorTree'),node);
+    	 getChildMajor( $('#majorTree'),node);
       });
 }
-function getChildDepts(tree,node) {
+function getChildMajor(tree,node) {
 	console.log(node);
 	  $.axx({
 	    url: '/major/tree/'+node.id,
@@ -77,11 +74,11 @@ function getChildDepts(tree,node) {
 	        node.nodes ==null;
 	      for(var j=0;j<models.length;j++) {
 	        tree.treeview('addNode', [node.nodeId,
-	          {node: new TreeModel(models[j].majorName, models[j].majorCode)}]);
+	          {node: new TreeModel(models[j].majorName, models[j].majorCode,[])}]);
 	      }
 	    }
 	  });
 	}
 
 
-getTree();
+getMajorTree();
