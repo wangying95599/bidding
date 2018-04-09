@@ -1,4 +1,5 @@
 let selectedExpertNum = 0, expertTotal = 0;
+const expert_modal_mapper = {// mapper the modal input id to the java model field name
     expert_id_input: 'expertId',
     expert_no_input: 'no',
     expert_card_input: 'card',

@@ -26,6 +26,7 @@
 <script src="js/bootstrap-treeview.js"></script>
 <script src="js/ajax.js"></script>
 <script src="js/udinit.js"></script>
+<script src="js/ud_utils.js"></script>
 <script src="js/ud_expert.js"></script>
 <script src="js/ud_project.js"></script>
 <script src="js/udlist.js"></script>
@@ -229,6 +230,10 @@
                 <div class="panel-body">
                     <div id="project_table_toolbar" class="btn-toolbar toolBar_1 btn-group" role="toolbar"
                          style="margin-bottom: 10px;">
+                        <button id="reloadProjectButton" type="button" class="btn btn-link"
+                                data-target="#" data-title="刷新" onclick="loadAllProjects()">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                        </button>
                         <button id="createProjectButton" type="button" class="btn btn-link"
                                 data-target="#projectModal" data-toggle="modal" data-title="新建项目">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新建项目
@@ -274,6 +279,10 @@
                 <div class="panel-body">
                     <div id="expert_table_toolbar" class="btn-toolbar toolBar_1 btn-group" role="toolbar"
                          style="margin-bottom: 10px;">
+                        <button id="reloadAllExpertButton" type="button" class="btn btn-link"
+                                onclick="loadAllExperts()">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                        </button>
                         <button id="createExpertButton" type="button" class="btn btn-link"
                                 data-target="#expertModal" data-toggle="modal" data-title="新建专家">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新建专家
