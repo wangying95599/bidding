@@ -52,7 +52,8 @@ function showExpertTab() {
     loadAllExperts();
 }
 
-function toggleExpertRelatedButton(selectedNum) {
+function toggleExpertRelatedButton() {
+    const selectedNum = $('#expert_table').bootstrapTable('getSelections').length;
     if (selectedNum === 0) {
         $('#createExpertButton').show();
         $('#editExpertButton').hide();
@@ -73,24 +74,11 @@ function setupExpertPage() {
         columns: expert_table_cols,
         pagination: false,
         clickToSelect: true,
+        singleSelect: true,
         search: true,
         toolbar: '#expert_table_toolbar',
-        onCheck: function () {
-            selectedExpertNum++;
-            toggleExpertRelatedButton(selectedExpertNum);
-        },
-        onUncheck: function () {
-            selectedExpertNum--;
-            toggleExpertRelatedButton(selectedExpertNum);
-        },
-        onCheckAll: function () {
-            selectedExpertNum = expertTotal;
-            toggleExpertRelatedButton(selectedExpertNum);
-        },
-        onUncheckAll: function () {
-            selectedExpertNum = 0;
-            toggleExpertRelatedButton(selectedExpertNum);
-        },
+        onCheck: toggleExpertRelatedButton,
+        onUncheck: toggleExpertRelatedButton
     });
 
     $('#expertModal').on('show.bs.modal', function (event) {

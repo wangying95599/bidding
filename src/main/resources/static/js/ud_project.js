@@ -87,8 +87,8 @@ var project_list_col = [
     },
 ];
 
-function toggleProjectRelatedButtons(selectedNum) {
-    // const selectedNum = $("#project_list_table").bootstrapTable('getSelections').length;
+function toggleProjectRelatedButtons() {
+    const selectedNum = $("#project_list_table").bootstrapTable('getSelections').length;
     if (selectedNum === 1) {
         $('#createProjectButton').hide();
         $('#editProjectButton').show();
@@ -136,28 +136,15 @@ function setUpProjectPage() {
     $('#project_list_table').bootstrapTable({
         pagination: false,
         clickToSelect: true,
+        singleSelect: true,
         uniqueId: 'id',//唯一的标识
         totalField: '总数：',
         columns: project_list_col,
         toolbar: '#project_table_toolbar',
         search: true,
         showLoading: true,
-        onCheck: function () {
-            selectedNum++;
-            toggleProjectRelatedButtons(selectedNum);
-        },
-        onUncheck: function () {
-            selectedNum--;
-            toggleProjectRelatedButtons(selectedNum);
-        },
-        onCheckAll: function () {
-            selectedNum = projectTotal;
-            toggleProjectRelatedButtons(selectedNum);
-        },
-        onUncheckAll: function () {
-            selectedNum = 0;
-            toggleProjectRelatedButtons(selectedNum);
-        },
+        onCheck: toggleProjectRelatedButtons,
+        onUncheck: toggleProjectRelatedButtons
     });
     loadAllProjects();
 
