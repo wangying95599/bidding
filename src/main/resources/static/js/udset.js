@@ -395,7 +395,7 @@ function set_delete_person(value, row, index) {
     var tableName='set_table_person';
     var id=row.expertId;
     var result = [
-        '<button  type="button" class="btn btn-primary btn-xs" onclick="set_remove(\'' + tableName + '\',' + id + ',\'expertId\')">删除</button>',]
+        '<button  type="button" class="btn btn-link btn-xs" onclick="set_remove(\'' + tableName + '\',' + id + ',\'expertId\')">删除</button>',]
         .join('');
     //console.log(result);
     return result;
@@ -411,7 +411,7 @@ function set_delete_major_to(value, row, index) {
 
 function set_delete_common(tableName, id) {
     var result = [
-        '<button  type="button" class="btn btn-primary btn-xs" onclick="set_remove(\'' + tableName + '\',' + id + ')">删除</button>',]
+        '<button  type="button" class="btn btn-link btn-xs" onclick="set_remove(\'' + tableName + '\',' + id + ')">删除</button>',]
         .join('');
     console.log(result);
     return result;
@@ -421,7 +421,7 @@ function set_add_common(id) {
     console.log(id);
 
     var result = [
-        '<button  type="button" class="btn btn-primary btn-xs" onclick="set_add(' + id + ')">选择</button>',]
+        '<button  type="button" class="btn btn-link btn-xs" onclick="set_add(' + id + ')">选择</button>',]
         .join('');
     console.log(result);
     return result;
