@@ -3,7 +3,7 @@ function getTree() {
     // alert("usrId   "+usrId)
     var tree = [];
     var recycleNodes = [];
-    $.axx({
+    $.ajax({
         type:'GET',
         url: '/major/tree/0',
         data:{},
@@ -11,23 +11,21 @@ function getTree() {
         success:function(json){
             models = json.content;
             for(var i=0;i<models.length;i++){
-                var nodes=[
-                    {
-                        text: "件级档案",
-                        id: models[i].id,
-                        deptName: models[i].name,
-                        description:models[i].description,
-                        tabName: "#arranged"
-                    }
-                ];
-                tree.push(new obj(models[i].name,models[i].id,nodes));
-               
+                var nodes=[];
+                tree.push(new TreeModel(models[i].majorName,models[i].majorCode,nodes));
             }
            departTree(tree);
             
         }
     });
 
+}
+//树状对象
+function TreeModel(text,id,node){
+    this.text=text;
+    this.id=id;
+    this.href='#';
+    this.nodes=node;
 }
 function departTree(depart){
    var list = {
@@ -55,62 +53,35 @@ function departTree(depart){
                 select_node[0].state.selected = false;
             }
         } else {
-            var num = $(this).index()
-            deptId = data.id;
-            var list = data.tabName;
-            var text = data.text;
-            //   console.log('id'+data.id);
-            deptName = data.deptName;
-            simpleDeptName=data.description;
-            var str = "";
-            listType = list;
-
-            getFromLocalTable();
-           
-            var temporary = list == "#fromOA" ? "#fromLocal" : list;
-            $(temporary).removeClass("hidden").hide().fadeIn(500).siblings().addClass("hidden");
-            $("button[data-target='#biaoDan'],button[data-target='#modify'],.selectFile,.selectFile1").addClass("hidden");
-            $('.breadcrumb').empty().append(
-                "<li class='active' style='color: #4876FF' href=" + temporary + ">" + text +
-                "</li>").removeClass("hidden");
-            // defaultMessage;
+            
+            
         }
     });
+    $('#majorTree').on("nodeExpanded",function(event, node) {
+    	 getChildDepts( $('#majorTree'),node);
+        if(node.nodes.length == 0)
+          getChildDepts( $('#majorTree'),node);
+      });
 }
-function getFromLocalTable() {
-    $('#btn_add,#btn_delete').removeClass("hidden");
-    url = "/documents/page/" + deptId + "/type/1";
-    initBootstrapTable('get', $('#fromLocalTable'), url, fromLocalCol, sortQueryParams, false, "application/x-www-form-urlencoded", '#localtoolbar');
-}
+function getChildDepts(tree,node) {
+	console.log(node);
+	  $.axx({
+	    url: '/major/tree/'+node.id,
+	    type: 'get',
+	    data: {},
+	    // dataType:'json',
+	    success: function (json) {
+	      var models = json.content;
+	      //tree.treeview('deleteNode',[node.nodeId]);
+	      if(models.length ==0)
+	        node.nodes ==null;
+	      for(var j=0;j<models.length;j++) {
+	        tree.treeview('addNode', [node.nodeId,
+	          {node: new TreeModel(models[j].majorName, models[j].majorCode)}]);
+	      }
+	    }
+	  });
+	}
 
-//回收站部门列表
-function recycleTree(nodes) {
-    var list = {
-        bootstrap2: false,
-        showTags: true,
-        levels:0,
-        enableLinks:true,
-        selectedIcon:"glyphicon glyphicon-map-marker",
-        showBorder:false,
-        data: nodes
-    };
-    $('#recycleOneTree').treeview(list);
 
-    $('#recycleOneTree').on("nodeSelected",function (event,data) {
-        if (data.nodes != null) {
-            var select_node = $('#recycleOneTree').treeview('getSelected');
-            if (select_node[0].state.expanded) {
-                $('#recycleOneTree').treeview('collapseNode', select_node);
-                select_node[0].state.selected = false;
-            }
-            else {
-                $('#recycleOneTree').treeview('expandNode', select_node);
-                select_node[0].state.selected = false;
-            }
-        } else {
-            showRecycleBin(data.id,data.href.charAt(1));
-            $('#recycleBin').removeClass("hidden").hide().fadeIn(500).siblings().addClass("hidden");
-        }
-    })
-}
 getTree();

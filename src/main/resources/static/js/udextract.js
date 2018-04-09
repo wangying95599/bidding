@@ -59,7 +59,7 @@ var ext_col = [
         title: '专家姓名',
         field: 'name',
         align: 'center',
-        formatter:nameFormatter,
+       // formatter:nameFormatter,
         sortable: true
     },
     {

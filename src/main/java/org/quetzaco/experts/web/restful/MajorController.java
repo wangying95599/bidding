@@ -36,7 +36,7 @@ public class MajorController extends BaseRestContoller {
   }
 
   @RequestMapping(value = "/major/tree/{value}", method = RequestMethod.GET)
-  HttpEntity<APIEntity<List<Udmajor>>> selectMajorCodeTree(@PathVariable String type, @PathVariable String value) {
+  HttpEntity<APIEntity<List<Udmajor>>> selectMajorCodeTree(@PathVariable String value) {
 	  
 	  Udmajor major = new Udmajor();
 	  if("0".equals(value)) {
