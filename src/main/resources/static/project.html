@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="css/bootstrap-treeview.css"/>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="css/bootstrap-table.css">
@@ -22,7 +23,7 @@
 <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
 <script src="js/bootstrap-editable.js"></script>
 <script src="js/bootstrap-table-editable.js"></script>
-
+<script src="js/bootstrap-treeview.js"></script>
 <script src="js/ajax.js"></script>
 <script src="js/udinit.js"></script>
 <script src="js/ud_expert.js"></script>
@@ -185,7 +186,21 @@
                     </h4>
                 </div>
             </div>
+          <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseMajor">
+                               专业列表
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseMajor" class="panel-collapse collapse in">
+                        <div class="panel-body" id="majorTree">
 
+                        </div>
+                    </div>
+            </div>
             <div class="panel panel-danger">
                 <div class="panel-heading">
                     <h4 class="panel-title">
@@ -1044,5 +1059,6 @@
     <script src="js/udset.js"></script>
     <script src="js/udextract.js"></script>
     <script src="js/udextractresult.js"></script>
+    <script src="js/ud_major.js"></script>
 </body>
 </html>
