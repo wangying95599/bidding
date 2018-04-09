@@ -41,7 +41,7 @@
     }
 
     @media screen and (max-width: 1060px) {
-         .middle {
+        .middle {
             overflow: hidden;
             height: calc(100% - 100px);
         }
@@ -212,7 +212,8 @@
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <div class="btn-toolbar toolBar_1 btn-group" role="toolbar" style="margin-bottom: 10px;">
+                    <div id="project_table_toolbar" class="btn-toolbar toolBar_1 btn-group" role="toolbar"
+                         style="margin-bottom: 10px;">
                         <button id="createProjectButton" type="button" class="btn btn-link"
                                 data-target="#projectModal" data-toggle="modal" data-title="新建项目">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新建项目
@@ -256,7 +257,8 @@
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <div class="btn-toolbar toolBar_1 btn-group" role="toolbar" style="margin-bottom: 10px;">
+                    <div id="expert_table_toolbar" class="btn-toolbar toolBar_1 btn-group" role="toolbar"
+                         style="margin-bottom: 10px;">
                         <button id="createExpertButton" type="button" class="btn btn-link"
                                 data-target="#expertModal" data-toggle="modal" data-title="新建专家">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新建专家
@@ -679,13 +681,14 @@
                         <div class="col-md-6">
                             <form class=" form-horizontal" align="text-center">
                                 <fieldset disabled style="    margin-bottom: 15px;">
-                                    
+
                                     <legend>信息</legend>
 
                                     <div class="form-group">
                                         <label for="cgxm" class="col-md-2 control-label">采购项目</label>
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control" id="project_name_extractset" value="">
+                                            <input type="text" class="form-control" id="project_name_extractset"
+                                                   value="">
                                         </div>
                                     </div>
 
@@ -721,7 +724,7 @@
                                             <input type="text" class="form-control" id="bidding_period_extractset">
                                         </div>
                                     </div>
-                                    
+
                                 </fieldset>
                             </form>
                         </div>

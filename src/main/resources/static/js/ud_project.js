@@ -127,6 +127,8 @@ function setUpProjectPage() {
         uniqueId: 'id',//唯一的标识
         totalField: '总数：',
         columns: project_list_col,
+        toolbar: '#project_table_toolbar',
+        search: true,
         onCheck: function () {
             selectedNum++;
             toggleProjectRelatedButtons(selectedNum);

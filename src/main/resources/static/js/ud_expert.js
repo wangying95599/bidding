@@ -66,6 +66,7 @@ function setupExpertPage() {
         pagination: false,
         clickToSelect: true,
         search: true,
+        toolbar: '#expert_table_toolbar',
         onCheck: function () {
             selectedExpertNum++;
             toggleExpertRelatedButton(selectedExpertNum);
