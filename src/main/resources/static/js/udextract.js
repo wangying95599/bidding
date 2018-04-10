@@ -135,11 +135,30 @@ $(document).ready(function () {
 
     initExtract();
 });
+function clearAllExtractValue(){
+	var extractSetForm = $('#extractExpert');
+	 
+    extractSetForm.find('#project_name_extractset').val(null);
+    extractSetForm.find('#project_purchaser_extractset').val(null);
+    extractSetForm.find('#proxy_org_extractset').val(null);
+    extractSetForm.find('#project_extract_extractset').val(null);
+    extractSetForm.find('#bidding_time_extractset').val(null);
+    extractSetForm.find('#bidding_location_extractset').val(null);
+    extractSetForm.find('#bidding_period_extractset').val(null);
+    
+    $('#ext_table_cor').bootstrapTable("removeAll");  
+    $('#ext_table_person').bootstrapTable("removeAll");  
+    $('#ext_table_major_to').bootstrapTable("removeAll");
+    $('#ext_table').bootstrapTable("removeAll");
+    
+    $("input[name='extract_region']").removeAttr("checked");
 
+}
 $('#extractExpert').on('show.bs.modal', function (event) {
     console.log("show.bs.modal");
     console.log(event);
 	projectId=getProjectId();
+	clearAllExtractValue();
     $.axx({
         type:'GET',
         url:"/extractset/get/"+projectId,
@@ -173,16 +192,30 @@ $('#extractExpert').on('show.bs.modal', function (event) {
             }
             
             if(models.regionList){
-	           
+	           //（jquery1.9以上，checkbox attr不能重复操作）可使用prop代替
 	            $.each(models.regionList,function(i,item){	
-	            	$("input[name='extract_region'][value="+item.region+"]").attr("checked","checked");	
+	            	$("input[name='extract_region'][value="+item.region+"]").prop("checked","checked");	
 	            });
             }
         }
     });	
+    $.axx({
+        type:'GET',
+        url:"/extract/get/"+projectId,
+        success:function (json) {
+            var models = json.content;
+            console.log(models);
+            $('#ext_table').bootstrapTable("load", models);
+            
+        }
+    });	
 });
 
+function loadExtractData() {
+	projectId=getProjectId();
 
+	
+}
 
 
 

@@ -1,6 +1,5 @@
 package org.quetzaco.experts.app.biz.Impl;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -53,10 +52,31 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 	
 	@Override
 	public void extractSet(Udset set) {
-		setMapper.insert(set);
+		
+		UdsetExample setExample = new UdsetExample();
+		setExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
+		List list = setMapper.selectByExample(setExample);
+		if(list!=null && list.size()==0) {
+			setMapper.insert(set);
+		}
+		
+		UdsetcompanyExample companyexample = new UdsetcompanyExample();
+		companyexample.createCriteria().andProjectIdEqualTo(set.getProjectId());
+		companyMapper.deleteByExample(companyexample);
+		
+		UdsetmajorExample setmajorExample = new UdsetmajorExample();
+		setmajorExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
+		setmajorMapper.deleteByExample(setmajorExample);
+		
+		UdsetregionExample regionExample = new UdsetregionExample();
+		regionExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
+		regionMapper.deleteByExample(regionExample);
+		
+		UdsetexpertExample expertExample = new UdsetexpertExample();
+		expertExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
+		expertMapper.deleteByExample(expertExample);
 		
 		if(set.getCompanyList()!= null) {
-//			companyMapper.deleteByExample(example)
 			for(Udsetcompany company:set.getCompanyList()) {
 				company.setProjectId(set.getProjectId());
 				companyMapper.insertSelective(company);

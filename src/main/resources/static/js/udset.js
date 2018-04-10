@@ -235,38 +235,28 @@ function set_extract_submit() {
     console.log(deliver);
 
     var companyArray = $("#set_table_cor").bootstrapTable("getData");
-    var companyIds = $.map(companyArray, function (obj) {
-        return obj.company;
-    });
-
     var expertArray = $("#set_table_person").bootstrapTable("getData");
-    var expertIds = $.map(expertArray, function (obj) {
-        return obj.expert_id;
-    });
-
     var majorArray = $("#set_table_major_to").bootstrapTable("getData");
-    var majorIds = $.map(majorArray, function (obj) {
-        return obj.id;
-    });
-    $.each(majorArray,function(i,item){	
-    	console.log(item);
-    });
+   
     var regionArray = $("input[name='set_region']:checked");
-    
-    var regionIds = $.map(regionArray, function (obj) {
-        return obj.region;
+    var region=[];
+    $.each(regionArray,function(i,item){	
+    	region.push({"region":item.value});
     });
 
     deliver.companyList = companyArray;
     deliver.expertList = expertArray;
-//    deliver.majorList = majorArray;
-//    deliver.regionList = regionIds;
+    deliver.majorList = majorArray;
+    deliver.regionList = region;
     
     console.log(deliver.companyList);
     console.log(companyArray);
 //    deliver.expertList = [1, 2, 3];//expertIds;
 //    deliver.majorList = [4, 5, 6];//majorIds;
 //    deliver.regionList = regionIds;
+    
+    
+    
     var data = {set: deliver};
     console.log(JSON.stringify(data));
     $.axx({
@@ -347,12 +337,16 @@ function clearAllSetValue(){
     extractSetForm.find('#bidding_location_set').val(null);
     extractSetForm.find('#bidding_period_set').val(null);
     
-    $('#set_table_cor').bootstrapTable("removeAll");
-    $('#set_table_person').bootstrapTable("removeAll");
+    $('#set_table_cor').bootstrapTable("removeAll");  
+    $('#set_table_person').bootstrapTable("removeAll");  
     $('#set_table_major_to').bootstrapTable("removeAll");
     $('#set_table_major_from').bootstrapTable("removeAll");
     
     $("input[name='set_region']").removeAttr("checked");
+    
+    $("#search_set_company_input").val(null);
+    $("#search_set_expert_input").val(null);
+    $("#search_set_major_input").val(null);
 
 }
 $('#extractSet').on('show.bs.modal', function (event) {
@@ -367,7 +361,7 @@ $('#extractSet').on('show.bs.modal', function (event) {
         success:function (json) {
             var models = json.content;
             console.log(models);
-            console.log(models.project);
+            console.log(models.regionList);
             let selectedProject = $('#project_list_table').bootstrapTable('getSelections')[0];
             if(selectedProject){
             	 var extractSetForm = $('#extractSet');
@@ -390,13 +384,14 @@ $('#extractSet').on('show.bs.modal', function (event) {
             if(models.majorList){
             	$('#set_table_major_to').bootstrapTable("load", models.majorList);
             }
-            
+            //console.log(models.regionList);
             if(models.regionList){
-	           
-	            $.each(models.regionList,function(i,item){	
-	            	$("input[name='set_region'][value="+item.regionName+"]").attr("checked","checked");	
-	            });
-            }
+ 	           //（jquery1.9以上，checkbox attr不能重复操作）可使用prop代替
+ 	            $.each(models.regionList,function(i,item){	
+ 	            	$("input[name='set_region'][value="+item.region+"]").prop("checked","checked");	
+ 	            });
+             }
+
         }
     });	
 });

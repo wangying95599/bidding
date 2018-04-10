@@ -19,6 +19,7 @@ $(function () {
                 try {
                     data.success(d);
                 } catch (e) {
+                	console.log('some error here:'+e);
                 }
             },
             error: function (e) {

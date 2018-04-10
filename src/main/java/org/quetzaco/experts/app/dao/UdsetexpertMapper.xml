@@ -195,9 +195,9 @@
   
   
   <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select p.expert_id,p.name,p.phone
+    select distinct p.expert_id,p.name,p.phone
     
     from udsetexpert s,udexpert p
-    where s.expert_id and p.expert_id and project_id = #{projectId,jdbcType=INTEGER}
+    where s.expert_id = p.expert_id and project_id = #{projectId,jdbcType=INTEGER}
   </select>
 </mapper>
