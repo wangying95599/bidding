@@ -336,9 +336,30 @@ function loadJSData() {
 //	$('#set_table_major_to').bootstrapTable("load", set_data_major_to); 
 
 }
+function clearAllSetValue(){
+	var extractSetForm = $('#extractSet');
+	 
+    extractSetForm.find('#project_name_set').val(null);
+    extractSetForm.find('#project_purchaser_set').val(null);
+    extractSetForm.find('#proxy_org_set').val(null);
+    extractSetForm.find('#project_extract_set').val(null);
+    extractSetForm.find('#bidding_time_set').val(null);
+    extractSetForm.find('#bidding_location_set').val(null);
+    extractSetForm.find('#bidding_period_set').val(null);
+    
+    $('#set_table_cor').bootstrapTable("removeAll");
+    $('#set_table_person').bootstrapTable("removeAll");
+    $('#set_table_major_to').bootstrapTable("removeAll");
+    $('#set_table_major_from').bootstrapTable("removeAll");
+    
+    $("input[name='set_region']").removeAttr("checked");
+
+}
 $('#extractSet').on('show.bs.modal', function (event) {
     console.log("show.bs.modal");
     console.log(event);
+    clearAllSetValue();
+    
 	projectId=getProjectId();
     $.axx({
         type:'GET',
