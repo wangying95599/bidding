@@ -24,7 +24,7 @@ var extractResult_col = [
     },
     {
         title: '专业',
-        field: 'major',
+        field: 'majorName',
         align: 'center',
         sortable: true
     },

@@ -47,7 +47,7 @@ public class ExtractController extends BaseRestContoller {
 	@RequestMapping(value = "/extract/get/{projectId}", method = RequestMethod.GET)
     public HttpEntity<APIEntity> getExtract(@SessionAttribute(WebSecurityConfig.SESSION_KEY)User user,@PathVariable Integer projectId){
 		
-		System.out.println("                 Udset "+projectId);
+		System.out.println("                 getExtract "+projectId);
 		Udset set = new Udset();
 		set.setProjectId(projectId);
 		List<Udsetresult> list = service.getExtractResult(set);

@@ -76,6 +76,15 @@ public class Udsetresult {
 	}
 
 	private String major;
+	private String majorName;
+
+	public String getMajorName() {
+		return majorName;
+	}
+
+	public void setMajorName(String majorName) {
+		this.majorName = majorName;
+	}
 
 	public String getMajor() {
 		return major;
