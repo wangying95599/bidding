@@ -24,7 +24,7 @@ const expert_table_cols = [{
 }, {
     field: 'company',
     title: '所在单位'
-}, {
+},
     field: 'region',
     title: '所在区域'
 }, {

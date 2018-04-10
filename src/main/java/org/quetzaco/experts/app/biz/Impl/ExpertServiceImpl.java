@@ -3,10 +3,14 @@ package org.quetzaco.experts.app.biz.Impl;
 import java.util.List;
 
 import org.quetzaco.experts.app.biz.ExpertService;
+import org.quetzaco.experts.app.dao.UdexpertMajorMapper;
 import org.quetzaco.experts.app.dao.UdexpertMapper;
+import org.quetzaco.experts.app.dao.UdexpertRegionMapper;
 import org.quetzaco.experts.model.Udexpert;
 import org.quetzaco.experts.model.UdexpertExample;
 import org.quetzaco.experts.model.UdexpertExample.Criteria;
+import org.quetzaco.experts.model.UdexpertMajor;
+import org.quetzaco.experts.model.UdexpertRegion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +22,24 @@ public class ExpertServiceImpl implements ExpertService {
     final static Logger logger = LoggerFactory.getLogger(ExpertServiceImpl.class);
     @Autowired
     UdexpertMapper expertMapper;
+    
+    @Autowired
+    UdexpertMajorMapper majorMapper;
+    
+    @Autowired
+    UdexpertRegionMapper regionMapper;
 
     @Override
     public Udexpert createExpert(Udexpert expert) {
+        List<UdexpertMajor> majorList  =expert.getMajorList();
+        List<UdexpertRegion> regionList = expert.getRegionList();
         expertMapper.insertSelective(expert);
+        for(UdexpertMajor major:majorList){
+            majorMapper.insertSelective(major);
+        }
+        for(UdexpertRegion region:regionList){
+            regionMapper.insert(region);
+        }
         return expert;
     }
 
