@@ -17,3 +17,10 @@
 .search_panel {
     padding-left: 40px;
 }
+
+.print-header {
+  font-size: 2em;
+  border-bottom: 3px double black;
+  letter-spacing: 5px;
+  text-align: center;
+}
