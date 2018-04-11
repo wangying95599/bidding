@@ -42,10 +42,10 @@ public class VoiceReceive  implements CommandLineRunner{
 		public boolean dealMessage(Message message) {
 
 			//消息的几个关键值
-			System.out.println("message handle: " + message.getReceiptHandle());
-            System.out.println("message body: " + message.getMessageBodyAsString());
-            System.out.println("message id: " + message.getMessageId());
-            System.out.println("message dequeue count:" + message.getDequeueCount());
+		   logger.info("message handle: " + message.getReceiptHandle());
+           logger.info("message body: " + message.getMessageBodyAsString());
+           logger.info("message id: " + message.getMessageId());
+           logger.info("message dequeue count:" + message.getDequeueCount());
             
             try{
             	Map<String,Object> contentMap=gson.fromJson(message.getMessageBodyAsString(), HashMap.class);
@@ -63,14 +63,14 @@ public class VoiceReceive  implements CommandLineRunner{
 				//TODO 根据文档中具体的消息格式进行消息体的解析
                 String arg = (String) contentMap.get("arg");
                 
-                System.out.println("1callId          "+callId);
-                System.out.println("1startTime          "+startTime);
-                System.out.println("1endTime          "+endTime);
-                System.out.println("1duration          "+duration);
-                System.out.println("1statusCode          "+statusCode);
-                System.out.println("1statusMsg          "+statusMsg);
-                System.out.println("1outId          "+outId);
-                System.out.println("1dtmf          "+dtmf);
+               logger.info("1callId          "+callId);
+               logger.info("1startTime          "+startTime);
+               logger.info("1endTime          "+endTime);
+               logger.info("1duration          "+duration);
+               logger.info("1statusCode          "+statusCode);
+               logger.info("1statusMsg          "+statusMsg);
+               logger.info("1outId          "+outId);
+               logger.info("1dtmf          "+dtmf);
                 
                 Udvoicelog log = new Udvoicelog();
                 log.setCallid(callId);
@@ -93,7 +93,7 @@ public class VoiceReceive  implements CommandLineRunner{
 				//您自己的代码部分导致的异常，应该return false,这样消息不会被delete掉，而会根据策略进行重推
 				return false;
 			}
-            System.out.println("****************************消息处理成功");
+           logger.info("****************************消息处理成功");
 			//消息处理成功，返回true, SDK将调用MNS的delete方法将消息从队列中删除掉
 			return true;
 		}
@@ -107,6 +107,7 @@ public class VoiceReceive  implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
+		logger.info("         run         ");
 		DefaultAlicomMessagePuller puller=new DefaultAlicomMessagePuller();
 
 		//TODO 此处需要替换成开发者自己的AK信息

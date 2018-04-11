@@ -163,7 +163,7 @@ public class ExtractServiceImpl implements ExtractService {
             	}
             	list.add(expert);
             	hashset.add(expert.getExpertId());
-            	getRandomNumber(expertList.size());
+            	expertList.size();
             	if(list.size() == setmajorMap.get(mapping.getKey())) {
             		break;
             	}
@@ -182,6 +182,9 @@ public class ExtractServiceImpl implements ExtractService {
         		continue;
         	}
         	//哪个专家靠后，替换。sortMap key 倒序循环，符合，就去替换。
+        	//TODO 查询的白名单有所有的专业，然后又包含关系就可以替换。
+        	//TODO 计算每个人参加了几次，倒序。
+        	//
         }
         /**
          * 循环列表，不包含，就替换一个。<专家，专业>，进去的出来怎么办，一个属性不能替换。
@@ -205,15 +208,7 @@ public class ExtractServiceImpl implements ExtractService {
         return resultList;
 	}
 	
-	public int getRandomNumber(int size) {
-		int value=(int)(Math.random()*size);
-		System.out.println("生成随机数字                   "+value);
-		return value;
-	}
-	
-	  
-	
-	public void scoreExpertListByRule(List<Udexpert> expertList, Map<Integer, Integer> expertScoreMap,
+	private void scoreExpertListByRule(List<Udexpert> expertList, Map<Integer, Integer> expertScoreMap,
 			HashMap<String, Integer> sortMap, HashMap<String, List<Udexpert>> mpMap) {
 		for (Udexpert expert : expertList) {
 			Integer score = expertScoreMap.get(expert.getExpertId());
@@ -236,7 +231,7 @@ public class ExtractServiceImpl implements ExtractService {
 	 * @param map
 	 * @param mpMap
 	 */
-	public int scoreExpertByRule(Udexpert expert, HashMap<String,Integer> sortMap,HashMap<String,List<Udexpert>> mpMap) {
+	private int scoreExpertByRule(Udexpert expert, HashMap<String,Integer> sortMap,HashMap<String,List<Udexpert>> mpMap) {
 		int score = 0;
 		  for (Map.Entry<String, Integer> mapping : sortMap.entrySet()) {  
 	            //System.out.println(mapping.getKey() + ":" + mapping.getValue());  
@@ -251,7 +246,7 @@ public class ExtractServiceImpl implements ExtractService {
 	
 	
 	
-	public void sortMapByValue(HashMap<String,Integer> map) {
+	private void sortMapByValue(HashMap<String,Integer> map) {
 		//将map.entrySet()转换成list  
         List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(map.entrySet());  
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {  

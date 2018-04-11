@@ -8,7 +8,8 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import com.alicom.mns.tools.DefaultAlicomMessagePuller;
 import com.alicom.mns.tools.MessageListener;
@@ -19,11 +20,12 @@ import com.google.gson.Gson;
  * 只能用于接收云通信的消息，不能用于接收其他业务的消息
  * 短信上行消息接收demo
  */
-public class ReceiveDemo {
+@Component
+public class ReceiveDemo implements CommandLineRunner{
 
-	private static Log logger=LogFactory.getLog(ReceiveDemo.class);
+	private  Log logger=LogFactory.getLog(ReceiveDemo.class);
 	
-	static class MyMessageListener implements MessageListener{
+   class MyMessageListener implements MessageListener{
 		private Gson gson=new Gson();
 
 		@Override
@@ -60,8 +62,8 @@ public class ReceiveDemo {
 
 	}
 
-	public static void main(String[] args) throws Exception, ParseException {
-
+	public void run(String... args)  throws Exception, ParseException {
+		logger.info("    smsReceive        run ");
 		DefaultAlicomMessagePuller puller=new DefaultAlicomMessagePuller();
 		//和服务端联调问题时开启,平时无需开启，消耗性能
 //		puller.openDebugLog(false);
