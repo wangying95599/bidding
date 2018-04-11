@@ -36,7 +36,7 @@ public class VoiceController extends BaseRestContoller {
     }
 	
     @RequestMapping(value = "/voice/pause/{projectId}", method = RequestMethod.GET)
-    public HttpEntity<APIEntity> createExtractSet(@SessionAttribute(WebSecurityConfig.SESSION_KEY) User user,
+    public HttpEntity<APIEntity> pauseVoice(@SessionAttribute(WebSecurityConfig.SESSION_KEY) User user,
     		@PathVariable Integer projectId) { 
         service.pauseVoice(projectId);
     	System.out.println("111");
@@ -44,7 +44,7 @@ public class VoiceController extends BaseRestContoller {
     }
     
 	@RequestMapping(value = "/voice/get/{projectId}", method = RequestMethod.GET)
-    public HttpEntity<APIEntity> getExtract(@SessionAttribute(WebSecurityConfig.SESSION_KEY)User user,@PathVariable Integer projectId){
+    public HttpEntity<APIEntity> getVoice(@SessionAttribute(WebSecurityConfig.SESSION_KEY)User user,@PathVariable Integer projectId){
 		
 		System.out.println("                 Udset "+projectId);
 		List<Udsetresult> list=null;
