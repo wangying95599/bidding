@@ -1,5 +1,7 @@
 package org.quetzaco.experts.model;
 
+import java.util.List;
+
 public class Udexpert {
     private Integer expertId;
 
@@ -16,6 +18,10 @@ public class Udexpert {
     private String region;
 
     private String recordFlag;
+    
+    private List<UdexpertMajor> majorList;
+    
+    private List<UdexpertRegion> regionList;
 
     public Integer getExpertId() {
         return expertId;
@@ -106,4 +112,20 @@ public class Udexpert {
 		
 		return "Expert@id:"+expertId+", score:"+score;
 	}
+
+    public List<UdexpertMajor> getMajorList() {
+        return majorList;
+    }
+
+    public void setMajorList(List<UdexpertMajor> majorList) {
+        this.majorList = majorList;
+    }
+
+    public List<UdexpertRegion> getRegionList() {
+        return regionList;
+    }
+
+    public void setRegionList(List<UdexpertRegion> regionList) {
+        this.regionList = regionList;
+    }
 }

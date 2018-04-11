@@ -21,7 +21,7 @@ public class ExcelUtils {
         List<T> list = null;
 
         //创建Excel工作薄
-        Workbook work =WorkbookFactory.create(new File(fileName));;
+        Workbook work =WorkbookFactory.create(new File(fileName));
         if(null == work){
             throw new Exception("创建Excel工作薄为空！");
         }

@@ -6,6 +6,7 @@ const expert_modal_mapper = {// mapper the modal input id to the java model fiel
     expert_name_input: 'name',
     expert_phone_input: 'phone',
     expert_company_input: 'company',
+    set_region: {name: 'regionList', isCheckbox: true}
 };
 const expert_table_cols = [{
     checkbox: true,
@@ -94,12 +95,30 @@ function setupExpertPage() {
             setModalData(modal, expert_modal_mapper, selectedExpert);
         } else {
             setModalData(modal, expert_modal_mapper);
+            // modal.find("input").val(null);
+            // $("input[type='checkbox']").attr("checked", false);
         }
     })
 }
 
 function saveExpert() {
     let expert = $('#expertForm').serializeJson();
+
+    let regionList = [];
+    if (expert.set_region) {
+        if (isArray(expert.set_region)) {
+            expert.set_region.forEach(function (region) {
+                regionList.push({region: regionMap[region]});
+            });
+            delete expert.set_region;
+        } else {
+            regionList.push({region: regionMap[expert.set_region]});
+        }
+    }
+    expert.regionList = regionList;
+
+    let majorList = [];
+    expert.majorList = majorList;
     if (expert.expertId) {//update
         $.axx({
             type: 'put',

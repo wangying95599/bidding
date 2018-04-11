@@ -1,0 +1,28 @@
+currval
+参数 seq_name VARCHAR(50)
+返回类型 int(11)
+------------------
+BEGIN
+	DECLARE VALUE INTEGER;
+	SET VALUE = 0;
+	SELECT current_value INTO VALUE
+	FROM sys_sequence
+	WHERE NAME=seq_name;
+	RETURN VALUE;
+END;
+
+
+
+
+
+
+nextval
+参数 seq_name VARCHAR(50)
+返回类型 int(11)
+-------------------
+BEGIN
+	UPDATE sys_sequence
+	SET CURRENT_VALUE = CURRENT_VALUE + INCREMENT
+	WHERE NAME = seq_name;
+	RETURN currval(seq_name);
+END
