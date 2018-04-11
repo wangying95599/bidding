@@ -29,6 +29,7 @@
 <script src="js/zh.js"></script>
 <script src="js/ajax.js"></script>
 <script src="js/udinit.js"></script>
+<script src="js/mapper.js"></script>
 <script src="js/ud_utils.js"></script>
 <script src="js/ud_expert.js"></script>
 <script src="js/ud_project.js"></script>
@@ -85,6 +86,13 @@
 
     #extractSet .form-control {
         height: 30px;
+    }
+
+    legend {
+        font-size: 18px;
+    }
+    .modal-title {
+        font-size:21px;
     }
 </style>
 
@@ -190,20 +198,20 @@
                     </h4>
                 </div>
             </div>
-          <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion"
-                               href="#collapseMajor">
-                               专业列表
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseMajor" class="panel-collapse collapse in">
-                        <div class="panel-body" id="majorTree">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseMajor">
+                            专业列表
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseMajor" class="panel-collapse collapse in">
+                    <div class="panel-body" id="majorTree">
 
-                        </div>
                     </div>
+                </div>
             </div>
             <div class="panel panel-danger">
                 <div class="panel-heading">
@@ -296,9 +304,9 @@
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑专家
                         </button>
                         <button id="ImportExpertButton" type="button" class="btn btn-link"
-                                 data-toggle="modal"
+                                data-toggle="modal"
                                 data-target="#fileUploadExpert" data-title="批量导入专家">
-                            <span class="glyphicon glyphicon-pencil" ></span>批量导入专家
+                            <span class="glyphicon glyphicon-pencil"></span>批量导入专家
                         </button>
                         <button id="deleteExpertButton" type="button" class="btn btn-link"
                                 style="display:none;" onclick="deleteExperts()" data-title="删除专家">
@@ -344,8 +352,8 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <form class=" form-horizontal" align="text-center">
-                                <fieldset disabled    margin-bottom: 15px;">
+                            <form class="form-horizontal" align="text-center">
+                                <fieldset disabled style="margin-bottom: 15px;">
                                     <legend>信息</legend>
 
                                     <div class="form-group">
@@ -391,7 +399,7 @@
                             </form>
                         </div>
                         <div class="col-md-6">
-                            <fieldset >
+                            <fieldset>
                                 <legend>区域设置</legend>
                                 <div class="checkbox">
                                     <label>
@@ -1015,50 +1023,116 @@
                     </button>
                     <h4 class="modal-title">新建专家</h4>
                 </div>
-
                 <div class="modal-body">
-                    <form class="form-horizontal" role="form" id="expertForm">
-                        <fieldset>
-                            <!-- input -->
-                            <input type="text" class="form-control" id="expert_id_input"
-                                   name="expertId" style="display: none;">
-                            <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">专家编号</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="expert_no_input" name="no">
-                                </div>
+                    <div class="row">
+                        <form class="form-horizontal" role="form" id="expertForm">
+                            <div class="col-sm-6">
+                                <fieldset>
+                                    <legend>基本信息</legend>
+                                    <!-- input -->
+                                    <input type="text" class="form-control" id="expert_id_input"
+                                           name="expertId" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label">专家编号</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="expert_no_input" name="no">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label">card</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="expert_card_input" name="card">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label">专家姓名</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="expert_name_input" name="name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label">手机</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="expert_phone_input"
+                                                   name="phone">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label">单位</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="expert_company_input"
+                                                   name="company">
+                                        </div>
+                                    </div>
+                                </fieldset>
                             </div>
-                            <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">card</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="expert_card_input" name="card">
-                                </div>
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <legend>区域设置</legend>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="set_region" value="0">
+                                            大连市区及高新园区
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="set_region" value="1">
+                                            金州
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="set_region" value="2">
+                                            瓦房店
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="set_region" value="3">
+                                            开发区
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="set_region" value="4">
+                                            庄河
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="set_region" value="5">
+                                            普兰店
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="set_region" value="6">
+                                            旅顺
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="set_region" value="7">
+                                            保税区
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="set_region" value="8">
+                                            长海县
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="set_region" value="9">
+                                            外省市
+                                        </label>
+                                    </div>
+                                </fieldset>
                             </div>
-                            <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">专家姓名</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="expert_name_input" name="name">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">手机</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="expert_phone_input" name="phone">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">单位</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="expert_company_input" name="company">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">区域</label>
-                                <div class="col-sm-8">
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
+                        </form>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
@@ -1071,53 +1145,55 @@
         </div>
     </div>
     <!-- expert modal end-->
-    
+
     <!-- expert import.start -->
-    <div class="modal fade" id="fileUploadExpert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">上传专家</h4>
-            </div>
-            <div class="modal-body">
-                <div class="from-group">
-                    <label class="control-label">上传专家</label>
-                    <input id="input-1a" name ="test" type="file" class="file-loading" multiple>
+    <div class="modal fade" id="fileUploadExpert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">上传专家</h4>
                 </div>
-            </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" onclick="commitMainFile();">确认</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-          </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-	</div>
-	<!--  expert import.end -->
-    
+                <div class="modal-body">
+                    <div class="from-group">
+                        <label class="control-label">上传专家</label>
+                        <input id="input-1a" name="test" type="file" class="file-loading" multiple>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="commitMainFile();">确认</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!--  expert import.end -->
+
     <!-- major import.start -->
-    <div class="modal fade" id="fileUploads" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	    <div class="modal-dialog">
-	        <div class="modal-content">
-	            <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title">上传专业</h4>
-	            </div>
-	            <div class="modal-body">
-	                <div class="from-group newFile_top">
-	                    <label class="control-label">上传专业</label>
-	                    <input id="input-1b" name = "exactfile" type="file" class="file-loading"  multiple>
-	                </div>
-	            </div>
-	          <div class="modal-footer">
-	            <button type="button" class="btn btn-primary" onclick="commitFile();">确认</button>
-	            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-	          </div>
-	        </div><!-- /.modal-content -->
-	    </div><!-- /.modal -->
-	</div>
-	<!-- major import.end -->
-    
+    <div class="modal fade" id="fileUploads" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">上传专业</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="from-group newFile_top">
+                        <label class="control-label">上传专业</label>
+                        <input id="input-1b" name="exactfile" type="file" class="file-loading" multiple>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="commitFile();">确认</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!-- major import.end -->
+
     <!-- 各种模态框.end*********************************************************************************************************************************-->
 
     <script src="js/udset.js"></script>

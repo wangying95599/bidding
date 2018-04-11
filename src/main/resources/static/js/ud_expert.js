@@ -100,6 +100,18 @@ function setupExpertPage() {
 
 function saveExpert() {
     let expert = $('#expertForm').serializeJson();
+
+    let regionList = [];
+    if (expert.set_region) {
+        expert.set_region.forEach(function (region) {
+            regionList.push({region: regionMap[region]});
+        });
+        delete expert.set_region;
+    }
+    expert.regionList = regionList;
+
+    let majorList = [];
+    expert.majorList =majorList;
     if (expert.expertId) {//update
         $.axx({
             type: 'put',

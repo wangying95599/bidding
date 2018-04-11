@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `udexpert`;
 CREATE TABLE `udexpert` (
   `expert_id` int(11) NOT NULL,
-  `no` varchar(255) CHARACTER SET utf32 DEFAULT NULL,
+  `no` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `card` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `phone` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
@@ -104,8 +104,8 @@ DROP TABLE IF EXISTS `udset`;
 CREATE TABLE `udset` (
   `id` int(11) NOT NULL,
   `project_id` int(11) DEFAULT NULL,
-  `created_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updated_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `create_time` DATETIME NOT NULL,
+  `update_time` TIMESTAMP,
   `record_flag` varchar(2) CHARACTER SET utf8 DEFAULT '01',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -115,20 +115,6 @@ CREATE TABLE `udset` (
 -- ----------------------------
 INSERT INTO `udset` VALUES ('3', '123', '2018-04-01 13:35:40', '2018-04-01 13:35:40', '01');
 INSERT INTO `udset` VALUES ('4', '123', '2018-04-01 14:07:33', '2018-04-01 14:07:33', '01');
-INSERT INTO `udset` VALUES ('5', null, null, null, null);
-INSERT INTO `udset` VALUES ('6', null, null, null, null);
-INSERT INTO `udset` VALUES ('7', null, null, null, null);
-INSERT INTO `udset` VALUES ('8', '123', null, null, null);
-INSERT INTO `udset` VALUES ('9', null, null, null, null);
-INSERT INTO `udset` VALUES ('10', null, null, null, null);
-INSERT INTO `udset` VALUES ('11', '123', null, null, null);
-INSERT INTO `udset` VALUES ('12', null, null, null, null);
-INSERT INTO `udset` VALUES ('13', null, null, null, null);
-INSERT INTO `udset` VALUES ('14', null, null, null, null);
-INSERT INTO `udset` VALUES ('15', null, null, null, null);
-INSERT INTO `udset` VALUES ('16', null, null, null, null);
-INSERT INTO `udset` VALUES ('17', '123', null, null, null);
-INSERT INTO `udset` VALUES ('18', '123', null, null, null);
 
 -- ----------------------------
 -- Table structure for udsetcompany
