@@ -22,5 +22,5 @@ DROP TABLE IF EXISTS `udexpert_region`;
 CREATE TABLE `udexpert_region` (
   `expert_id` int(255) DEFAULT NULL,
   `region` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `created_dt` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
