@@ -37,8 +37,8 @@ public class ProjectController extends BaseRestContoller {
 	}
 
 	@RequestMapping(value = "projects/{id}", method = RequestMethod.GET)
-	public HttpEntity<APIEntity> getProjectById(@SessionAttribute(WebSecurityConfig.SESSION_KEY) User user,
-			@RequestParam Integer id) {
+	public HttpEntity<APIEntity> getProjectById(
+			@PathVariable Integer id) {
 		Udprojects project = projectService.getProject(id);
 		return buildEntity(APIEntity.create(project), HttpStatus.OK);
 	}
