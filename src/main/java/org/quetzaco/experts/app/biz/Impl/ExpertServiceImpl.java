@@ -69,13 +69,15 @@ public class ExpertServiceImpl implements ExpertService {
 		UdexpertMajorExample majorExample = new UdexpertMajorExample();
 		majorExample.createCriteria().andExpertIdEqualTo(expert.getExpertId());
 		UdexpertMajor major = new UdexpertMajor();
-//		TODO set record_flag
+		major.setRecordFlag(RecordFlag.DELETE.getValue());
 		majorMapper.updateByExample(major, majorExample);
 
 		// delete related region
 		UdexpertRegionExample regionExample = new UdexpertRegionExample();
 		regionExample.createCriteria().andExpertIdEqualTo(expert.getExpertId());
-		//TODO  set record_flag
+		UdexpertRegion region = new UdexpertRegion();
+		region.setRecordFlag(RecordFlag.DELETE.getValue());
+		regionMapper.updateByExample(region, regionExample);
 	}
 
 	@Override
@@ -130,6 +132,9 @@ public class ExpertServiceImpl implements ExpertService {
 			if (expert.getCompany() != null)
 				criteria.andCompanyLike("%" + expert.getCompany() + "%");
 
+			if(expert.getRecordFlag() != null){
+				criteria.andRecordFlagEqualTo(expert.getRecordFlag());
+			}
 			expertList = expertMapper.selectByExample(example);
 
 		} else {
@@ -144,13 +149,13 @@ public class ExpertServiceImpl implements ExpertService {
 			majorCriteria.createCriteria().andExpertIdEqualTo(expertId);
 			List<UdexpertMajor> majorList = majorMapper
 					.selectByExample(majorCriteria);
-			expert.setMajorList(majorList);
+			obj.setMajorList(majorList);
 
 			UdexpertRegionExample regionExample = new UdexpertRegionExample();
 			regionExample.createCriteria().andExpertIdEqualTo(expertId);
 			List<UdexpertRegion> regionList = regionMapper
 					.selectByExample(regionExample);
-			expert.setRegionList(regionList);
+			obj.setRegionList(regionList);
 		}
 		return expertList;
 	}

@@ -9,6 +9,8 @@ public class UdexpertRegion {
 
     private Date createdDt;
 
+    private String recordFlag;
+
     public Integer getExpertId() {
         return expertId;
     }
@@ -31,5 +33,13 @@ public class UdexpertRegion {
 
     public void setCreatedDt(Date createdDt) {
         this.createdDt = createdDt;
+    }
+
+    public String getRecordFlag() {
+        return recordFlag;
+    }
+
+    public void setRecordFlag(String recordFlag) {
+        this.recordFlag = recordFlag == null ? null : recordFlag.trim();
     }
 }
