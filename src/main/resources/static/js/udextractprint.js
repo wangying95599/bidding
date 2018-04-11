@@ -101,7 +101,16 @@ function loadprint_formData() {
             var models = json.content;
             console.log(models);
             
+            var $trTemp = $("#print_table_top");
+
+            $trTemp.append("<li><span class='project-name'>项目编号</span>:<span class='project-value'>"+ models.purchaseCode +"</span></li>");
+            $trTemp.append("<li><span class='project-name'>项目名称</span>:<span class='project-value'>"+ models.purchaseProject +"</span></li>");
+            $trTemp.append("<li><span class='project-name'>采购方式</span>:<span class='project-value'>"+ models.purchaseType +"</span></li>");
+            $trTemp.append("<li><span class='project-name'>评标时间</span>:<span class='project-value'>"+ models.biddingTime +"</span></li>");
+            $trTemp.append("<li><span class='project-name'>评标地点</span>:<span class='project-value'>"+ models.biddingLocation +"</span></li>");
+            $trTemp.append("<li><span class='project-name'>代理机构</span>:<span class='project-value'>"+ models.proxyOrg +"</span></li>");
             
+//            $trTemp.appendTo("#print_table_top");
         }
     });	
 	

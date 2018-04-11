@@ -24,3 +24,11 @@
   letter-spacing: 5px;
   text-align: center;
 }
+.project-name{
+	font-size:16px;
+	
+}
+.project-value{
+	font-size:16px;
+	padding-left: 10px;
+}
