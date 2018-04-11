@@ -2,6 +2,10 @@ package org.quetzaco.experts.util.notify.sms;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.quetzaco.experts.util.json.JsonUtil;
 
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
@@ -35,7 +39,7 @@ public class SmsNotify {
     static final String accessKeyId = "LTAInEp3GgPOr7QN";
     static final String accessKeySecret = "4fiNSZZQncUA3uGsvR6JB5NbrEqSyB";
 
-    public static SendSmsResponse sendSms() throws ClientException {
+    public static SendSmsResponse sendSms(String phone,String json,String outId) throws ClientException {
 
         //可自助调整超时时间
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
@@ -49,18 +53,18 @@ public class SmsNotify {
         //组装请求对象-具体描述见控制台-文档部分内容
         SendSmsRequest request = new SendSmsRequest();
         //必填:待发送手机号
-        request.setPhoneNumbers("18610551561");//18610551561
+        request.setPhoneNumbers(phone);//18610551561
         //必填:短信签名-可在短信控制台中找到
         request.setSignName("阿里云短信测试专用");
         //必填:短信模板-可在短信控制台中找到
         request.setTemplateCode("SMS_129740705");
         //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
-        request.setTemplateParam("{\"name\":\"巍仔\",\"projectLocation\":\"北京\",\"projectDate\":\"2018-3-29\",\"projectName\":\"投标需求\"}");
+        request.setTemplateParam(json);
         //选填-上行短信扩展码(无特殊需求用户请忽略此字段)
         //request.setSmsUpExtendCode("90997");
 
         //可选:outId为提供给业务方扩展字段,最终在短信回执消息中将此值带回给调用者
-        request.setOutId("yourOutId");
+        request.setOutId(outId);
 
         //hint 此处可能会抛出异常，注意catch
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
@@ -101,9 +105,17 @@ public class SmsNotify {
     }
 
     public static void main(String[] args) throws ClientException, InterruptedException {
+    	String phone="15011118641";
+    	Map<String,String> map = new HashMap<String,String>();
+    	map.put("name", "王瑛");
+    	map.put("projectLocation", "北京");
+    	map.put("projectDate", "2018-3-29");
+    	map.put("projectName", "投标需求");
+    	 String json=JsonUtil.getJson(map);
 
+    	 System.out.println(json);
         //发短信
-        SendSmsResponse response = sendSms();
+        SendSmsResponse response = sendSms(phone,json,"1111");
         System.out.println("短信接口返回的数据----------------");
         System.out.println("Code=" + response.getCode());
         System.out.println("Message=" + response.getMessage());
