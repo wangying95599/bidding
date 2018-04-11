@@ -1,30 +1,19 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : local
-Source Server Version : 50616
+Source Server         : localhost
+Source Server Version : 50622
 Source Host           : localhost:3306
 Source Database       : experts
 
 Target Server Type    : MYSQL
-Target Server Version : 50616
+Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2018-04-11 09:45:43
+Date: 2018-04-03 22:51:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for sys_sequence
--- ----------------------------
-DROP TABLE IF EXISTS `sys_sequence`;
-CREATE TABLE `sys_sequence` (
-  `NAME` varchar(50) NOT NULL,
-  `CURRENT_VALUE` int(11) NOT NULL DEFAULT '0',
-  `INCREMENT` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`NAME`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for udexpert
@@ -32,7 +21,7 @@ CREATE TABLE `sys_sequence` (
 DROP TABLE IF EXISTS `udexpert`;
 CREATE TABLE `udexpert` (
   `expert_id` int(11) NOT NULL,
-  `no` varchar(255) CHARACTER SET utf32 DEFAULT NULL,
+  `no` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `card` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `phone` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
@@ -41,6 +30,12 @@ CREATE TABLE `udexpert` (
   `record_flag` varchar(2) CHARACTER SET utf8 DEFAULT '01',
   PRIMARY KEY (`expert_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of udexpert
+-- ----------------------------
+INSERT INTO `udexpert` VALUES ('1', '1', '1', '张三1', '111', '电厂1', '开发区', '01');
+INSERT INTO `udexpert` VALUES ('2', '2', '2', '李四2', '222', '电视剧2', '金石滩', '01');
 
 -- ----------------------------
 -- Table structure for udexpert_major
@@ -55,6 +50,10 @@ CREATE TABLE `udexpert_major` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
+-- Records of udexpert_major
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for udmajor
 -- ----------------------------
 DROP TABLE IF EXISTS `udmajor`;
@@ -66,7 +65,13 @@ CREATE TABLE `udmajor` (
   `created_dt` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `record_flag` varchar(2) CHARACTER SET utf8 DEFAULT '01',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of udmajor
+-- ----------------------------
+INSERT INTO `udmajor` VALUES ('1', '0101', 'java', null, null, '01');
+INSERT INTO `udmajor` VALUES ('2', '0102', 'c', null, null, '01');
 
 -- ----------------------------
 -- Table structure for udprojects
@@ -86,7 +91,11 @@ CREATE TABLE `udprojects` (
   `sms_info` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `record_flag` varchar(2) CHARACTER SET utf8 DEFAULT '01',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of udprojects
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for udset
@@ -95,11 +104,17 @@ DROP TABLE IF EXISTS `udset`;
 CREATE TABLE `udset` (
   `id` int(11) NOT NULL,
   `project_id` int(11) DEFAULT NULL,
-  `created_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updated_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `create_time` DATETIME NOT NULL,
+  `update_time` TIMESTAMP,
   `record_flag` varchar(2) CHARACTER SET utf8 DEFAULT '01',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of udset
+-- ----------------------------
+INSERT INTO `udset` VALUES ('3', '123', '2018-04-01 13:35:40', '2018-04-01 13:35:40', '01');
+INSERT INTO `udset` VALUES ('4', '123', '2018-04-01 14:07:33', '2018-04-01 14:07:33', '01');
 
 -- ----------------------------
 -- Table structure for udsetcompany
@@ -112,6 +127,11 @@ CREATE TABLE `udsetcompany` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
+-- Records of udsetcompany
+-- ----------------------------
+INSERT INTO `udsetcompany` VALUES ('123', null, null);
+
+-- ----------------------------
 -- Table structure for udsetexpert
 -- ----------------------------
 DROP TABLE IF EXISTS `udsetexpert`;
@@ -121,6 +141,10 @@ CREATE TABLE `udsetexpert` (
   `created_dt` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`project_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of udsetexpert
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for udsetmajor
@@ -135,6 +159,10 @@ CREATE TABLE `udsetmajor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
+-- Records of udsetmajor
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for udsetregion
 -- ----------------------------
 DROP TABLE IF EXISTS `udsetregion`;
@@ -144,6 +172,10 @@ CREATE TABLE `udsetregion` (
   `created_dt` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`project_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of udsetregion
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for udsetresult
@@ -160,6 +192,10 @@ CREATE TABLE `udsetresult` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
+-- Records of udsetresult
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for udsetsms
 -- ----------------------------
 DROP TABLE IF EXISTS `udsetsms`;
@@ -172,48 +208,5 @@ CREATE TABLE `udsetsms` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Table structure for users
+-- Records of udsetsms
 -- ----------------------------
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-  `id` bigint(64) NOT NULL AUTO_INCREMENT,
-  `login_name` char(32) COLLATE utf8_bin NOT NULL,
-  `password` char(32) COLLATE utf8_bin NOT NULL,
-  `name` char(32) COLLATE utf8_bin NOT NULL,
-  `state` char(2) COLLATE utf8_bin NOT NULL DEFAULT '0',
-  `created_dt` timestamp NULL DEFAULT NULL,
-  `updated_dt` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100113 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Function structure for currval
--- ----------------------------
-DROP FUNCTION IF EXISTS `currval`;
-DELIMITER ;;
-CREATE DEFINER=`root`@`%` FUNCTION `currval`(seq_name VARCHAR(50)) RETURNS int(11)
-BEGIN  
-DECLARE VALUE INTEGER;  
-SET VALUE=0;  
-SELECT current_value INTO VALUE  
-FROM sys_sequence   
-WHERE NAME=seq_name;  
-RETURN VALUE;  
-END
-;;
-DELIMITER ;
-
--- ----------------------------
--- Function structure for nextval
--- ----------------------------
-DROP FUNCTION IF EXISTS `nextval`;
-DELIMITER ;;
-CREATE DEFINER=`root`@`%` FUNCTION `nextval`(seq_name varchar(50)) RETURNS int(11)
-BEGIN  
-UPDATE sys_sequence  
-SET CURRENT_VALUE = CURRENT_VALUE + INCREMENT  
-where name=seq_name;  
-return currval(seq_name);  
-END
-;;
-DELIMITER ;

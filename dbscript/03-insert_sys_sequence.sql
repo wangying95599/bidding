@@ -32,5 +32,5 @@ CREATE TABLE `sys_sequence` (
 INSERT INTO `sys_sequence` VALUES ('expert_id_seq', '0', '1');
 INSERT INTO `sys_sequence` VALUES ('expert_major_id_seq', '0', '1');
 INSERT INTO `sys_sequence` VALUES ('expert_region_id_seq', '0', '1');
-INSERT INTO `sys_sequence` VALUES ('projects_id_seq', '7', '1');
-INSERT INTO `sys_sequence` VALUES ('set_id_seq', '19', '1');
+INSERT INTO `sys_sequence` VALUES ('projects_id_seq', '0', '1');
+INSERT INTO `sys_sequence` VALUES ('set_id_seq', '0', '1');
