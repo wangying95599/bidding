@@ -45,7 +45,9 @@ public class MajorServiceTest extends ExpertsApplicationTests{
                 		Udmajor record = new Udmajor();
                 		record.setMajorCode(miniCode);
                 		record.setMajorName(ExcelUtils.getCellValue(row.getCell(i+1)));
-                		record.setMajorDesc(ExcelUtils.getCellValue(row.getCell(6)));
+                		if(i==len-1) {
+                			record.setMajorDesc(ExcelUtils.getCellValue(row.getCell(6)));
+                		}
                 		mapper.insertSelective(record);
                 	}
                 	
