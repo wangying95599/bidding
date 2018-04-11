@@ -188,3 +188,13 @@ ALTER TABLE `udexpert`
 ADD COLUMN `company`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL AFTER `phone`;
 ALTER TABLE `udexpert`
 add COLUMN `region`  varchar(255) CHARACTER SET utf8 NULL DEFAULT NULL AFTER `company`;
+
+-- ----------------------------
+-- Table structure for udexpert_region
+DROP TABLE IF EXISTS `udexpert_region`;
+CREATE TABLE `udexpert_region` (
+  `expert_id` int(255) DEFAULT NULL,
+  `region` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `created_dt` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `record_flag` varchar(2) CHARACTER SET utf8 DEFAULT '01',
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
