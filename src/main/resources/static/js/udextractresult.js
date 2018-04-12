@@ -67,9 +67,36 @@ var extractResult_col = [
         align: 'center',
         sortable: true,
         formatter:confirmFormatter
+    },
+    {
+        field: 'hconfirm',
+        title: '',
+        align: 'center',
+        formatter: confirm_expert
     }
 ];
-
+function confirm_expert(value, row, index) {
+   
+    var id=row.expertId;
+    var result = [
+        '<button  type="button" class="btn btn-link btn-xs" onclick="f_confirm(' + id +')">人工确认</button>',]
+        .join('');
+    return result;
+}
+function f_confirm(id) {
+    console.log('2 ' + id);
+    
+    $.axx({
+        type:'GET',
+        url:"/extract/confirm/"+id,
+        success:function (json) {
+            var models = json.content;
+            console.log(models);
+            $('#ext_table_extractResult').bootstrapTable("load", models);
+            
+        }
+    });	
+};
 function initExtractResult() {
 
 
