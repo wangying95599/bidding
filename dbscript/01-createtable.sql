@@ -196,5 +196,5 @@ CREATE TABLE `udexpert_region` (
   `expert_id` int(255) DEFAULT NULL,
   `region` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `created_dt` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `record_flag` varchar(2) CHARACTER SET utf8 DEFAULT '01',
+  `record_flag` varchar(2) CHARACTER SET utf8 DEFAULT '01'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
