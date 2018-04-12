@@ -406,10 +406,11 @@
         e.preventDefault();
       }
       this.isVisible = true;
-      this.element.trigger({
-        type: 'show',
-        date: this.date
-      });
+    //https://bbs.csdn.net/topics/392030377
+//      this.element.trigger({
+//        type: 'show',
+//        date: this.date
+//      });
     },
 
     hide: function () {
@@ -432,10 +433,12 @@
         )
         this.setValue();
       this.isVisible = false;
-      this.element.trigger({
-        type: 'hide',
-        date: this.date
-      });
+      //https://bbs.csdn.net/topics/392030377
+//      this.element.trigger({
+//        type: 'hide',
+//        date: this.date
+//      });
+      this.hide();
     },
 
     remove: function () {
