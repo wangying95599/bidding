@@ -354,6 +354,76 @@ public class UdexpertMajorExample {
             addCriterion("created_dt not between", value1, value2, "createdDt");
             return (Criteria) this;
         }
+
+        public Criteria andRecordFlagIsNull() {
+            addCriterion("record_flag is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagIsNotNull() {
+            addCriterion("record_flag is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagEqualTo(String value) {
+            addCriterion("record_flag =", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagNotEqualTo(String value) {
+            addCriterion("record_flag <>", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagGreaterThan(String value) {
+            addCriterion("record_flag >", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagGreaterThanOrEqualTo(String value) {
+            addCriterion("record_flag >=", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagLessThan(String value) {
+            addCriterion("record_flag <", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagLessThanOrEqualTo(String value) {
+            addCriterion("record_flag <=", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagLike(String value) {
+            addCriterion("record_flag like", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagNotLike(String value) {
+            addCriterion("record_flag not like", value, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagIn(List<String> values) {
+            addCriterion("record_flag in", values, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagNotIn(List<String> values) {
+            addCriterion("record_flag not in", values, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagBetween(String value1, String value2) {
+            addCriterion("record_flag between", value1, value2, "recordFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordFlagNotBetween(String value1, String value2) {
+            addCriterion("record_flag not between", value1, value2, "recordFlag");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

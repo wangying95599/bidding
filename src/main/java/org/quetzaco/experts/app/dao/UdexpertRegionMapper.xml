@@ -5,6 +5,7 @@
     <result column="expert_id" jdbcType="INTEGER" property="expertId" />
     <result column="region" jdbcType="VARCHAR" property="region" />
     <result column="created_dt" jdbcType="TIMESTAMP" property="createdDt" />
+    <result column="record_flag" jdbcType="VARCHAR" property="recordFlag" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    expert_id, region, created_dt
+    expert_id, region, created_dt, record_flag
   </sql>
   <select id="selectByExample" parameterType="org.quetzaco.experts.model.UdexpertRegionExample" resultMap="BaseResultMap">
     select
@@ -88,10 +89,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.quetzaco.experts.model.UdexpertRegion">
-    insert into udexpert_region (expert_id, region, created_dt
-      )
-    values (#{expertId,jdbcType=INTEGER}, #{region,jdbcType=VARCHAR}, #{createdDt,jdbcType=TIMESTAMP}
-      )
+    insert into udexpert_region (expert_id, region, created_dt, 
+      record_flag)
+    values (#{expertId,jdbcType=INTEGER}, #{region,jdbcType=VARCHAR}, #{createdDt,jdbcType=TIMESTAMP}, 
+      #{recordFlag,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.quetzaco.experts.model.UdexpertRegion">
     insert into udexpert_region
@@ -105,6 +106,9 @@
       <if test="createdDt != null">
         created_dt,
       </if>
+      <if test="recordFlag != null">
+        record_flag,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="expertId != null">
@@ -115,6 +119,9 @@
       </if>
       <if test="createdDt != null">
         #{createdDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordFlag != null">
+        #{recordFlag,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -136,6 +143,9 @@
       <if test="record.createdDt != null">
         created_dt = #{record.createdDt,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.recordFlag != null">
+        record_flag = #{record.recordFlag,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -145,7 +155,8 @@
     update udexpert_region
     set expert_id = #{record.expertId,jdbcType=INTEGER},
       region = #{record.region,jdbcType=VARCHAR},
-      created_dt = #{record.createdDt,jdbcType=TIMESTAMP}
+      created_dt = #{record.createdDt,jdbcType=TIMESTAMP},
+      record_flag = #{record.recordFlag,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.quetzaco.experts.app.biz.ExpertService;
+import org.quetzaco.experts.enums.RecordFlag;
 import org.quetzaco.experts.model.Udexpert;
+import org.quetzaco.experts.model.UdexpertExample;
 import org.quetzaco.experts.model.User;
 import org.quetzaco.experts.model.api.APIEntity;
 import org.quetzaco.experts.util.config.ExpertsProperties;
@@ -66,12 +68,14 @@ public class ExpertController extends BaseRestContoller {
 
 	@RequestMapping(value = "expert/all", method = RequestMethod.GET)
 	public HttpEntity<APIEntity> getAll(@SessionAttribute(WebSecurityConfig.SESSION_KEY) User user) {
-		List<Udexpert> all = expertService.selectByExample(null);
+		Udexpert example = new Udexpert();
+		example.setRecordFlag(RecordFlag.CREATE.getValue());
+		List<Udexpert> all = expertService.selectByExample(example);
 		return buildEntity(APIEntity.create(all), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "expert/{id}", method = RequestMethod.GET)
-	public HttpEntity<APIEntity> getProjectById(@SessionAttribute(WebSecurityConfig.SESSION_KEY) User user,
+	public HttpEntity<APIEntity> getExpertById(@SessionAttribute(WebSecurityConfig.SESSION_KEY) User user,
 			@RequestParam Integer id) {
 		Udexpert expert = expertService.getExpert(id);
 		return buildEntity(APIEntity.create(expert), HttpStatus.OK);
@@ -85,7 +89,7 @@ public class ExpertController extends BaseRestContoller {
 	}
 
 	@RequestMapping(value = "expert", method = RequestMethod.DELETE)
-	public HttpEntity<APIEntity> deleteProjects(@SessionAttribute(WebSecurityConfig.SESSION_KEY) User user,
+	public HttpEntity<APIEntity> deleteExperts(@SessionAttribute(WebSecurityConfig.SESSION_KEY) User user,
 			@RequestBody List<Integer> ids) {
 		for (Integer id : ids) {
 			expertService.deleteExpert(id);

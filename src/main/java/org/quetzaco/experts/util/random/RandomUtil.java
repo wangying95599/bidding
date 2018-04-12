@@ -26,4 +26,21 @@ public class RandomUtil {
         return randomValue;
     }  
 
+	
+	public static String getRandomValue_DL() {
+		
+        //用字符数组的方式随机  
+        String randomValue = "DL";  
+        String model_num = "1234567890";  
+        char[] m_num = model_num.toCharArray();  
+   
+        for (int j=0;j<8 ;j++ )  
+        {  
+            char c = m_num[(int)(Math.random()*10)];  
+            randomValue = randomValue + c;  
+        }  
+          
+        System.out.println("2                      " +randomValue);  
+        return randomValue;
+    }  
 }

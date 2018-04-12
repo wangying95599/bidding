@@ -156,7 +156,7 @@ CREATE TABLE `udexpert` (
   `name` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for udexpert_major
@@ -169,7 +169,7 @@ CREATE TABLE `udexpert_major` (
   `major_code` varchar(255) DEFAULT NULL,
   `created_dt` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for udmajor
@@ -182,9 +182,19 @@ CREATE TABLE `udmajor` (
   `major_desc` varchar(255) DEFAULT NULL,
   `created_dt` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `udexpert`
 ADD COLUMN `company`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL AFTER `phone`;
 ALTER TABLE `udexpert`
 add COLUMN `region`  varchar(255) CHARACTER SET utf8 NULL DEFAULT NULL AFTER `company`;
+
+-- ----------------------------
+-- Table structure for udexpert_region
+DROP TABLE IF EXISTS `udexpert_region`;
+CREATE TABLE `udexpert_region` (
+  `expert_id` int(255) DEFAULT NULL,
+  `region` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `created_dt` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `record_flag` varchar(2) CHARACTER SET utf8 DEFAULT '01',
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

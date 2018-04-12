@@ -138,7 +138,8 @@ function pauseVoice(){
     });	
 }
 function printResult(){
-	
+	projectId=getProjectId();
+	window.open('print.html?projectId='+projectId, '_blank');
 }
 function loadVoiceData() {
 	projectId=getProjectId();

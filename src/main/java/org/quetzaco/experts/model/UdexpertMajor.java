@@ -11,6 +11,8 @@ public class UdexpertMajor {
 
     private Date createdDt;
 
+    private String recordFlag;
+
     public Integer getId() {
         return id;
     }
@@ -41,5 +43,13 @@ public class UdexpertMajor {
 
     public void setCreatedDt(Date createdDt) {
         this.createdDt = createdDt;
+    }
+
+    public String getRecordFlag() {
+        return recordFlag;
+    }
+
+    public void setRecordFlag(String recordFlag) {
+        this.recordFlag = recordFlag == null ? null : recordFlag.trim();
     }
 }
