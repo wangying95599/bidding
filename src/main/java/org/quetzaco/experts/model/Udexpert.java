@@ -110,7 +110,7 @@ public class Udexpert {
 	@Override
 	public String toString() {
 		
-		return "Expert@id:"+expertId+", score:"+score;
+		return "Expert@id:"+expertId+", score:"+score+",marjorList:"+getMajorList();
 	}
 
     public List<UdexpertMajor> getMajorList() {

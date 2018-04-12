@@ -52,4 +52,11 @@ public class Udsetmajor {
     public void setCreatedDt(Date createdDt) {
         this.createdDt = createdDt;
     }
+	@Override
+    public boolean equals(Object obj) {
+    	if(majorCode == null)
+    		return super.equals(obj);
+    	else
+    		return majorCode.equals(((Udsetmajor)obj).getMajorCode());
+    }
 }

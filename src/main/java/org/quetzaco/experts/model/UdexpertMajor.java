@@ -52,4 +52,9 @@ public class UdexpertMajor {
     public void setRecordFlag(String recordFlag) {
         this.recordFlag = recordFlag == null ? null : recordFlag.trim();
     }
+	@Override
+	public String toString() {
+		
+		return "@majorCode:"+getMajorCode();
+	}
 }

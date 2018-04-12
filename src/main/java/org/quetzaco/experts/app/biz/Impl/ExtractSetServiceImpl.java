@@ -1,5 +1,6 @@
 package org.quetzaco.experts.app.biz.Impl;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -57,6 +58,7 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 		setExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
 		List list = setMapper.selectByExample(setExample);
 		if(list!=null && list.size()==0) {
+			set.setCreatedTime(new Date());
 			setMapper.insert(set);
 		}
 		

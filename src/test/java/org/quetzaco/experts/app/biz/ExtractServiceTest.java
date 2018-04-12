@@ -14,7 +14,7 @@ public class ExtractServiceTest extends ExpertsApplicationTests{
 	@Rollback(false)
 	public void set() {
 		Udset set = new Udset();
-		set.setProjectId(123);
+		set.setProjectId(443);
 		
 		
 		service.extract(set);
@@ -43,7 +43,7 @@ public class ExtractServiceTest extends ExpertsApplicationTests{
           
         for (int j=0;j<6 ;j++ )  
         {  
-            char c = m[(int)(Math.random()*52)];  
+            char c = m[(int)(Math.random()*26)];  
             randomcode2 = randomcode2 + c;  
         }  
           

@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.quetzaco.experts.app.biz.ExpertService;
 import org.quetzaco.experts.app.biz.ExtractService;
 import org.quetzaco.experts.app.biz.ProjectService;
 import org.quetzaco.experts.app.dao.UdexpertMajorMapper;
@@ -20,6 +21,7 @@ import org.quetzaco.experts.app.dao.UdsetmajorMapper;
 import org.quetzaco.experts.app.dao.UdsetresultMapper;
 import org.quetzaco.experts.app.dao.UdsetwhiteMapper;
 import org.quetzaco.experts.model.Udexpert;
+import org.quetzaco.experts.model.UdexpertMajor;
 import org.quetzaco.experts.model.Udprojects;
 import org.quetzaco.experts.model.Udset;
 import org.quetzaco.experts.model.Udsetmajor;
@@ -56,6 +58,9 @@ public class ExtractServiceImpl implements ExtractService {
 	@Autowired
 	ProjectService projectService;
 	
+	@Autowired
+	ExpertService expertService;
+	
 	public List<Udsetresult> getExtractResult(Udset set){
 		UdsetresultExample example = new UdsetresultExample();
 		example.createCriteria().andProjectIdEqualTo(set.getProjectId());
@@ -68,12 +73,68 @@ public class ExtractServiceImpl implements ExtractService {
 			resultMapper.insertSelective(result);
 		}
 	}
-
+	
+	
+	//已确认得名单
+	private Set<Integer> getBlackList(Udset set){
+		Set<Integer> hashset = new HashSet<Integer>();
+		
+		return hashset;
+	}
+	//已确认得名单
+	private Set<Integer> getBlackListAgain(Udset set){
+		Set<Integer> hashset = new HashSet<Integer>();
+		List<Udsetresult> resultList = getExtractResult(set);
+		for(Udsetresult result:resultList) {
+			if(!"Y".equalsIgnoreCase(result.getConfirmStatus())) {
+				hashset.add(result.getExpertId());
+			}
+		}
+		return hashset;
+	}
+	
+	private List<Udsetmajor> getSetmajorList(Udset set){
+		/**
+		 * 查询 设置要求的专业和对应的人数
+		 */
+		List<Udsetmajor> setmajorList =  setmajorMapper.selectById(set.getProjectId());
+		return setmajorList;
+	}
+	
+	private List<Udsetmajor> getSetmajorListAgain(Udset set){
+		/**
+		 * 查询 设置要求的专业和对应的人数
+		 */
+		List<Udsetmajor> setmajorList =  setmajorMapper.selectById(set.getProjectId());
+		
+		List<Udsetresult> resultList = getExtractResult(set);
+		for(Udsetresult result:resultList) {
+			if("Y".equalsIgnoreCase(result.getConfirmStatus())) {
+				for(Udsetmajor major:setmajorList) {
+					if(major.getMajorCode().equals(result.getMajor())) {
+						major.setMajorNumber(major.getMajorNumber()-1);
+					}
+				}
+			}
+		}
+		return setmajorList;
+	}
 	/**
 	 * 
 	 */
 	@Override
 	public List<Udsetresult> extract(Udset set) {
+		return extractService(set, getSetmajorList(set),getBlackList(set));
+	}
+	
+	public List<Udsetresult> extractAgain(Udset set) {
+		return extractService(set, getSetmajorListAgain(set),getBlackListAgain(set));
+	}
+
+	/**
+	 * 
+	 */
+	public List<Udsetresult> extractService(Udset set,List<Udsetmajor> setmajorList, Set<Integer> blackList) {
 		/**
 		 * 专业 和 抽取专家数量
 		 */
@@ -110,7 +171,7 @@ public class ExtractServiceImpl implements ExtractService {
 		/**
 		 * 查询 设置要求的专业和对应的人数
 		 */
-		List<Udsetmajor> setmajorList =  setmajorMapper.selectById(set.getProjectId());
+		System.out.println("setmajorList          "+setmajorList);
 		
 		/**
 		 * 查询 设置要求的专业和对应的人数
@@ -118,6 +179,17 @@ public class ExtractServiceImpl implements ExtractService {
 		UdsetwhiteExample whiteExample = new UdsetwhiteExample ();
 		whiteExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
 		List<Udsetwhite> whiteList =  whiteMapper.selectByExample(whiteExample);
+		List<Udexpert> whiteList2 =  new ArrayList<Udexpert>();
+		for(Udsetwhite white:whiteList) {
+			Udexpert expert = new Udexpert();
+			expert.setExpertId(white.getExpertId());
+			List<Udexpert> list = expertService.selectByExample(expert);
+			if(list!=null && list.size()==1) {
+				expert = list.get(0);
+			}
+			whiteList2.add(expert);
+		}
+		
 		
 		
 		for(Udsetmajor setmajor:setmajorList) {
@@ -128,7 +200,6 @@ public class ExtractServiceImpl implements ExtractService {
 			
 			sortMap.put(setmajor.getMajorCode(),(int)(expertList.size() - setmajor.getMajorNumber()));
 			mpMap.put(setmajor.getMajorCode(), expertList);
-			
 			
 		}
 		
@@ -150,10 +221,9 @@ public class ExtractServiceImpl implements ExtractService {
             ArrayList<Udexpert> expertList = (ArrayList<Udexpert>) mpMap.get(mapping.getKey());
             
             scoreExpertListByRule(expertList, expertScoreMap, sortMap, mpMap);
-            
-            //System.out.println(expertList);
+          
             for(Udexpert expert:expertList) {
-            	if(hashset.contains(expert.getExpertId())) {
+            	if(hashset.contains(expert.getExpertId()) || blackList.contains(expert.getExpertId())) {
             		continue;
             	}
             	List<Udexpert> list = resultMap.get(mapping.getKey());
@@ -163,7 +233,7 @@ public class ExtractServiceImpl implements ExtractService {
             	}
             	list.add(expert);
             	hashset.add(expert.getExpertId());
-            	expertList.size();
+            	
             	if(list.size() == setmajorMap.get(mapping.getKey())) {
             		break;
             	}
@@ -177,14 +247,31 @@ public class ExtractServiceImpl implements ExtractService {
             System.out.println(mapping.getKey() + ":" + mapping.getValue());  
         }
         System.out.println(" 随机置换：                        ");
-        for(Udsetwhite white:whiteList) {
-        	if(hashset.contains(white)) {
+        for(Udexpert white:whiteList2) {
+        	if(hashset.contains(white.getExpertId()) || blackList.contains(white.getExpertId())) {
         		continue;
         	}
         	//哪个专家靠后，替换。sortMap key 倒序循环，符合，就去替换。
-        	//TODO 查询的白名单有所有的专业，然后又包含关系就可以替换。
-        	//TODO 计算每个人参加了几次，倒序。
-        	//
+        	//查询的白名单有所有的专业，然后又包含关系就可以替换。
+        	//计算每个人参加了几次，倒序。
+        	
+    		a:for(UdexpertMajor emajor: white.getMajorList()) {
+    			b:for (Map.Entry<String, List<Udexpert>> mapping : resultMap.entrySet()) {  
+    				if(emajor.getMajorCode().startsWith(mapping.getKey())) {
+    					c:for(Udexpert e:mapping.getValue()){
+    						if(!whiteList2.contains(e)) {
+    							System.out.println(e.getExpertId() +" replace by " + white.getExpertId());  
+    							e.setExpertId(white.getExpertId());
+    							break a;
+    						}
+    					}
+    					
+    				}
+    				
+    	            
+    			}
+    		}
+            
         }
         /**
          * 循环列表，不包含，就替换一个。<专家，专业>，进去的出来怎么办，一个属性不能替换。
@@ -194,7 +281,6 @@ public class ExtractServiceImpl implements ExtractService {
             System.out.println(mapping.getKey() + ":" + mapping.getValue());  
             for(Udexpert expert:mapping.getValue()) {
 	            Udsetresult rs = new Udsetresult();
-	            rs.setProjectId(set.getProjectId());
 	            rs.setPurchaseProject(project.getPurchaseProject());
 	            rs.setCreatedDt(new Date());
 	            rs.setExpertId(expert.getExpertId());
@@ -207,6 +293,8 @@ public class ExtractServiceImpl implements ExtractService {
       
         return resultList;
 	}
+	
+
 	
 	private void scoreExpertListByRule(List<Udexpert> expertList, Map<Integer, Integer> expertScoreMap,
 			HashMap<String, Integer> sortMap, HashMap<String, List<Udexpert>> mpMap) {
@@ -262,6 +350,8 @@ public class ExtractServiceImpl implements ExtractService {
 //            System.out.println(mapping.getKey() + ":" + mapping.getValue());  
 //        }  
 	}
+	
+
 	
 
 	public void extract1(Udset set) {

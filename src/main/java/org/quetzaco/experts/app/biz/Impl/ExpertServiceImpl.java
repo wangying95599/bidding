@@ -115,47 +115,54 @@ public class ExpertServiceImpl implements ExpertService {
 	}
 
 	public List<Udexpert> selectByExample(Udexpert expert) {
-		List<Udexpert> expertList;
-		if (null != expert) {
+		List<Udexpert> expertList=null;
+		try {
+			if (null != expert) {
 
-			UdexpertExample example = new UdexpertExample();
-			example.setDistinct(true);
+				UdexpertExample example = new UdexpertExample();
+				example.setDistinct(true);
 
-			Criteria criteria = example.createCriteria();
+				Criteria criteria = example.createCriteria();
 
-			if (expert.getName() != null)
-				criteria.andNameLike("%" + expert.getName() + "%");
+				if (expert.getName() != null)
+					criteria.andNameLike("%" + expert.getName() + "%");
 
-			if (expert.getPhone() != null)
-				criteria.andPhoneLike("%" + expert.getPhone() + "%");
+				if (expert.getPhone() != null)
+					criteria.andPhoneLike("%" + expert.getPhone() + "%");
 
-			if (expert.getCompany() != null)
-				criteria.andCompanyLike("%" + expert.getCompany() + "%");
+				if (expert.getCompany() != null)
+					criteria.andCompanyLike("%" + expert.getCompany() + "%");
 
-			if(expert.getRecordFlag() != null){
-				criteria.andRecordFlagEqualTo(expert.getRecordFlag());
+				if(expert.getRecordFlag() != null){
+					criteria.andRecordFlagEqualTo(expert.getRecordFlag());
+				}
+				if(expert.getExpertId() != null){
+					criteria.andExpertIdEqualTo(expert.getExpertId());
+				}
+				expertList = expertMapper.selectByExample(example);
+
+			} else {
+				expertList = expertMapper.selectByExample(null);
 			}
-			expertList = expertMapper.selectByExample(example);
+			
+			//select related major and region
+			for (Udexpert obj : expertList) {
+				Integer expertId = obj.getExpertId();
 
-		} else {
-			expertList = expertMapper.selectByExample(null);
-		}
-		
-		//select related major and region
-		for (Udexpert obj : expertList) {
-			Integer expertId = obj.getExpertId();
+				UdexpertMajorExample majorCriteria = new UdexpertMajorExample();
+				majorCriteria.createCriteria().andExpertIdEqualTo(expertId);
+				List<UdexpertMajor> majorList = majorMapper
+						.selectByExample(majorCriteria);
+				obj.setMajorList(majorList);
 
-			UdexpertMajorExample majorCriteria = new UdexpertMajorExample();
-			majorCriteria.createCriteria().andExpertIdEqualTo(expertId);
-			List<UdexpertMajor> majorList = majorMapper
-					.selectByExample(majorCriteria);
-			obj.setMajorList(majorList);
-
-			UdexpertRegionExample regionExample = new UdexpertRegionExample();
-			regionExample.createCriteria().andExpertIdEqualTo(expertId);
-			List<UdexpertRegion> regionList = regionMapper
-					.selectByExample(regionExample);
-			obj.setRegionList(regionList);
+				UdexpertRegionExample regionExample = new UdexpertRegionExample();
+				regionExample.createCriteria().andExpertIdEqualTo(expertId);
+				List<UdexpertRegion> regionList = regionMapper
+						.selectByExample(regionExample);
+				obj.setRegionList(regionList);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return expertList;
 	}
