@@ -285,7 +285,8 @@ public class ExtractServiceImpl implements ExtractService {
 	            rs.setCreatedDt(new Date());
 	            rs.setExpertId(expert.getExpertId());
 	            rs.setRandomCode(RandomUtil.getRandomValue_DL());
-	            rs.setMajor(majorCodeNameMap.get(mapping.getKey()));
+	            rs.setMajor(mapping.getKey());
+	            rs.setMajorName(majorCodeNameMap.get(mapping.getKey()));
 	            resultList.add(rs);
             }
         }

@@ -51,7 +51,7 @@ var ext_col = [
     },
     {
         title: '评审专业',
-        field: 'major',
+        field: 'majorName',
         align: 'center',
         sortable: true
     },
