@@ -8,13 +8,9 @@ function set_remove(tableName, id, idKey) {
     //console.log('set_remove_cor');
     console.log('1 ' + tableName);
     console.log('2 ' + id);
+    console.log('3 ' + idKey);
 
-    var idStr = 'id';
-    if (idKey) {
-        idStr = idKey;
-    }
-    console.log('3 ' + idStr);
-    $("#" + tableName).bootstrapTable('remove', {field: idStr, values: [id]});
+    $("#" + tableName).bootstrapTable('remove', {field: idKey, values: [id]});
 
 };
 
@@ -26,7 +22,7 @@ function set_add(id) {
     row = $("#set_table_major_from").bootstrapTable('getRowByUniqueId', id);
     console.log(row);
     if (row) {
-        $("#set_table_major_from").bootstrapTable('remove', {field: 'id', values: [id]});
+        $("#set_table_major_from").bootstrapTable('remove', {field: 'majorCode', values: [id]});
         $("#set_table_major_to").bootstrapTable('append', row);
     }
 };
@@ -271,7 +267,7 @@ function initExpertTable(fromTable, fromTableColumns, fromTableToolbar, toTable,
     const fromOptions = {
         pagination: false,
         clickToSelect: true,
-        uniqueId: 'id',//唯一的标识
+        uniqueId: 'majorCode',//唯一的标识
         searchAlign:'left',
         columns: fromTableColumns ? fromTableColumns : set_col_major_from,
     };
@@ -282,7 +278,7 @@ function initExpertTable(fromTable, fromTableColumns, fromTableToolbar, toTable,
     const toOptions = {
         pagination: false,
         clickToSelect: true,
-        uniqueId: 'id',//唯一的标识
+        uniqueId: 'majorCode',//唯一的标识
         columns: toTableColumns ? toTableColumns : set_col_major_to,
         onEditableSave: function (field, row, oldValue, $el) {
         }
@@ -414,7 +410,14 @@ $(document).ready(function () {
 });
 
 function set_delete_cor(value, row, index) {
-    return set_delete_common('set_table_cor', row.id);
+   
+    var tableName = 'set_table_cor';
+    var id = row.company;
+    var result = [
+        '<button  type="button" class="btn btn-link btn-xs" onclick="set_remove(\'' + tableName + '\',\'' + id + '\',\'company\')">删除</button>',]
+        .join('');
+    //console.log(result);
+    return result;
 }
 
 function set_delete_person(value, row, index) {
@@ -429,16 +432,16 @@ function set_delete_person(value, row, index) {
 }
 
 function set_delete_major_from(value, row, index) {
-    return set_delete_common('set_table_major_from', row.id) + set_add_common(row.id);
+    return set_delete_major('set_table_major_from', row.majorCode) + set_add_common(row.majorCode);
 }
 
 function set_delete_major_to(value, row, index) {
-    return set_delete_common('set_table_major_to', row.id);
+    return set_delete_major('set_table_major_to', row.majorCode);
 }
 
-function set_delete_common(tableName, id) {
+function set_delete_major(tableName, id) {
     var result = [
-        '<button  type="button" class="btn btn-link btn-xs" onclick="set_remove(\'' + tableName + '\',' + id + ')">删除</button>',]
+        '<button  type="button" class="btn btn-link btn-xs" onclick="set_remove(\'' + tableName + '\',\'' + id + '\',\'majorCode\')">删除</button>',]
         .join('');
     console.log(result);
     return result;
@@ -448,7 +451,7 @@ function set_add_common(id) {
     console.log(id);
 
     var result = [
-        '<button  type="button" class="btn btn-link btn-xs" onclick="set_add(' + id + ')">选择</button>',]
+        '<button  type="button" class="btn btn-link btn-xs" onclick="set_add(\'' + id + '\')">选择</button>',]
         .join('');
     console.log(result);
     return result;

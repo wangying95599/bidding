@@ -60,58 +60,62 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 	@Override
 	public void extractSet(Udset set) {
 		
-		UdsetExample setExample = new UdsetExample();
-		setExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
-		List list = setMapper.selectByExample(setExample);
-		if(list!=null && list.size()>0) {
-			set.setCreatedTime(new Date());
-			setMapper.insert(set);
+		try {
+			UdsetExample setExample = new UdsetExample();
+			setExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
+			List list = setMapper.selectByExample(setExample);
+			if(list!=null && list.size()==0) {
+				set.setCreatedTime(new Date());
+				setMapper.insert(set);
+				
+				Udprojects project =new Udprojects();
+				project.setId(set.getProjectId());
+				project.setProjectStatus(ProjectStatus.SET.getValue());
+				projectMapper.updateByPrimaryKeySelective(project);
+			}
 			
-			Udprojects project =new Udprojects();
-			project.setId(set.getProjectId());
-			project.setProjectStatus(ProjectStatus.SET.getValue());
-			projectMapper.updateByPrimaryKeySelective(project);
-		}
-		
-		UdsetcompanyExample companyexample = new UdsetcompanyExample();
-		companyexample.createCriteria().andProjectIdEqualTo(set.getProjectId());
-		companyMapper.deleteByExample(companyexample);
-		
-		UdsetmajorExample setmajorExample = new UdsetmajorExample();
-		setmajorExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
-		setmajorMapper.deleteByExample(setmajorExample);
-		
-		UdsetregionExample regionExample = new UdsetregionExample();
-		regionExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
-		regionMapper.deleteByExample(regionExample);
-		
-		UdsetexpertExample expertExample = new UdsetexpertExample();
-		expertExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
-		expertMapper.deleteByExample(expertExample);
-		
-		if(set.getCompanyList()!= null) {
-			for(Udsetcompany company:set.getCompanyList()) {
-				company.setProjectId(set.getProjectId());
-				companyMapper.insertSelective(company);
+			UdsetcompanyExample companyexample = new UdsetcompanyExample();
+			companyexample.createCriteria().andProjectIdEqualTo(set.getProjectId());
+			companyMapper.deleteByExample(companyexample);
+			
+			UdsetmajorExample setmajorExample = new UdsetmajorExample();
+			setmajorExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
+			setmajorMapper.deleteByExample(setmajorExample);
+			
+			UdsetregionExample regionExample = new UdsetregionExample();
+			regionExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
+			regionMapper.deleteByExample(regionExample);
+			
+			UdsetexpertExample expertExample = new UdsetexpertExample();
+			expertExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
+			expertMapper.deleteByExample(expertExample);
+			
+			if(set.getCompanyList()!= null) {
+				for(Udsetcompany company:set.getCompanyList()) {
+					company.setProjectId(set.getProjectId());
+					companyMapper.insertSelective(company);
+				}
 			}
-		}
-		if(set.getMajorList() !=null) {
-			for(Udsetmajor major:set.getMajorList()) {
-				major.setProjectId(set.getProjectId());
-				setmajorMapper.insert(major);
+			if(set.getMajorList() !=null) {
+				for(Udsetmajor major:set.getMajorList()) {
+					major.setProjectId(set.getProjectId());
+					setmajorMapper.insert(major);
+				}
 			}
-		}
-		if(set.getRegionList() !=null) {
-			for(Udsetregion region:set.getRegionList()) {
-				region.setProjectId(set.getProjectId());
-				regionMapper.insert(region);
+			if(set.getRegionList() !=null) {
+				for(Udsetregion region:set.getRegionList()) {
+					region.setProjectId(set.getProjectId());
+					regionMapper.insert(region);
+				}
 			}
-		}
-		if(set.getExpertList() !=null) {
-			for(Udsetexpert expert:set.getExpertList()) {
-				expert.setProjectId(set.getProjectId());
-				expertMapper.insert(expert);
+			if(set.getExpertList() !=null) {
+				for(Udsetexpert expert:set.getExpertList()) {
+					expert.setProjectId(set.getProjectId());
+					expertMapper.insert(expert);
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}

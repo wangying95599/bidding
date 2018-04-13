@@ -312,8 +312,8 @@
       <if test="recordFlag != null">
         record_flag = #{recordFlag,jdbcType=VARCHAR},
       </if>
-      <if test="record.projectStatus != null">
-        project_status = #{record.projectStatus,jdbcType=VARCHAR},
+      <if test="projectStatus != null">
+        project_status = #{projectStatus,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
