@@ -1,5 +1,6 @@
 package org.quetzaco.experts.app.biz;
 
+import org.quetzaco.experts.model.Udsetresult;
 import org.quetzaco.experts.model.Udvoicelog;
 
 public interface VoiceService {
@@ -8,4 +9,6 @@ public interface VoiceService {
 	public void getVoice(Integer id) ;
 	
 	public void insertVoicelog(Udvoicelog log);
+	
+	public void confirm(Udsetresult result, boolean isAgree);
 }

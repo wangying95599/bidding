@@ -20,10 +20,12 @@ $(function () {
                     data.success(d);
                 } catch (e) {
                 	console.log('some error here:'+e);
+                	console.log(e);
                 }
             },
             error: function (e) {
-                console.log('some error here:'+e);
+                console.log('some error here:'+data.url);
+                console.log(e);
 //                try {
 //                    data.error(e);
 //                } catch (e) {

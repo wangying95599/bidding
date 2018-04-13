@@ -17,9 +17,11 @@ import org.quetzaco.experts.app.biz.ProjectService;
 import org.quetzaco.experts.app.dao.UdexpertMajorMapper;
 import org.quetzaco.experts.app.dao.UdexpertMapper;
 import org.quetzaco.experts.app.dao.UdmajorMapper;
+import org.quetzaco.experts.app.dao.UdprojectsMapper;
 import org.quetzaco.experts.app.dao.UdsetmajorMapper;
 import org.quetzaco.experts.app.dao.UdsetresultMapper;
 import org.quetzaco.experts.app.dao.UdsetwhiteMapper;
+import org.quetzaco.experts.enums.ProjectStatus;
 import org.quetzaco.experts.model.Udexpert;
 import org.quetzaco.experts.model.UdexpertMajor;
 import org.quetzaco.experts.model.Udprojects;
@@ -61,6 +63,9 @@ public class ExtractServiceImpl implements ExtractService {
 	@Autowired
 	ExpertService expertService;
 	
+	@Autowired
+	UdprojectsMapper projectMapper;
+	
 	public List<Udsetresult> getExtractResult(Udset set){
 		UdsetresultExample example = new UdsetresultExample();
 		example.createCriteria().andProjectIdEqualTo(set.getProjectId());
@@ -69,9 +74,22 @@ public class ExtractServiceImpl implements ExtractService {
 
 	
 	public void insertExtract(List<Udsetresult> list) {
+		if(list !=null && list.size() >0) {
+			UdsetresultExample example = new UdsetresultExample ();
+			example.createCriteria().andProjectIdEqualTo(list.get(0).getProjectId());
+			List resultList = resultMapper.selectByExample(example);
+			if(resultList==null ||resultList.size()==0) {
+				Udprojects project =new Udprojects();
+				project.setId(list.get(0).getProjectId());
+				project.setProjectStatus(ProjectStatus.EXTRACTSET.getValue());
+				projectMapper.updateByPrimaryKeySelective(project);
+			}
+		}
+		
 		for(Udsetresult result:list) {
 			resultMapper.insertSelective(result);
 		}
+		
 	}
 	
 	

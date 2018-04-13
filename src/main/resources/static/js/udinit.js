@@ -64,7 +64,7 @@ function getSessionUser() {
             username = contextUser.name;
             loginName = contextUser.loginName;
             $('#loginName').html(username)
-            loadingUser(usrId);
+            //loadingUser(usrId);
 
 
         }

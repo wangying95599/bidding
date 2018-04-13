@@ -27,8 +27,18 @@ public class Udprojects implements Serializable{
     private String smsInfo;
 
     private String recordFlag;
+    
+    private String projectStatus;
 
-    public Integer getId() {
+    public String getProjectStatus() {
+		return projectStatus;
+	}
+
+	public void setProjectStatus(String projectStatus) {
+		this.projectStatus = projectStatus;
+	}
+
+	public Integer getId() {
         return id;
     }
 

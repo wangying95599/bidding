@@ -80,13 +80,27 @@ var project_list_col = [
         sortable: true
     },
     {
-        title: '专家选取状态',
-        field: 'expertState',
+        title: '项目状态',
+        field: 'projectStatus',
         align: 'center',
-        sortable: true
-    },
+        sortable: true,
+        formatter:projectStatusFormatter
+    }
 ];
-
+function projectStatusFormatter(data) {
+    if (data == "" || data == null || data == " ") {
+        return '未设置';
+    }else if (data == "SET") {
+        return '已设置';
+    }else if (data == "EXTRACTSET") {
+        return '已抽取';
+    }else if (data == "CONFIRM") {
+        return '部分确认';
+    }else if (data == "CONFIRMED") {
+        return '已确认';
+    }
+    return "";
+}
 function toggleProjectRelatedButtons() {
     const selectedNum = $("#project_list_table").bootstrapTable('getSelections').length;
     if (selectedNum === 1) {

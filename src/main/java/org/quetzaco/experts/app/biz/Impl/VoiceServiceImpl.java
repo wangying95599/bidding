@@ -10,6 +10,7 @@ import org.quetzaco.experts.app.biz.VoiceService;
 import org.quetzaco.experts.app.dao.UdprojectsMapper;
 import org.quetzaco.experts.app.dao.UdsetresultMapper;
 import org.quetzaco.experts.app.dao.UdvoicelogMapper;
+import org.quetzaco.experts.enums.ProjectStatus;
 import org.quetzaco.experts.model.Udprojects;
 import org.quetzaco.experts.model.Udsetresult;
 import org.quetzaco.experts.model.UdsetresultExample;
@@ -53,7 +54,7 @@ public class VoiceServiceImpl implements VoiceService {
 	    	String json=JsonUtil.getJson(map);
 	    	 
 			try {
-				VoiceNotify.ivrCall(result.getPhone(), json, projectId+"-"+result.getExpertId());
+				VoiceNotify.ivrCall(result.getPhone(), json, projectId+"==="+result.getExpertId());
 			} catch (ClientException e) {
 				e.printStackTrace();
 			}
@@ -73,25 +74,49 @@ public class VoiceServiceImpl implements VoiceService {
 	public void insertVoicelog(Udvoicelog log) {
 		try {
 			String outId=log.getOutId();
-			String[] strs = outId.split("^");
+			String[] strs = outId.split("===");
 			log.setProjectId(Integer.parseInt(strs[0]));
 			log.setExpertId(Integer.parseInt(strs[1]));
 			log.setRandomCode(strs[2]);
+			
+			voicelogMapper.insertSelective(log);
+			
+			Udsetresult result = new Udsetresult ();
+			result.setProjectId(log.getProjectId());
+			result.setExpertId(log.getExpertId());
+			
+			//不接，接了不按，1,2，占线。
+			if("1".equals(log.getDtmf())) {
+				confirm(result, true);
+			}else if("2".equals(log.getDtmf())) {
+				confirm(result, false);
+			}
+			
+			//TODO 状态为已通知
+			Udprojects project =new Udprojects();
+			project.setId(log.getProjectId());
+			project.setProjectStatus(ProjectStatus.CONFIRM.getValue());
+			projectMapper.updateByPrimaryKeySelective(project);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		voicelogMapper.insertSelective(log);
-		
-		
-		//不接，接了不按，1,2，占线。
-		if("1".equals(log.getDtmf())) {
-			
-		}else if("2".equals(log.getDtmf())) {
-			
-		}
-		
-//		resultMapper.updateByExampleSelective(record, example)
+
 	}
+	
+	
+	public void confirm(Udsetresult result, boolean isAgree) {
+		Udsetresult record = new Udsetresult();
+		if(isAgree) {
+			record.setConfirmStatus("Y");
+		}else {
+			record.setConfirmStatus("N");
+		}
+		UdsetresultExample example = new UdsetresultExample ();
+		example.createCriteria().andExpertIdEqualTo(result.getExpertId());
+		example.createCriteria().andProjectIdEqualTo(result.getProjectId());
+		resultMapper.updateByExampleSelective(result, example);
+	}
+	
 	/**
 	 * 现在的表需要加字段， udsetresult加上专业，通知了几次。 udset加上状态。所有的状态就用udset吧，为空就是未设置。已设置、已抽取、部分确认、已确认
 	 * 下一个问题，历史的记录怎么处理呢。这个今天不考虑了。

@@ -14,6 +14,7 @@
     <result column="purchase_type" jdbcType="VARCHAR" property="purchaseType" />
     <result column="sms_info" jdbcType="VARCHAR" property="smsInfo" />
     <result column="record_flag" jdbcType="VARCHAR" property="recordFlag" />
+    <result column="project_status" jdbcType="VARCHAR" property="projectStatus" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, 
-    bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag
+    bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag,project_status
   </sql>
   <select id="selectByExample" parameterType="org.quetzaco.experts.model.UdprojectsExample" resultMap="BaseResultMap">
     select
@@ -249,6 +250,9 @@
       <if test="record.recordFlag != null">
         record_flag = #{record.recordFlag,jdbcType=VARCHAR},
       </if>
+      <if test="record.projectStatus != null">
+        project_status = #{record.projectStatus,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -307,6 +311,9 @@
       </if>
       <if test="recordFlag != null">
         record_flag = #{recordFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectStatus != null">
+        project_status = #{record.projectStatus,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

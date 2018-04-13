@@ -7,13 +7,16 @@ import java.util.List;
 import org.quetzaco.experts.app.biz.ExtractSetService;
 import org.quetzaco.experts.app.biz.ProjectService;
 import org.quetzaco.experts.app.dao.UdexpertMajorMapper;
+import org.quetzaco.experts.app.dao.UdprojectsMapper;
 import org.quetzaco.experts.app.dao.UdsetMapper;
 import org.quetzaco.experts.app.dao.UdsetcompanyMapper;
 import org.quetzaco.experts.app.dao.UdsetexpertMapper;
 import org.quetzaco.experts.app.dao.UdsetmajorMapper;
 import org.quetzaco.experts.app.dao.UdsetregionMapper;
+import org.quetzaco.experts.enums.ProjectStatus;
 import org.quetzaco.experts.model.UdexpertMajor;
 import org.quetzaco.experts.model.UdexpertMajorExample;
+import org.quetzaco.experts.model.Udprojects;
 import org.quetzaco.experts.model.Udset;
 import org.quetzaco.experts.model.UdsetExample;
 import org.quetzaco.experts.model.Udsetcompany;
@@ -51,6 +54,9 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 	@Autowired
 	ProjectService projectService;
 	
+	@Autowired
+	UdprojectsMapper projectMapper;
+	
 	@Override
 	public void extractSet(Udset set) {
 		
@@ -60,6 +66,11 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 		if(list!=null && list.size()==0) {
 			set.setCreatedTime(new Date());
 			setMapper.insert(set);
+			
+			Udprojects project =new Udprojects();
+			project.setId(set.getProjectId());
+			project.setProjectStatus(ProjectStatus.SET.getValue());
+			projectMapper.updateByPrimaryKeySelective(project);
 		}
 		
 		UdsetcompanyExample companyexample = new UdsetcompanyExample();

@@ -81,7 +81,7 @@ public class VoiceReceive  implements CommandLineRunner{
                 log.setStatusMsg(statusMsg);
                 log.setOutId(outId);
                 log.setDtmf(dtmf);
-                
+                voiceService.insertVoicelog(log);
 
                 //TODO 这里开始编写您的业务代码
                 
