@@ -293,6 +293,8 @@ function initExpertTable(fromTable, fromTableColumns, fromTableToolbar, toTable,
 }
 
 function initSet() {
+	console.log("initSet");
+	
     $("input:radio[name='search_set_expert_radio']:first").attr('checked', 'true');
     $("input:radio[name='search_set_major_radio']:first").attr('checked', 'true');
 
@@ -358,7 +360,7 @@ function clearAllSetValue() {
 }
 
 $('#extractSet').on('show.bs.modal', function (event) {
-    console.log("show.bs.modal");
+    console.log("extractSet show.bs.modal");
     console.log(event);
     clearAllSetValue();
 
