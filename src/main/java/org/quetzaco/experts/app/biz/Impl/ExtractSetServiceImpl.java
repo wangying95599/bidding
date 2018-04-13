@@ -63,7 +63,7 @@ public class ExtractSetServiceImpl implements ExtractSetService {
 		UdsetExample setExample = new UdsetExample();
 		setExample.createCriteria().andProjectIdEqualTo(set.getProjectId());
 		List list = setMapper.selectByExample(setExample);
-		if(list!=null && list.size()==0) {
+		if(list!=null && list.size()>0) {
 			set.setCreatedTime(new Date());
 			setMapper.insert(set);
 			

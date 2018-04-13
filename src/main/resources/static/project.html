@@ -31,7 +31,7 @@
 <script src="js/udinit.js"></script>
 <script src="js/mapper.js"></script>
 <script src="js/ud_utils.js"></script>
-<script src="js/udset.js"></script>
+
 <script src="js/ud_expert.js"></script>
 <script src="js/ud_project.js"></script>
 <script src="js/udlist.js"></script>
@@ -105,7 +105,7 @@
         <div class="container-fluid">
             <!--顶部导航left-->
             <div class="navbar-header">
-                <img src="img/backgrounds/logo.png" alt="" class="img-responsive"
+                <img src="" alt="" class="img-responsive"
                      style="float:left;margin-top:7px;margin-right:10px;"/>
                 <a class="navbar-brand" href="#" style="font-weight:600"></a>
 
@@ -359,40 +359,40 @@
                                     <legend>信息</legend>
 
                                     <div class="form-group">
-                                        <label for="cgxm" class="col-md-2 control-label">采购项目</label>
+                                        <label for="project_name_set" class="col-md-2 control-label">采购项目</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="project_name_set" value="">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="cgdw" class="col-md-2 control-label ">采购单位</label>
+                                        <label for="project_purchaser_set" class="col-md-2 control-label ">采购单位</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="project_purchaser_set">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="dljg" class="col-md-2 control-label ">代理机构</label>
+                                        <label for="proxy_org_set" class="col-md-2 control-label ">代理机构</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="proxy_org_set" value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="pbsj" class="col-md-2 control-label ">评标时间</label>
+                                        <label for="bidding_time_set" class="col-md-2 control-label ">评标时间</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="bidding_time_set">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="pbdd" class="col-md-2 control-label ">评标地点</label>
+                                        <label for="bidding_location_set" class="col-md-2 control-label ">评标地点</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="bidding_location_set"
                                                    value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="pbsc" class="col-md-2 control-label ">评标时长</label>
+                                        <label for="bidding_period_set" class="col-md-2 control-label ">评标时长</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="bidding_period_set">
                                         </div>
@@ -728,7 +728,7 @@
                                     <legend>信息</legend>
 
                                     <div class="form-group">
-                                        <label for="cgxm" class="col-md-2 control-label">采购项目</label>
+                                        <label for="project_name_extractset" class="col-md-2 control-label">采购项目</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="project_name_extractset"
                                                    value="">
@@ -736,33 +736,33 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="cgdw" class="col-md-2 control-label ">采购单位</label>
+                                        <label for="project_purchaser_extractset" class="col-md-2 control-label ">采购单位</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="project_purchaser_extractset">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="dljg" class="col-md-2 control-label ">代理机构</label>
+                                        <label for="proxy_org_extractset" class="col-md-2 control-label ">代理机构</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="proxy_org_extractset" value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="pbsj" class="col-md-2 control-label ">评标时间</label>
+                                        <label for="bidding_time_extractset" class="col-md-2 control-label ">评标时间</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="bidding_time_extractset">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="pbdd" class="col-md-2 control-label ">评标地点</label>
+                                        <label for="bidding_location_extractset" class="col-md-2 control-label ">评标地点</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="bidding_location_extractset"
                                                    value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="pbsc" class="col-md-2 control-label ">评标时长</label>
+                                        <label for="bidding_period_extractset" class="col-md-2 control-label ">评标时长</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="bidding_period_extractset">
                                         </div>
@@ -852,31 +852,31 @@
 
 
                                     <div class="form-group">
-                                        <label for="pbsj" class="col-xs-6 control-label ">本专业专家总人数</label>
+                                        <label for="expertNumForMajor" class="col-xs-6 control-label ">本专业专家总人数</label>
                                         <div class="col-xs-6">
-                                            <input type="password" class="form-control" id="pbsj">
+                                            <input type="text" class="form-control" id="expertNumForMajor">
                                         </div>
 
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="pbsj" class="col-md-6 control-label ">回避人数</label>
+                                        <label for="expertNumForAvoid" class="col-md-6 control-label ">回避人数</label>
                                         <div class="col-md-6">
-                                            <input type="password" class="form-control" id="pbsj">
+                                            <input type="text" class="form-control" id="expertNumForAvoid">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="pbsj" class="col-md-6 control-label ">可选专家数</label>
+                                        <label for="expertNumForOption" class="col-md-6 control-label ">可选专家数</label>
                                         <div class="col-md-6">
-                                            <input type="password" class="form-control" id="pbsj">
+                                            <input type="text" class="form-control" id="expertNumForOption">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="pbsj" class="col-md-6 control-label ">同一单位所涉及的专家数</label>
+                                        <label for="expertNumForCompany" class="col-md-6 control-label ">同一单位所涉及的专家数</label>
                                         <div class="col-md-6">
-                                            <input type="password" class="form-control" id="pbsj">
+                                            <input type="text" class="form-control" id="expertNumForCompany">
                                         </div>
                                     </div>
 
@@ -1229,10 +1229,10 @@
         </div>
         <!-- major import.end -->
 
-        <!-- 各种模态框.end*********************************************************************************************************************************-->
-
-        <script src="js/udextract.js"></script>
-        <script src="js/udextractresult.js"></script>
-        <script src="js/ud_major.js"></script>
+    <!-- 各种模态框.end*********************************************************************************************************************************-->
+	<script src="js/udset.js"></script>
+    <script src="js/udextract.js"></script>
+    <script src="js/udextractresult.js"></script>
+    <script src="js/ud_major.js"></script>
 </body>
 </html>

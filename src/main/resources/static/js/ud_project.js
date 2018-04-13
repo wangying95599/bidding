@@ -99,7 +99,7 @@ function projectStatusFormatter(data) {
     }else if (data == "CONFIRMED") {
         return '已确认';
     }
-    return "";
+    return '';
 }
 function toggleProjectRelatedButtons() {
     const selectedNum = $("#project_list_table").bootstrapTable('getSelections').length;
