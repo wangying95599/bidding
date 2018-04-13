@@ -8,10 +8,10 @@ function set_remove(tableName, id, idKey) {
     //console.log('set_remove_cor');
     console.log('1 ' + tableName);
     console.log('2 ' + id);
-    
-    var idStr='id';
-    if(idKey){
-    	idStr=idKey;
+
+    var idStr = 'id';
+    if (idKey) {
+        idStr = idKey;
     }
     console.log('3 ' + idStr);
     $("#" + tableName).bootstrapTable('remove', {field: idStr, values: [id]});
@@ -215,8 +215,8 @@ function search_set_major() {
     urlValue += val;
 
     $('#set_table_major_from').bootstrapTable('showLoading');
-  
-    
+
+
     $.ajax({
         type: 'GET',
         url: urlValue,
@@ -237,26 +237,21 @@ function set_extract_submit() {
     var companyArray = $("#set_table_cor").bootstrapTable("getData");
     var expertArray = $("#set_table_person").bootstrapTable("getData");
     var majorArray = $("#set_table_major_to").bootstrapTable("getData");
-   
+
     var regionArray = $("input[name='set_region']:checked");
-    var region=[];
-    $.each(regionArray,function(i,item){	
-    	region.push({"region":item.value});
+    var region = [];
+    $.each(regionArray, function (i, item) {
+        region.push({"region": item.value});
     });
 
     deliver.companyList = companyArray;
     deliver.expertList = expertArray;
     deliver.majorList = majorArray;
     deliver.regionList = region;
-    
+
     console.log(deliver.companyList);
     console.log(companyArray);
-//    deliver.expertList = [1, 2, 3];//expertIds;
-//    deliver.majorList = [4, 5, 6];//majorIds;
-//    deliver.regionList = regionIds;
-    
-    
-    
+
     var data = {set: deliver};
     console.log(JSON.stringify(data));
     $.axx({
@@ -272,6 +267,31 @@ function set_extract_submit() {
     });
 }
 
+function initExpertTable(fromTable, fromTableColumns, fromTableToolbar, toTable, toTableColumns, toTableToolbar) {
+    const fromOptions = {
+        pagination: false,
+        clickToSelect: true,
+        uniqueId: 'id',//唯一的标识
+        columns: fromTableColumns ? fromTableColumns : set_col_major_from,
+    };
+    if (fromTableToolbar) {
+        fromOptions.toolbar = '#' + fromTableToolbar;
+    }
+    $('#' + fromTable).bootstrapTable(fromOptions);
+    const toOptions = {
+        pagination: false,
+        clickToSelect: true,
+        uniqueId: 'id',//唯一的标识
+        columns: toTableColumns ? toTableColumns : set_col_major_to,
+        onEditableSave: function (field, row, oldValue, $el) {
+        }
+    };
+    if (toTableToolbar) {
+        toOptions.toolbar = '#' + toTableToolbar;
+    }
+    $('#' + toTable).bootstrapTable(toOptions);
+}
+
 function initSet() {
     $("input:radio[name='search_set_expert_radio']:first").attr('checked', 'true');
     $("input:radio[name='search_set_major_radio']:first").attr('checked', 'true');
@@ -284,28 +304,14 @@ function initSet() {
         columns: set_col_cor
     });
 
-
     $('#set_table_person').bootstrapTable({
         pagination: false,
         uniqueId: 'expertId',//唯一的标识
         clickToSelect: true,
         columns: set_col_person
     });
-    $('#set_table_major_from').bootstrapTable({
-        pagination: false,
-        clickToSelect: true,
-        uniqueId: 'id',//唯一的标识
-        columns: set_col_major_from
-    });
-    $('#set_table_major_to').bootstrapTable({
-        pagination: false,
-        clickToSelect: true,
-        uniqueId: 'id',//唯一的标识
-        columns: set_col_major_to,
-        onEditableSave: function (field, row, oldValue, $el) {
 
-        }
-    });
+    initExpertTable('set_table_major_from', set_col_major_from, 'set_table_major_from_toolbar', 'set_table_major_to', set_col_major_to);
 
     $("#search_set_company_button").click(search_set_company);
 
@@ -326,9 +332,10 @@ function loadJSData() {
 //	$('#set_table_major_to').bootstrapTable("load", set_data_major_to); 
 
 }
-function clearAllSetValue(){
-	var extractSetForm = $('#extractSet');
-	 
+
+function clearAllSetValue() {
+    var extractSetForm = $('#extractSet');
+
     extractSetForm.find('#project_name_set').val(null);
     extractSetForm.find('#project_purchaser_set').val(null);
     extractSetForm.find('#proxy_org_set').val(null);
@@ -336,64 +343,65 @@ function clearAllSetValue(){
     extractSetForm.find('#bidding_time_set').val(null);
     extractSetForm.find('#bidding_location_set').val(null);
     extractSetForm.find('#bidding_period_set').val(null);
-    
-    $('#set_table_cor').bootstrapTable("removeAll");  
-    $('#set_table_person').bootstrapTable("removeAll");  
+
+    $('#set_table_cor').bootstrapTable("removeAll");
+    $('#set_table_person').bootstrapTable("removeAll");
     $('#set_table_major_to').bootstrapTable("removeAll");
     $('#set_table_major_from').bootstrapTable("removeAll");
-    
+
     $("input[name='set_region']").removeAttr("checked");
-    
+
     $("#search_set_company_input").val(null);
     $("#search_set_expert_input").val(null);
     $("#search_set_major_input").val(null);
 
 }
+
 $('#extractSet').on('show.bs.modal', function (event) {
     console.log("show.bs.modal");
     console.log(event);
     clearAllSetValue();
-    
-	projectId=getProjectId();
+
+    projectId = getProjectId();
     $.axx({
-        type:'GET',
-        url:"/extractset/get/"+projectId,
-        success:function (json) {
+        type: 'GET',
+        url: "/extractset/get/" + projectId,
+        success: function (json) {
             var models = json.content;
             console.log(models);
             console.log(models.regionList);
             let selectedProject = $('#project_list_table').bootstrapTable('getSelections')[0];
-            if(selectedProject){
-            	 var extractSetForm = $('#extractSet');
-            	 
-                 extractSetForm.find('#project_name_set').val(selectedProject.purchaseProject);
-                 extractSetForm.find('#project_purchaser_set').val(selectedProject.purchaseCompany);
-                 extractSetForm.find('#proxy_org_set').val(selectedProject.proxyOrg);
-                 extractSetForm.find('#project_extract_set').val(selectedProject.extractCompany);
-                 extractSetForm.find('#bidding_time_set').val(selectedProject.biddingTime);
-                 extractSetForm.find('#bidding_location_set').val(selectedProject.biddingLocation);
-                 extractSetForm.find('#bidding_period_set').val(selectedProject.biddingPeriod);
-  
+            if (selectedProject) {
+                var extractSetForm = $('#extractSet');
+
+                extractSetForm.find('#project_name_set').val(selectedProject.purchaseProject);
+                extractSetForm.find('#project_purchaser_set').val(selectedProject.purchaseCompany);
+                extractSetForm.find('#proxy_org_set').val(selectedProject.proxyOrg);
+                extractSetForm.find('#project_extract_set').val(selectedProject.extractCompany);
+                extractSetForm.find('#bidding_time_set').val(selectedProject.biddingTime);
+                extractSetForm.find('#bidding_location_set').val(selectedProject.biddingLocation);
+                extractSetForm.find('#bidding_period_set').val(selectedProject.biddingPeriod);
+
             }
-            if(models.companyList){
-            	$('#set_table_cor').bootstrapTable("load", models.companyList);
+            if (models.companyList) {
+                $('#set_table_cor').bootstrapTable("load", models.companyList);
             }
-            if(models.expertList){
-            	$('#set_table_person').bootstrapTable("load", models.expertList);
+            if (models.expertList) {
+                $('#set_table_person').bootstrapTable("load", models.expertList);
             }
-            if(models.majorList){
-            	$('#set_table_major_to').bootstrapTable("load", models.majorList);
+            if (models.majorList) {
+                $('#set_table_major_to').bootstrapTable("load", models.majorList);
             }
             //console.log(models.regionList);
-            if(models.regionList){
- 	           //（jquery1.9以上，checkbox attr不能重复操作）可使用prop代替
- 	            $.each(models.regionList,function(i,item){	
- 	            	$("input[name='set_region'][value="+item.region+"]").prop("checked","checked");	
- 	            });
-             }
+            if (models.regionList) {
+                //（jquery1.9以上，checkbox attr不能重复操作）可使用prop代替
+                $.each(models.regionList, function (i, item) {
+                    $("input[name='set_region'][value=" + item.region + "]").prop("checked", "checked");
+                });
+            }
 
         }
-    });	
+    });
 });
 
 
@@ -407,9 +415,9 @@ function set_delete_cor(value, row, index) {
 }
 
 function set_delete_person(value, row, index) {
-   
-    var tableName='set_table_person';
-    var id=row.expertId;
+
+    var tableName = 'set_table_person';
+    var id = row.expertId;
     var result = [
         '<button  type="button" class="btn btn-link btn-xs" onclick="set_remove(\'' + tableName + '\',' + id + ',\'expertId\')">删除</button>',]
         .join('');

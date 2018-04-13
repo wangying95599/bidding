@@ -33,26 +33,6 @@ const expert_table_cols = [{
     title: 'record_flag'
 }];
 
-function loadAllExperts() {
-    $.axx({
-        type: 'get',
-        url: '/expert/all',
-        success: function (json) {
-            expertTotal = json.content.length;
-            $('#expert_table').bootstrapTable("load", json.content);
-        },
-        error: function (res) {
-            console.log(res);
-            alert(res);
-        }
-    })
-}
-
-function showExpertTab() {
-    $('#expertMaintenanceTab').tab('show');
-    loadAllExperts();
-}
-
 function toggleExpertRelatedButton() {
     const selectedNum = $('#expert_table').bootstrapTable('getSelections').length;
     if (selectedNum === 0) {
@@ -68,6 +48,27 @@ function toggleExpertRelatedButton() {
         $('#editExpertButton').hide();
         $('#deleteExpertButton').show();
     }
+}
+
+function loadAllExperts() {
+    $.axx({
+        type: 'get',
+        url: '/expert/all',
+        success: function (json) {
+            toggleExpertRelatedButton();
+            expertTotal = json.content.length;
+            $('#expert_table').bootstrapTable("load", json.content);
+        },
+        error: function (res) {
+            console.log(res);
+            alert(res);
+        }
+    })
+}
+
+function showExpertTab() {
+    $('#expertMaintenanceTab').tab('show');
+    loadAllExperts();
 }
 
 function setupExpertPage() {
@@ -95,9 +96,9 @@ function setupExpertPage() {
             setModalData(modal, expert_modal_mapper, selectedExpert);
         } else {
             setModalData(modal, expert_modal_mapper);
-            // modal.find("input").val(null);
-            // $("input[type='checkbox']").attr("checked", false);
         }
+        // initExpertTable('set_table_major_from', set_col_major_from, 'set_table_major_from_toolbar', 'set_table_major_to', set_col_major_to);
+        initExpertTable('expert_modal_major_table_from', null, null, 'expert_modal_major_table_to');
     })
 }
 

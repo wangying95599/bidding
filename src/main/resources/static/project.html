@@ -31,6 +31,7 @@
 <script src="js/udinit.js"></script>
 <script src="js/mapper.js"></script>
 <script src="js/ud_utils.js"></script>
+<script src="js/udset.js"></script>
 <script src="js/ud_expert.js"></script>
 <script src="js/ud_project.js"></script>
 <script src="js/udlist.js"></script>
@@ -91,8 +92,9 @@
     legend {
         font-size: 18px;
     }
+
     .modal-title {
-        font-size:21px;
+        font-size: 21px;
     }
 </style>
 
@@ -517,7 +519,8 @@
                         <div class="col-md-6">
                             <fieldset style="    margin-bottom: 15px;">
                                 <legend>专业情况</legend>
-                                <form class="form-inline" style="    margin-bottom: 15px;">
+                                <form id="set_table_major_from_toolbar" class="form-inline"
+                                      style="margin-bottom: 15px;">
                                     <div class="form-group">
                                         <label class="radio-inline">
                                             <input type="radio" name="search_set_major_radio"
@@ -1065,6 +1068,31 @@
                                         </div>
                                     </div>
                                 </fieldset>
+                                <fieldset style="    margin-bottom: 15px;">
+                                    <legend>专业情况</legend>
+                                    <form class="form-inline" style="    margin-bottom: 15px;">
+                                        <div class="form-group">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="search_set_major_radio"
+                                                       value="name"> 名称
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="search_set_major_radio"
+                                                       value="code"> 编号
+                                            </label>
+                                            <input type="text" class="form-control"
+                                                   id="expert_modal_search_major_input">
+                                        </div>
+                                        <button type="button" id="expert_modal_search_major_button"
+                                                class="btn btn-default">查询
+                                        </button>
+
+                                    </form>
+
+                                    <table id="expert_modal_major_table_from" data-height="168"
+                                           class="table table-striped table-bordered table-hover">
+                                    </table>
+                                </fieldset>
                             </div>
                             <div class="col-md-6">
                                 <fieldset>
@@ -1129,6 +1157,14 @@
                                             外省市
                                         </label>
                                     </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>选中专业</legend>
+
+                                    <table id="expert_modal_major_table_to" data-height="168"
+                                           class="table table-striped table-bordered table-hover">
+                                    </table>
+
                                 </fieldset>
                             </div>
                         </form>
@@ -1196,7 +1232,6 @@
 
     <!-- 各种模态框.end*********************************************************************************************************************************-->
 
-    <script src="js/udset.js"></script>
     <script src="js/udextract.js"></script>
     <script src="js/udextractresult.js"></script>
     <script src="js/ud_major.js"></script>
