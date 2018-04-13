@@ -98,7 +98,7 @@ function setupExpertPage() {
             setModalData(modal, expert_modal_mapper);
         }
         // initExpertTable('set_table_major_from', set_col_major_from, 'set_table_major_from_toolbar', 'set_table_major_to', set_col_major_to);
-        initExpertTable('expert_modal_major_table_from', null, null, 'expert_modal_major_table_to');
+        initExpertTable('expert_modal_major_table_from', null, "expert_major_from_toolbar", 'expert_modal_major_table_to');
     })
 }
 
