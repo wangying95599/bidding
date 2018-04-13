@@ -272,7 +272,6 @@ function initExpertTable(fromTable, fromTableColumns, fromTableToolbar, toTable,
         pagination: false,
         clickToSelect: true,
         uniqueId: 'id',//唯一的标识
-        search: true,
         searchAlign:'left',
         columns: fromTableColumns ? fromTableColumns : set_col_major_from,
     };
