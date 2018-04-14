@@ -6,6 +6,7 @@ const expert_modal_mapper = {// mapper the modal input id to the java model fiel
     expert_name_input: 'name',
     expert_phone_input: 'phone',
     expert_company_input: 'company',
+    expert_record_flag_input: 'recordFlag',
     set_region: {name: 'regionList', isCheckbox: true}
 };
 const expert_table_cols = [{
@@ -55,9 +56,9 @@ function loadAllExperts() {
         type: 'get',
         url: '/expert/all',
         success: function (json) {
-            toggleExpertRelatedButton();
             expertTotal = json.content.length;
             $('#expert_table').bootstrapTable("load", json.content);
+            toggleExpertRelatedButton();
         },
         error: function (res) {
             console.log(res);
@@ -69,6 +70,13 @@ function loadAllExperts() {
 function showExpertTab() {
     $('#expertMaintenanceTab').tab('show');
     loadAllExperts();
+}
+
+function showExpertModal() {
+    $('#expertModal').modal({
+        show: true,
+        remote: 'expertModal.html'
+    });
 }
 
 function setupExpertPage() {
@@ -100,8 +108,8 @@ function setupExpertPage() {
         // initExpertTable('set_table_major_from', set_col_major_from, 'set_table_major_from_toolbar', 'set_table_major_to', set_col_major_to);
         initExpertTable('expert_modal_major_table_from', null, "expert_major_from_toolbar", 'expert_modal_major_table_to');
     });
-    
-    
+
+
     $('#input-1a').fileinput({
         language: 'zh', //设置语言
         uploadUrl: "/fileUpload/expert",
@@ -112,31 +120,30 @@ function setupExpertPage() {
         browseClass: "btn btn-primary", //按钮样式
         maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
         //minFileCount: 0,
-         maxFileCount: 1, //表示允许同时上传的最大文件个数
+        maxFileCount: 1, //表示允许同时上传的最大文件个数
         msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
-       
+
         layoutTemplates: {
             actionDelete: '',
             actionUpload: '',
         }
     });
     //同步上传错误结果处理
-    $('#input-1a').on('filebatchuploaderror', function(event, data, msg) {
+    $('#input-1a').on('filebatchuploaderror', function (event, data, msg) {
 
         console.log("sync error")
         $("#fileUpload").modal("hide");
         //records_detail_1
         // lookUploadFile(documentFile.documentLocalId);
-        console.log("宋建强3"+"1"+event+"2"+data+"3"+msg);
+        console.log("宋建强3" + "1" + event + "2" + data + "3" + msg);
     });
 
 
-
     //同步上传成功结果处理
-    $('#input-1a').on('filebatchuploadsuccess', function(event, data, reviewId, index) {
+    $('#input-1a').on('filebatchuploadsuccess', function (event, data, reviewId, index) {
 
         console.log("sync success");
-        console.log("宋建强4"+"1"+event+"2"+data+"4"+index);
+        console.log("宋建强4" + "1" + event + "2" + data + "4" + index);
     });
 }
 
