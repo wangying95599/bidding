@@ -308,7 +308,7 @@
                                 data-target="#fileUploadExpert" data-title="批量导入专家">
                             <span class="glyphicon glyphicon-pencil"></span>批量导入专家
                         </button>
-                         <button id="ImportMajorButton" type="button" class="btn btn-link"
+                        <button id="ImportMajorButton" type="button" class="btn btn-link"
                                 data-toggle="modal"
                                 data-target="#fileUploads" data-title="批量导入专家">
                             <span class="glyphicon glyphicon-pencil"></span>批量导入专家
@@ -739,7 +739,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="project_purchaser_extractset" class="col-md-2 control-label ">采购单位</label>
+                                        <label for="project_purchaser_extractset"
+                                               class="col-md-2 control-label ">采购单位</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="project_purchaser_extractset">
                                         </div>
@@ -752,20 +753,23 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="bidding_time_extractset" class="col-md-2 control-label ">评标时间</label>
+                                        <label for="bidding_time_extractset"
+                                               class="col-md-2 control-label ">评标时间</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="bidding_time_extractset">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="bidding_location_extractset" class="col-md-2 control-label ">评标地点</label>
+                                        <label for="bidding_location_extractset"
+                                               class="col-md-2 control-label ">评标地点</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="bidding_location_extractset"
                                                    value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="bidding_period_extractset" class="col-md-2 control-label ">评标时长</label>
+                                        <label for="bidding_period_extractset"
+                                               class="col-md-2 control-label ">评标时长</label>
                                         <div class="col-md-10">
                                             <input type="text" class="form-control" id="bidding_period_extractset">
                                         </div>
@@ -877,7 +881,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="expertNumForCompany" class="col-md-6 control-label ">同一单位所涉及的专家数</label>
+                                        <label for="expertNumForCompany"
+                                               class="col-md-6 control-label ">同一单位所涉及的专家数</label>
                                         <div class="col-md-6">
                                             <input type="text" class="form-control" id="expertNumForCompany">
                                         </div>
@@ -1031,7 +1036,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="form-horizontal" role="form" id="expertForm">
+                        <form class="form-horizontal" role="form" id="expertForm">
                             <div class="col-sm-6">
                                 <fieldset>
                                     <legend>基本信息</legend>
@@ -1073,7 +1078,8 @@
                                 </fieldset>
                                 <fieldset style="    margin-bottom: 15px;">
                                     <legend>专业情况</legend>
-                                    <div id="expert_major_from_toolbar" class="form-inline" style="margin-bottom: 15px;">
+                                    <div id="expert_major_from_toolbar" class="form-inline"
+                                         style="margin-bottom: 15px;">
                                         <label class="radio-inline">
                                             <input type="radio" name="search_set_major_radio"
                                                    value="name"> 名称
@@ -1167,8 +1173,7 @@
 
                                 </fieldset>
                             </div>
-                            </form>
-                        </div>
+                        </form>
                     </div>
 
                     <div class="modal-footer">
@@ -1180,32 +1185,32 @@
                 </div><!-- end body -->
             </div><!-- end content -->
         </div><!-- end dialog -->
-     </div><!-- end modal -->
+        </div><!-- end modal -->
         <!-- expert modal end-->
 
-    <!-- expert import.start -->
-    <div class="modal fade" id="fileUploadExpert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">上传专家</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="from-group">
-                        <label class="control-label">上传专家</label>
-                        <input id="input-1a" name="test" type="file" class="file-loading">
+        <!-- expert import.start -->
+        <div class="modal fade" id="fileUploadExpert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">上传专家</h4>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="commitMainFile();">确认</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
-    </div>
-    <!--  expert import.end -->
+                    <div class="modal-body">
+                        <div class="from-group">
+                            <label class="control-label">上传专家</label>
+                            <input id="input-1a" name="test" type="file" class="file-loading">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="commitMainFile();">确认</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+        <!--  expert import.end -->
 
         <!-- major import.start -->
         <div class="modal fade" id="fileUploads" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -1231,10 +1236,10 @@
         </div>
         <!-- major import.end -->
 
-    <!-- 各种模态框.end*********************************************************************************************************************************-->
-	<script src="js/udset.js"></script>
-    <script src="js/udextract.js"></script>
-    <script src="js/udextractresult.js"></script>
-    <script src="js/ud_major.js"></script>
+        <!-- 各种模态框.end*********************************************************************************************************************************-->
+        <script src="js/udset.js"></script>
+        <script src="js/udextract.js"></script>
+        <script src="js/udextractresult.js"></script>
+        <script src="js/ud_major.js"></script>
 </body>
 </html>
