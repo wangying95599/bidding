@@ -106,6 +106,10 @@ function setupExpertPage() {
         initExpertTable('expert_modal_major_table_from', null, "expert_major_from_toolbar", 'expert_modal_major_table_to');
     });
 
+    $('#expertModal').on('hidden.bs.modal',function (event) {
+        $(this).removeData("bs.modal");
+    });
+
 
     $('#input-1a').fileinput({
         language: 'zh', //设置语言
