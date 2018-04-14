@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 function nullFormatter(data) {
     if (data == "" || data == null || data == " ") {
-        return '未填';
+        return '';
     }
     return data;
 }
@@ -26,4 +26,6 @@ function timeFormatter(data) {
     }
     return data;
 }  
- 
+function xxxFormatter(data) {
+    return "**********";
+}

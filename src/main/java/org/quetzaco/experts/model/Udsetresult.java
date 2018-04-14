@@ -75,7 +75,7 @@ public class Udsetresult {
 		this.confirmStatus = confirmStatus == null ? null : confirmStatus.trim();
 	}
 
-	private String major;
+	private String majorCode;
 	private String majorName;
 
 	public String getMajorName() {
@@ -86,12 +86,14 @@ public class Udsetresult {
 		this.majorName = majorName;
 	}
 
-	public String getMajor() {
-		return major;
+
+
+	public String getMajorCode() {
+		return majorCode;
 	}
 
-	public void setMajor(String major) {
-		this.major = major;
+	public void setMajorCode(String majorCode) {
+		this.majorCode = majorCode;
 	}
 
 	private String name;

@@ -52,4 +52,17 @@ public class VoiceController extends BaseRestContoller {
 		
         return buildEntity(APIEntity.create(list), HttpStatus.OK);
     }
+	
+	@RequestMapping(value = "/voice/confirm/{projectId}/{expertId}", method = RequestMethod.GET)
+    public HttpEntity<APIEntity> confirm(@SessionAttribute(WebSecurityConfig.SESSION_KEY)User user,@PathVariable Integer projectId,@PathVariable Integer expertId){
+		
+		System.out.println(projectId+"                 confirm "+expertId);
+		
+		Udsetresult result = new Udsetresult ();
+		result.setProjectId(projectId);
+		result.setExpertId(expertId);
+		service.confirm(result, true);
+		
+        return buildEntity(APIEntity.create(null), HttpStatus.OK);
+    }
 }

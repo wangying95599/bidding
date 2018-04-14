@@ -50,7 +50,7 @@ var set_col_cor = [
     }
 ];
 
-var set_col_person = [
+var set_col_expert = [
     {
         field: 'expertId',
         visible: false
@@ -75,7 +75,7 @@ var set_col_person = [
         field: 'removerow',
         title: '',
         align: 'center',
-        formatter: set_delete_person
+        formatter: set_delete_expert
     }
 ];
 var set_col_major_from = [
@@ -126,7 +126,7 @@ var set_col_major_to = [
         title: '人数',
         field: 'majorNumber',
         align: 'center',
-        formatter: nullFormatter,
+        formatter: nullMajorFormatter,
         editable: {
             type: 'text',
             title: '人数',
@@ -307,7 +307,7 @@ function initSet() {
         pagination: false,
         uniqueId: 'expertId',//唯一的标识
         clickToSelect: true,
-        columns: set_col_person
+        columns: set_col_expert
     });
 
     initExpertTable('set_table_major_from', set_col_major_from, 'set_table_major_from_toolbar', 'set_table_major_to', set_col_major_to);
@@ -420,7 +420,7 @@ function set_delete_cor(value, row, index) {
     return result;
 }
 
-function set_delete_person(value, row, index) {
+function set_delete_expert(value, row, index) {
 
     var tableName = 'set_table_person';
     var id = row.expertId;
@@ -457,7 +457,7 @@ function set_add_common(id) {
     return result;
 }
 
-function nullFormatter(data) {
+function nullMajorFormatter(data) {
 
     if (data == "" || data == null || data == " ") {
         return '未填';
@@ -465,10 +465,4 @@ function nullFormatter(data) {
     return data;
 }
 
-function timeFormatter(data) {
-    if (data != null) {
-        data = transfromTime(data, true);
-    }
-    return data;
-}  
  

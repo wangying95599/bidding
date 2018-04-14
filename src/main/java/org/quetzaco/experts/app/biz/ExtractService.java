@@ -10,9 +10,7 @@ public interface ExtractService {
 	public void insertExtract(List<Udsetresult> list);
 	
 	public List<Udsetresult> getExtractResult(Udset set);
-	/**
-	 * 手动 确认 已接受通知
-	 */
+
 	/**
 	 * 手动 发送短信
 	 */

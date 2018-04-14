@@ -99,7 +99,45 @@ function setupExpertPage() {
         }
         // initExpertTable('set_table_major_from', set_col_major_from, 'set_table_major_from_toolbar', 'set_table_major_to', set_col_major_to);
         initExpertTable('expert_modal_major_table_from', null, "expert_major_from_toolbar", 'expert_modal_major_table_to');
-    })
+    });
+    
+    
+    $('#input-1a').fileinput({
+        language: 'zh', //设置语言
+        uploadUrl: "/fileUpload/expert",
+        uploadAsync: true,
+        allowedFileExtensions: ['xls', 'xlsx'],//接收的文件后缀
+        showUpload: true, //是否显示上传按钮
+        showCaption: true,//是否显示标题
+        browseClass: "btn btn-primary", //按钮样式
+        maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
+        //minFileCount: 0,
+         maxFileCount: 1, //表示允许同时上传的最大文件个数
+        msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+       
+        layoutTemplates: {
+            actionDelete: '',
+            actionUpload: '',
+        }
+    });
+    //同步上传错误结果处理
+    $('#input-1a').on('filebatchuploaderror', function(event, data, msg) {
+
+        console.log("sync error")
+        $("#fileUpload").modal("hide");
+        //records_detail_1
+        // lookUploadFile(documentFile.documentLocalId);
+        console.log("宋建强3"+"1"+event+"2"+data+"3"+msg);
+    });
+
+
+
+    //同步上传成功结果处理
+    $('#input-1a').on('filebatchuploadsuccess', function(event, data, reviewId, index) {
+
+        console.log("sync success");
+        console.log("宋建强4"+"1"+event+"2"+data+"4"+index);
+    });
 }
 
 function saveExpert() {

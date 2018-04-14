@@ -308,6 +308,11 @@
                                 data-target="#fileUploadExpert" data-title="批量导入专家">
                             <span class="glyphicon glyphicon-pencil"></span>批量导入专家
                         </button>
+                         <button id="ImportMajorButton" type="button" class="btn btn-link"
+                                data-toggle="modal"
+                                data-target="#fileUploads" data-title="批量导入专家">
+                            <span class="glyphicon glyphicon-pencil"></span>批量导入专家
+                        </button>
                         <button id="deleteExpertButton" type="button" class="btn btn-link"
                                 style="display:none;" onclick="deleteExperts()" data-title="删除专家">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除专家
@@ -1172,34 +1177,35 @@
                                 onclick="saveExpert()">提交
                         </button>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div><!-- end body -->
+            </div><!-- end content -->
+        </div><!-- end dialog -->
+     </div><!-- end modal -->
         <!-- expert modal end-->
 
-        <!-- expert import.start -->
-        <div class="modal fade" id="fileUploadExpert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">上传专家</h4>
+    <!-- expert import.start -->
+    <div class="modal fade" id="fileUploadExpert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">上传专家</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="from-group">
+                        <label class="control-label">上传专家</label>
+                        <input id="input-1a" name="test" type="file" class="file-loading">
                     </div>
-                    <div class="modal-body">
-                        <div class="from-group">
-                            <label class="control-label">上传专家</label>
-                            <input id="input-1a" name="test" type="file" class="file-loading" multiple>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="commitMainFile();">确认</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal -->
-        </div>
-        <!--  expert import.end -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="commitMainFile();">确认</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!--  expert import.end -->
 
         <!-- major import.start -->
         <div class="modal fade" id="fileUploads" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -1213,7 +1219,7 @@
                     <div class="modal-body">
                         <div class="from-group newFile_top">
                             <label class="control-label">上传专业</label>
-                            <input id="input-1b" name="exactfile" type="file" class="file-loading" multiple>
+                            <input id="input-1b" name="exactfile" type="file" class="file-loading">
                         </div>
                     </div>
                     <div class="modal-footer">

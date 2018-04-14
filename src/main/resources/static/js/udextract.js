@@ -45,7 +45,7 @@ var ext_col = [
 
     {
         title: '项目名称',
-        field: 'projectId',
+        field: 'purchaseProject',
         align: 'center',
         sortable: true
     },
@@ -59,7 +59,7 @@ var ext_col = [
         title: '专家姓名',
         field: 'name',
         align: 'center',
-       // formatter:nameFormatter,
+        formatter:xxxFormatter,
         sortable: true
     },
     {

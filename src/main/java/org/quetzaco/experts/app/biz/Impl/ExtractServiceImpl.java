@@ -69,7 +69,17 @@ public class ExtractServiceImpl implements ExtractService {
 	public List<Udsetresult> getExtractResult(Udset set){
 		UdsetresultExample example = new UdsetresultExample();
 		example.createCriteria().andProjectIdEqualTo(set.getProjectId());
-		return	resultMapper.selectDetailInfo(set.getProjectId());
+		List<Udsetresult> list = resultMapper.selectDetailInfo(set.getProjectId());
+		try {
+			Udprojects project = projectService.getProject(set.getProjectId());
+			for(Udsetresult result:list) {
+				result.setPurchaseProject(project.getPurchaseProject());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return	list;
 	}
 
 	
@@ -91,6 +101,7 @@ public class ExtractServiceImpl implements ExtractService {
 		}
 		
 	}
+	
 	
 	
 	//已确认得名单
@@ -129,7 +140,7 @@ public class ExtractServiceImpl implements ExtractService {
 		for(Udsetresult result:resultList) {
 			if("Y".equalsIgnoreCase(result.getConfirmStatus())) {
 				for(Udsetmajor major:setmajorList) {
-					if(major.getMajorCode().equals(result.getMajor())) {
+					if(major.getMajorCode().equals(result.getMajorCode())) {
 						major.setMajorNumber(major.getMajorNumber()-1);
 					}
 				}
@@ -299,11 +310,12 @@ public class ExtractServiceImpl implements ExtractService {
             System.out.println(mapping.getKey() + ":" + mapping.getValue());  
             for(Udexpert expert:mapping.getValue()) {
 	            Udsetresult rs = new Udsetresult();
+	            rs.setProjectId(set.getProjectId());
 	            rs.setPurchaseProject(project.getPurchaseProject());
 	            rs.setCreatedDt(new Date());
 	            rs.setExpertId(expert.getExpertId());
 	            rs.setRandomCode(RandomUtil.getRandomValue_DL());
-	            rs.setMajor(mapping.getKey());
+	            rs.setMajorCode(mapping.getKey());
 	            rs.setMajorName(majorCodeNameMap.get(mapping.getKey()));
 	            resultList.add(rs);
             }

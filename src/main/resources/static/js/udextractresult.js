@@ -76,23 +76,23 @@ var extractResult_col = [
     }
 ];
 function confirm_expert(value, row, index) {
-   
-    var id=row.expertId;
+	var projectId=row.projectId;
+    var expertId=row.expertId;
     var result = [
-        '<button  type="button" class="btn btn-link btn-xs" onclick="f_confirm(' + id +')">人工确认</button>',]
+        '<button  type="button" class="btn btn-link btn-xs" onclick="f_confirm(' + projectId +','+expertId+')">人工确认</button>',]
         .join('');
     return result;
 }
-function f_confirm(id) {
+function f_confirm(projectId,expertId) {
     console.log('2 ' + id);
     
     $.axx({
         type:'GET',
-        url:"/extract/confirm/"+id,
+        url:"/voice/confirm/"+projectId+"/"+expertId,
         success:function (json) {
             var models = json.content;
             console.log(models);
-            $('#ext_table_extractResult').bootstrapTable("load", models);
+           // $('#ext_table_extractResult').bootstrapTable("load", models);
             
         }
     });	
