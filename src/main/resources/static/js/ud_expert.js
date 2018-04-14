@@ -16,7 +16,7 @@ const expert_table_cols = [{
     title: '专家编号'
 }, {
     field: 'card',
-    title: 'card'
+    title: '身份证号'
 }, {
     field: 'name',
     title: '姓名'
@@ -28,10 +28,12 @@ const expert_table_cols = [{
     title: '所在单位'
 }, {
     field: 'region',
-    title: '所在区域'
+    title: '所在区域',
+    visible: false
 }, {
     field: 'record_flag',
-    title: 'record_flag'
+    title: 'record_flag',
+    visible: false
 }];
 
 function toggleExpertRelatedButton() {
@@ -91,21 +93,16 @@ function setupExpertPage() {
         onUncheck: toggleExpertRelatedButton
     });
 
-    $('#expertModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var recipient = button.data('title') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this)
-        modal.find('.modal-title').text(recipient);
+    $('#expertModal').on('shown.bs.modal', function (event) {
+        var modal = $(this);
         let selectedExpert = $('#expert_table').bootstrapTable('getSelections')[0];
         if (selectedExpert) {
-            console.log(selectedExpert);
+            modal.find('.modal-title').text("编辑专家");
             setModalData(modal, expert_modal_mapper, selectedExpert);
         } else {
+            modal.find('.modal-title').text("新建专家");
             setModalData(modal, expert_modal_mapper);
         }
-        // initExpertTable('set_table_major_from', set_col_major_from, 'set_table_major_from_toolbar', 'set_table_major_to', set_col_major_to);
         initExpertTable('expert_modal_major_table_from', null, "expert_major_from_toolbar", 'expert_modal_major_table_to');
     });
 
