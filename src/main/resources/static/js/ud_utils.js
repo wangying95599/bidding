@@ -6,6 +6,16 @@ function setModalData(modal, mapper, data) {
                 modal.find('#' + key).val(data[value]);
             } else {
                 if (value.isCheckbox) {
+                    const regionsFromService = data[value.name];
+                    if (value.name === 'regionList') {
+                        if (regionsFromService) {
+                            //（jquery1.9以上，checkbox attr不能重复操作）可使用prop代替
+                            modal.find('input[name=' + key + ']').attr('checked', false);
+                            $.each(regionsFromService, function (i, item) {
+                                $("input[name='set_region'][value=" + item.region + "]").prop("checked", "checked");
+                            });
+                        }
+                    }
                 }
             }
         } else {

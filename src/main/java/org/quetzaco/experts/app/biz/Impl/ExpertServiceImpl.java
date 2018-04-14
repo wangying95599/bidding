@@ -103,6 +103,7 @@ public class ExpertServiceImpl implements ExpertService {
 		if (null != regionList) {
 			for (UdexpertRegion region : regionList) {
 				region.setExpertId(expert.getExpertId());
+				region.setRecordFlag(RecordFlag.CREATE.getValue());
 				regionMapper.insert(region);
 			}
 		}

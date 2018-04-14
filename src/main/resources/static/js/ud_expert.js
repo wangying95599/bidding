@@ -150,12 +150,12 @@ function saveExpert() {
     let regionList = [];
     if (expert.set_region) {
         if (isArray(expert.set_region)) {
-            expert.set_region.forEach(function (region) {
-                regionList.push({region: regionMap[region]});
+            expert.set_region.forEach(function (regionValue) {
+                regionList.push({region: regionValue});
             });
             delete expert.set_region;
         } else {
-            regionList.push({region: regionMap[expert.set_region]});
+            regionList.push({region: expert.set_region});
         }
     }
     expert.regionList = regionList;
