@@ -1,0 +1,284 @@
+2018-04-11 20:01:35 -Starting ExpertsApplication on DESKTOP-NT8AM5O with PID 10044 (C:\tool\workspace\qarchives\target\classes started by wy in C:\tool\workspace\qarchives)
+2018-04-11 20:01:35 -Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2018-04-11 20:01:35 -The following profiles are active: dev
+2018-04-11 20:01:45 -Started ExpertsApplication in 11.26 seconds (JVM running for 12.192)
+2018-04-11 20:01:59 -==>  Preparing: select * from users where login_name=? 
+2018-04-11 20:01:59 -==> Parameters: admin(String)
+2018-04-11 20:01:59 -<==      Total: 1
+2018-04-11 20:02:00 - goto project_parent.html
+2018-04-11 20:02:01 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects 
+2018-04-11 20:02:01 -==> Parameters: 
+2018-04-11 20:02:01 -==>  Preparing: select id, major_code, major_name, major_desc, created_dt, record_flag from udmajor where LENGTH(major_code)= 2 and record_flag='01' order by major_code 
+2018-04-11 20:02:01 -==> Parameters: 
+2018-04-11 20:02:01 -<==      Total: 7
+2018-04-11 20:02:01 -<==      Total: 5
+2018-04-11 20:02:01 -==>  Preparing: SELECT a.usr_id,a.dept_id,c.name as deptName,c.description,b.role_id,d.name as roleName FROM (SELECT usr_id,dept_id from link_dept_users WHERE usr_id= ?)a LEFT JOIN link_users_dept_role b on a.usr_id = b.usr_id JOIN dept c on a.dept_id = c.id and c.prt_id is null LEFT JOIN role d on b.role_id = d.id 
+2018-04-11 20:02:01 -==> Parameters: 100112(Long)
+2018-04-11 20:02:01 -<==      Total: 0
+2018-04-11 20:02:12 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 20:02:12 -==> Parameters: 5(Integer)
+2018-04-11 20:02:12 -<==      Total: 0
+2018-04-11 20:02:18 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 20:02:18 -==> Parameters: 5(Integer)
+2018-04-11 20:02:18 -<==      Total: 0
+2018-04-11 20:02:18 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 20:02:18 -==> Parameters: 5(Integer)
+2018-04-11 20:02:18 -<==      Total: 1
+2018-04-11 20:02:25 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 20:02:25 -==> Parameters: 404(Integer)
+2018-04-11 20:02:25 -<==      Total: 1
+2018-04-11 20:02:25 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 20:02:25 -==> Parameters: 404(Integer)
+2018-04-11 20:02:25 -<==      Total: 4
+2018-04-11 20:15:36 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 20:15:36 -==> Parameters: 404(Integer)
+2018-04-11 20:15:36 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 20:15:36 -==> Parameters: 404(Integer)
+2018-04-11 20:15:36 -<==      Total: 4
+2018-04-11 20:15:36 -<==      Total: 1
+2018-04-11 20:37:14 - goto project_parent.html
+2018-04-11 20:37:16 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects 
+2018-04-11 20:37:16 -==> Parameters: 
+2018-04-11 20:37:16 -<==      Total: 7
+2018-04-11 20:37:16 -==>  Preparing: SELECT a.usr_id,a.dept_id,c.name as deptName,c.description,b.role_id,d.name as roleName FROM (SELECT usr_id,dept_id from link_dept_users WHERE usr_id= ?)a LEFT JOIN link_users_dept_role b on a.usr_id = b.usr_id JOIN dept c on a.dept_id = c.id and c.prt_id is null LEFT JOIN role d on b.role_id = d.id 
+2018-04-11 20:37:16 -==> Parameters: 100112(Long)
+2018-04-11 20:37:16 -<==      Total: 0
+2018-04-11 20:39:55 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 20:39:55 -==> Parameters: 404(Integer)
+2018-04-11 20:39:55 -<==      Total: 1
+2018-04-11 20:39:55 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 20:39:55 -==> Parameters: 404(Integer)
+2018-04-11 20:39:55 -<==      Total: 4
+2018-04-11 20:40:05 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 20:40:05 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 20:40:05 -==> Parameters: 404(Integer)
+2018-04-11 20:40:05 -==> Parameters: 404(Integer)
+2018-04-11 20:40:05 -<==      Total: 1
+2018-04-11 20:40:05 -<==      Total: 4
+2018-04-11 20:40:17 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 20:40:17 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 20:40:17 -==> Parameters: 404(Integer)
+2018-04-11 20:40:17 -==> Parameters: 404(Integer)
+2018-04-11 20:40:17 -<==      Total: 4
+2018-04-11 20:40:17 -<==      Total: 1
+2018-04-11 20:40:48 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 20:40:48 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 20:40:48 -==> Parameters: 404(Integer)
+2018-04-11 20:40:48 -==> Parameters: 404(Integer)
+2018-04-11 20:40:48 -<==      Total: 1
+2018-04-11 20:40:48 -<==      Total: 4
+2018-04-11 20:41:03 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 20:41:03 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 20:41:03 -==> Parameters: 404(Integer)
+2018-04-11 20:41:03 -==> Parameters: 404(Integer)
+2018-04-11 20:41:03 -<==      Total: 1
+2018-04-11 20:41:03 -<==      Total: 4
+2018-04-11 20:50:18 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 20:50:18 -==> Parameters: 404(Integer)
+2018-04-11 20:50:19 -<==      Total: 4
+2018-04-11 20:50:19 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 20:50:19 -==> Parameters: 404(Integer)
+2018-04-11 20:50:19 -<==      Total: 1
+2018-04-11 20:50:21 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 20:50:21 -==> Parameters: 404(Integer)
+2018-04-11 20:50:21 -<==      Total: 4
+2018-04-11 20:50:21 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 20:50:21 -==> Parameters: 404(Integer)
+2018-04-11 20:50:21 -<==      Total: 1
+2018-04-11 20:50:25 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 20:50:25 -==> Parameters: 404(Integer)
+2018-04-11 20:50:25 -<==      Total: 1
+2018-04-11 20:50:25 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 20:50:25 -==> Parameters: 404(Integer)
+2018-04-11 20:50:25 -<==      Total: 4
+2018-04-11 20:51:09 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 20:51:09 -==> Parameters: 404(Integer)
+2018-04-11 20:51:09 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 20:51:09 -==> Parameters: 404(Integer)
+2018-04-11 20:51:09 -<==      Total: 1
+2018-04-11 20:51:09 -<==      Total: 4
+2018-04-11 20:51:11 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 20:51:11 -==> Parameters: 404(Integer)
+2018-04-11 20:51:11 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 20:51:11 -==> Parameters: 404(Integer)
+2018-04-11 20:51:11 -<==      Total: 1
+2018-04-11 20:51:11 -<==      Total: 4
+2018-04-11 21:00:19 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 21:00:19 -==> Parameters: 404(Integer)
+2018-04-11 21:00:19 -<==      Total: 4
+2018-04-11 21:00:19 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 21:00:19 -==> Parameters: 404(Integer)
+2018-04-11 21:00:19 -<==      Total: 1
+2018-04-11 21:00:52 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 21:00:52 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 21:00:52 -==> Parameters: 404(Integer)
+2018-04-11 21:00:52 -==> Parameters: 404(Integer)
+2018-04-11 21:00:52 -<==      Total: 4
+2018-04-11 21:00:52 -<==      Total: 1
+2018-04-11 21:01:32 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 21:01:32 -==> Parameters: 404(Integer)
+2018-04-11 21:01:32 -<==      Total: 1
+2018-04-11 21:01:32 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 21:01:32 -==> Parameters: 404(Integer)
+2018-04-11 21:01:32 -<==      Total: 4
+2018-04-11 21:01:38 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 21:01:38 -==> Parameters: 404(Integer)
+2018-04-11 21:01:38 -<==      Total: 1
+2018-04-11 21:01:38 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 21:01:38 -==> Parameters: 404(Integer)
+2018-04-11 21:01:38 -<==      Total: 4
+2018-04-11 21:01:40 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 21:01:40 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 21:01:40 -==> Parameters: 404(Integer)
+2018-04-11 21:01:40 -==> Parameters: 404(Integer)
+2018-04-11 21:01:40 -<==      Total: 1
+2018-04-11 21:01:40 -<==      Total: 4
+2018-04-11 21:01:42 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 21:01:42 -==> Parameters: 404(Integer)
+2018-04-11 21:01:42 -<==      Total: 4
+2018-04-11 21:01:42 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 21:01:42 -==> Parameters: 404(Integer)
+2018-04-11 21:01:42 -<==      Total: 1
+2018-04-11 21:01:43 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 21:01:43 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 21:01:43 -==> Parameters: 404(Integer)
+2018-04-11 21:01:43 -==> Parameters: 404(Integer)
+2018-04-11 21:01:43 -<==      Total: 1
+2018-04-11 21:01:43 -<==      Total: 4
+2018-04-11 21:02:14 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 21:02:14 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 21:02:14 -==> Parameters: 404(Integer)
+2018-04-11 21:02:14 -==> Parameters: 404(Integer)
+2018-04-11 21:02:14 -<==      Total: 4
+2018-04-11 21:02:14 -<==      Total: 1
+2018-04-11 21:02:20 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 21:02:20 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 21:02:20 -==> Parameters: 404(Integer)
+2018-04-11 21:02:20 -==> Parameters: 404(Integer)
+2018-04-11 21:02:20 -<==      Total: 1
+2018-04-11 21:02:20 -<==      Total: 4
+2018-04-11 21:02:31 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 21:02:31 -==> Parameters: 404(Integer)
+2018-04-11 21:02:31 -<==      Total: 1
+2018-04-11 21:02:31 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 21:02:31 -==> Parameters: 404(Integer)
+2018-04-11 21:02:31 -<==      Total: 4
+2018-04-11 21:02:32 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 21:02:32 -==> Parameters: 404(Integer)
+2018-04-11 21:02:32 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 21:02:32 -==> Parameters: 404(Integer)
+2018-04-11 21:02:32 -<==      Total: 1
+2018-04-11 21:02:32 -<==      Total: 4
+2018-04-11 21:04:28 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 21:04:28 -==> Parameters: 404(Integer)
+2018-04-11 21:04:28 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 21:04:28 -==> Parameters: 404(Integer)
+2018-04-11 21:04:28 -<==      Total: 4
+2018-04-11 21:04:28 -<==      Total: 1
+2018-04-11 21:57:05 -go here  
+2018-04-11 21:57:05 -go here  
+2018-04-11 21:57:07 -go here  
+2018-04-11 21:57:07 -go here  
+2018-04-11 21:57:13 -go here  
+2018-04-11 21:57:14 -==>  Preparing: select * from users where login_name=? 
+2018-04-11 21:57:14 -==> Parameters: admin(String)
+2018-04-11 21:57:14 -<==      Total: 1
+2018-04-11 21:57:14 - goto project_parent.html
+2018-04-11 21:57:15 -==>  Preparing: select id, major_code, major_name, major_desc, created_dt, record_flag from udmajor where LENGTH(major_code)= 2 and record_flag='01' order by major_code 
+2018-04-11 21:57:15 -==> Parameters: 
+2018-04-11 21:57:15 -<==      Total: 5
+2018-04-11 21:57:15 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects 
+2018-04-11 21:57:15 -==> Parameters: 
+2018-04-11 21:57:15 -<==      Total: 7
+2018-04-11 21:57:15 -==>  Preparing: SELECT a.usr_id,a.dept_id,c.name as deptName,c.description,b.role_id,d.name as roleName FROM (SELECT usr_id,dept_id from link_dept_users WHERE usr_id= ?)a LEFT JOIN link_users_dept_role b on a.usr_id = b.usr_id JOIN dept c on a.dept_id = c.id and c.prt_id is null LEFT JOIN role d on b.role_id = d.id 
+2018-04-11 21:57:15 -==> Parameters: 100112(Long)
+2018-04-11 21:57:15 -<==      Total: 0
+2018-04-11 21:57:18 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 21:57:18 -==> Parameters: 404(Integer)
+2018-04-11 21:57:18 -<==      Total: 4
+2018-04-11 21:57:18 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 21:57:18 -==> Parameters: 404(Integer)
+2018-04-11 21:57:18 -<==      Total: 1
+2018-04-11 21:57:49 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects WHERE ( id = ? ) 
+2018-04-11 21:57:49 -==> Parameters: 404(Integer)
+2018-04-11 21:57:49 -<==      Total: 1
+2018-04-11 21:57:49 -==>  Preparing: select u.project_id,p.expert_id,u.confirm_status,u.notice_status,u.random_code,u.created_dt,p.name,p.phone,p.company, m.major_name from udsetresult u,udexpert p,udmajor m where u.expert_id=p.expert_id and u.project_id = ? and u.major_code=m.major_code 
+2018-04-11 21:57:49 -==> Parameters: 404(Integer)
+2018-04-11 21:57:49 -<==      Total: 4
+2018-04-11 21:58:42 -==>  Preparing: select id, purchase_code, purchase_project, purchase_company, proxy_org, extract_company, bidding_time, bidding_location, bidding_period, purchase_type, sms_info, record_flag from udprojects 
+2018-04-11 21:58:42 -==> Parameters: 
+2018-04-11 21:58:42 -<==      Total: 7
+2018-04-11 21:58:48 -==>  Preparing: select expert_id, no, card, name, phone, company, region, record_flag from udexpert 
+2018-04-11 21:58:48 -==> Parameters: 
+2018-04-11 21:58:48 -<==      Total: 60
+2018-04-11 21:58:48 -==>  Preparing: select id, expert_id, major_code, created_dt from udexpert_major WHERE ( expert_id = ? ) 
+2018-04-11 21:58:48 -==> Parameters: 4(Integer)
+2018-04-11 21:58:48 -<==      Total: 1
+2018-04-11 21:58:51 -==>  Preparing: select expert_id, no, card, name, phone, company, region, record_flag from udexpert 
+2018-04-11 21:58:51 -==> Parameters: 
+2018-04-11 21:58:51 -<==      Total: 60
+2018-04-11 21:58:51 -==>  Preparing: select id, expert_id, major_code, created_dt from udexpert_major WHERE ( expert_id = ? ) 
+2018-04-11 21:58:51 -==> Parameters: 4(Integer)
+2018-04-11 21:58:51 -<==      Total: 1
+2018-04-11 21:58:51 -==>  Preparing: select expert_id, no, card, name, phone, company, region, record_flag from udexpert 
+2018-04-11 21:58:51 -==> Parameters: 
+2018-04-11 21:58:51 -<==      Total: 60
+2018-04-11 21:58:51 -==>  Preparing: select id, expert_id, major_code, created_dt from udexpert_major WHERE ( expert_id = ? ) 
+2018-04-11 21:58:51 -==> Parameters: 4(Integer)
+2018-04-11 21:58:51 -<==      Total: 1
+2018-04-11 21:58:53 -==>  Preparing: select expert_id, no, card, name, phone, company, region, record_flag from udexpert 
+2018-04-11 21:58:53 -==> Parameters: 
+2018-04-11 21:58:53 -<==      Total: 60
+2018-04-11 21:58:53 -==>  Preparing: select id, expert_id, major_code, created_dt from udexpert_major WHERE ( expert_id = ? ) 
+2018-04-11 21:58:53 -==> Parameters: 4(Integer)
+2018-04-11 21:58:53 -<==      Total: 1
+2018-04-11 21:58:56 -==>  Preparing: select expert_id, no, card, name, phone, company, region, record_flag from udexpert 
+2018-04-11 21:58:56 -==> Parameters: 
+2018-04-11 21:58:56 -<==      Total: 60
+2018-04-11 21:58:56 -==>  Preparing: select id, expert_id, major_code, created_dt from udexpert_major WHERE ( expert_id = ? ) 
+2018-04-11 21:58:56 -==> Parameters: 4(Integer)
+2018-04-11 21:58:56 -<==      Total: 1
+2018-04-11 22:04:55 -Starting ExpertsApplication on DESKTOP-NT8AM5O with PID 10044 (C:\tool\workspace\qarchives\target\classes started by wy in C:\tool\workspace\qarchives)
+2018-04-11 22:04:55 -Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2018-04-11 22:04:55 -The following profiles are active: dev
+2018-04-11 22:05:00 -Started ExpertsApplication in 4.775 seconds (JVM running for 7406.369)
+2018-04-11 22:05:16 -Starting ExpertsApplication on DESKTOP-NT8AM5O with PID 10044 (C:\tool\workspace\qarchives\target\classes started by wy in C:\tool\workspace\qarchives)
+2018-04-11 22:05:16 -Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2018-04-11 22:05:16 -The following profiles are active: dev
+2018-04-11 22:05:19 -Started ExpertsApplication in 3.098 seconds (JVM running for 7425.257)
+2018-04-11 22:15:12 -Starting ExpertsApplication on DESKTOP-NT8AM5O with PID 10044 (C:\tool\workspace\qarchives\target\classes started by wy in C:\tool\workspace\qarchives)
+2018-04-11 22:15:12 -Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2018-04-11 22:15:12 -The following profiles are active: dev
+2018-04-11 22:15:16 -Started ExpertsApplication in 4.154 seconds (JVM running for 8022.408)
+2018-04-11 22:17:00 -Starting ExpertsApplication on DESKTOP-NT8AM5O with PID 10044 (C:\tool\workspace\qarchives\target\classes started by wy in C:\tool\workspace\qarchives)
+2018-04-11 22:17:00 -Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2018-04-11 22:17:00 -The following profiles are active: dev
+2018-04-11 22:17:03 -Started ExpertsApplication in 3.113 seconds (JVM running for 8129.384)
+2018-04-11 22:19:02 -Starting ExpertsApplication on DESKTOP-NT8AM5O with PID 10044 (C:\tool\workspace\qarchives\target\classes started by wy in C:\tool\workspace\qarchives)
+2018-04-11 22:19:02 -Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2018-04-11 22:19:02 -The following profiles are active: dev
+2018-04-11 22:19:04 -Started ExpertsApplication in 2.387 seconds (JVM running for 8250.808)
+2018-04-11 22:20:34 -Starting ExpertsApplication on DESKTOP-NT8AM5O with PID 10044 (C:\tool\workspace\qarchives\target\classes started by wy in C:\tool\workspace\qarchives)
+2018-04-11 22:20:34 -Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2018-04-11 22:20:34 -The following profiles are active: dev
+2018-04-11 22:20:37 -Started ExpertsApplication in 2.74 seconds (JVM running for 8343.521)
+2018-04-11 22:21:09 -Starting ExpertsApplication on DESKTOP-NT8AM5O with PID 10044 (C:\tool\workspace\qarchives\target\classes started by wy in C:\tool\workspace\qarchives)
+2018-04-11 22:21:09 -Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2018-04-11 22:21:09 -The following profiles are active: dev
+2018-04-11 22:21:11 -Started ExpertsApplication in 2.323 seconds (JVM running for 8377.77)
+2018-04-11 22:21:32 -Starting ExpertsApplication on DESKTOP-NT8AM5O with PID 10044 (C:\tool\workspace\qarchives\target\classes started by wy in C:\tool\workspace\qarchives)
+2018-04-11 22:21:32 -Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2018-04-11 22:21:32 -The following profiles are active: dev
+2018-04-11 22:21:34 -Started ExpertsApplication in 1.933 seconds (JVM running for 8400.471)
+2018-04-11 22:22:02 -Starting ExpertsApplication on DESKTOP-NT8AM5O with PID 10044 (C:\tool\workspace\qarchives\target\classes started by wy in C:\tool\workspace\qarchives)
+2018-04-11 22:22:02 -Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2018-04-11 22:22:02 -The following profiles are active: dev
+2018-04-11 22:22:05 -Started ExpertsApplication in 3.301 seconds (JVM running for 8431.621)
+2018-04-11 22:22:16 -Starting ExpertsApplication on DESKTOP-NT8AM5O with PID 10044 (C:\tool\workspace\qarchives\target\classes started by wy in C:\tool\workspace\qarchives)
+2018-04-11 22:22:16 -Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2018-04-11 22:22:16 -The following profiles are active: dev
+2018-04-11 22:22:17 -Started ExpertsApplication in 1.828 seconds (JVM running for 8444.125)
+2018-04-11 22:26:02 -Starting ExpertsApplication on DESKTOP-NT8AM5O with PID 10044 (C:\tool\workspace\qarchives\target\classes started by wy in C:\tool\workspace\qarchives)
+2018-04-11 22:26:02 -Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2018-04-11 22:26:02 -The following profiles are active: dev
+2018-04-11 22:26:05 -Started ExpertsApplication in 3.367 seconds (JVM running for 8671.652)

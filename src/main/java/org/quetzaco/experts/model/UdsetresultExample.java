@@ -494,6 +494,11 @@ public class UdsetresultExample {
             addCriterion("confirm_status not between", value1, value2, "confirmStatus");
             return (Criteria) this;
         }
+        
+        public Criteria andNotifyNumberEqualTo(Integer value) {
+            addCriterion("notify_number =", value, "notifyNumber");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

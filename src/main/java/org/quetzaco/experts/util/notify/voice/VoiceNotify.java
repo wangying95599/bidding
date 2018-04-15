@@ -45,7 +45,10 @@ public class VoiceNotify {
      * @throws ClientException
      */
     public static IvrCallResponse ivrCall(String phone,String json,String outId) throws ClientException {
-    	
+    	System.out.println("ivrCall.start              ");
+    	System.out.println("phone              "+phone);
+    	System.out.println("json              "+json);
+    	System.out.println("outId              "+outId);
         //可自助调整超时时间
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
         System.setProperty("sun.net.client.defaultReadTimeout", "10000");

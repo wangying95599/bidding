@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.aliyuncs.dyvmsapi.model.v20170525.IvrCallResponse;
 import com.aliyuncs.exceptions.ClientException;
 
 @Service("voiceService")
@@ -37,6 +38,13 @@ public class VoiceServiceImpl implements VoiceService {
 	@Autowired
 	UdvoicelogMapper voicelogMapper;
 	
+	private String getStringNotNull(String str) {
+		if(str==null) {
+			return "";
+		}
+		return str;
+	}
+	
 	@Override
 	public void startVoice(Integer projectId) {
 		UdsetresultExample example = new UdsetresultExample();
@@ -46,16 +54,24 @@ public class VoiceServiceImpl implements VoiceService {
 		Udprojects project = projectMapper.selectByPrimaryKey(projectId);
     	
 		for(Udsetresult result:list) {
+			if("Y".equals(result.getConfirmStatus())) {
+				continue;
+			}
 			Map<String,String> map = new HashMap<String,String>();
-	    	map.put("name", result.getName());
-	    	map.put("projectLocation", project.getBiddingLocation());
-	    	map.put("projectDate", project.getBiddingTime()+"");
-	    	map.put("projectName", project.getPurchaseProject());
+	    	map.put("name", getStringNotNull(result.getName()));
+	    	map.put("projectLocation", getStringNotNull(project.getBiddingLocation()));
+	    	map.put("projectDate", project.getBiddingTime()==null?"":project.getBiddingTime()+"");
+	    	map.put("projectName", getStringNotNull(project.getPurchaseProject()));
 	    	String json=JsonUtil.getJson(map);
 	    	 
 			try {
-				VoiceNotify.ivrCall(result.getPhone(), json, projectId+"==="+result.getExpertId());
-			} catch (ClientException e) {
+				 IvrCallResponse ivrCallResponse = VoiceNotify.ivrCall(result.getPhone(), json, projectId+"==="+result.getExpertId()+"==="+result.getRandomCode());
+		         System.out.println("交互式语音应答---------------");
+		         System.out.println("RequestId=" + ivrCallResponse.getRequestId());
+		         System.out.println("Code=" + ivrCallResponse.getCode());
+		         System.out.println("Message=" + ivrCallResponse.getMessage());
+		         System.out.println("CallId=" + ivrCallResponse.getCallId());
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -88,15 +104,11 @@ public class VoiceServiceImpl implements VoiceService {
 			//不接，接了不按，1,2，占线。
 			if("1".equals(log.getDtmf())) {
 				confirm(result, true);
-			}else if("2".equals(log.getDtmf())) {
+			}else {
 				confirm(result, false);
 			}
 			
-			//TODO 状态为已通知
-			Udprojects project =new Udprojects();
-			project.setId(log.getProjectId());
-			project.setProjectStatus(ProjectStatus.CONFIRM.getValue());
-			projectMapper.updateByPrimaryKeySelective(project);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -111,10 +123,38 @@ public class VoiceServiceImpl implements VoiceService {
 		}else {
 			record.setConfirmStatus("N");
 		}
+		
+		
 		UdsetresultExample example = new UdsetresultExample ();
-		example.createCriteria().andExpertIdEqualTo(result.getExpertId());
 		example.createCriteria().andProjectIdEqualTo(result.getProjectId());
-		resultMapper.updateByExampleSelective(result, example);
+		example.getOredCriteria().get(0).andExpertIdEqualTo(result.getExpertId());
+		List<Udsetresult> list = resultMapper.selectByExample(example);
+		if(list!=null && list.size()>0) {
+			Integer notifyNumber = list.get(0).getNotifyNumber()==null?0:list.get(0).getNotifyNumber();
+			record.setNotifyNumber(notifyNumber+1);
+			resultMapper.updateByExampleSelective(record, example);
+		}
+		
+		updateProjectStatus(result.getProjectId());
+	}
+	
+	private void updateProjectStatus(Integer projectId) {
+		UdsetresultExample example = new UdsetresultExample ();
+		example.createCriteria().andProjectIdEqualTo(projectId);
+		example.createCriteria().andConfirmStatusEqualTo("Y");
+//		example.getOredCriteria().get(0).and
+		long confirmNumber = resultMapper.countByExample(example);
+		if(confirmNumber == 5) {
+			//TODO
+			
+		}else {
+			//TODO 状态为已通知
+			Udprojects project =new Udprojects();
+			project.setId(projectId);
+			project.setProjectStatus(ProjectStatus.CONFIRM.getValue());
+			projectMapper.updateByPrimaryKeySelective(project);
+		}		
+		
 	}
 	
 	/**
