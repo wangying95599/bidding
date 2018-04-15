@@ -12,7 +12,7 @@ var extractResult_col = [
 
     {
         title: '项目名称',
-        field: 'projectName',
+        field: 'purchaseProject',
         align: 'center',
         sortable: true
     },
@@ -70,7 +70,7 @@ var extractResult_col = [
     },
     {
         field: 'hconfirm',
-        title: '',
+        title: '操作',
         align: 'center',
         formatter: confirm_expert
     }
@@ -84,15 +84,14 @@ function confirm_expert(value, row, index) {
     return result;
 }
 function f_confirm(projectId,expertId) {
-    console.log('2 ' + id);
+//    console.log('2 ' + expertId);
     
     $.axx({
         type:'GET',
         url:"/voice/confirm/"+projectId+"/"+expertId,
         success:function (json) {
-            var models = json.content;
-            console.log(models);
-           // $('#ext_table_extractResult').bootstrapTable("load", models);
+
+        	loadExtractResultData();
             
         }
     });	
@@ -183,23 +182,37 @@ function loadVoiceData() {
 	
 }
 
-function notifyFormatter(data) {
+function notifyFormatter(value, row, index, field) {
 
-    if (data == "" || data == null || data == " ") {
-        return '未通知';
+    if (row.confirmStatus && (row.confirmStatus=='Y'||row.confirmStatus=='N')) {
+        return '通知';
+    }else{
+    	return '未通知';
     }
-    return data;
+
 }
 function nameFormatter(data) {
-    return "**********";
+	if(loginName=='admin'){
+		return data;
+	}else{
+		 return "**********";
+	}
 }
 function phoneFormatter(data) {
-    return "**********";
+	if(loginName=='admin'){
+		return data;
+	}else{
+		 return "**********";
+	}
 }
 function confirmFormatter(data) {
 
     if (data == "" || data == null || data == " ") {
-        return '等待通知';
+        return '等待确认';
+    }else if(data=="Y"){
+    	return '参加';
+    }else if(data=="N"){
+    	return '不参加';
     }
     return data;
 }

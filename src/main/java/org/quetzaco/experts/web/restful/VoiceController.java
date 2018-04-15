@@ -27,7 +27,7 @@ public class VoiceController extends BaseRestContoller {
 	@RequestMapping(value = "/voice/start/{projectId}", method = RequestMethod.GET)
     public HttpEntity<APIEntity> startVoice(@SessionAttribute(WebSecurityConfig.SESSION_KEY)User user,@PathVariable Integer projectId){
 		
-		System.out.println("                 Udset "+projectId);
+		System.out.println("                 startVoice "+projectId);
 		Udset set = new Udset();
 		set.setProjectId(projectId);
 		service.startVoice(projectId);

@@ -101,6 +101,16 @@ public class Udsetresult {
 	private String phone;
 
 	private String company;
+	
+	private Integer notifyNumber;
+
+	public Integer getNotifyNumber() {
+		return notifyNumber;
+	}
+
+	public void setNotifyNumber(Integer notifyNumber) {
+		this.notifyNumber = notifyNumber;
+	}
 
 	public String getName() {
 		return name;
