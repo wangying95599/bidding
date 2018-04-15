@@ -1,0 +1,155 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+    </button>
+    <h4 class="modal-title">新建专家</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <form class="form-horizontal" role="form" id="expertForm">
+            <div class="col-sm-6">
+                <fieldset>
+                    <legend>基本信息</legend>
+                    <!-- input -->
+                    <input type="text" class="form-control" id="expert_id_input"
+                           name="expertId" style="display: none;">
+                    <input type="text" class="form-control" id="expert_record_flag_input"
+                           name="recordFlag" style="display: none;">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">专家编号</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="expert_no_input" name="no">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">card</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="expert_card_input" name="card">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">专家姓名</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="expert_name_input" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">手机</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="expert_phone_input"
+                                   name="phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">单位</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="expert_company_input"
+                                   name="company">
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset style=" margin-top:50px; margin-bottom: 15px;">
+                    <legend>选择专业</legend>
+                    <div id="expert_major_from_toolbar" class="form-inline"
+                         style="margin-bottom: 15px;">
+                        <label class="radio-inline">
+                            <input type="radio" name="search_expert_major_radio"
+                                   value="name" checked> 名称
+                        </label>
+                        <label class="radio-inline" style="padding-right:20px;">
+                            <input type="radio" name="search_expert_major_radio"
+                                   value="code"> 编号
+                        </label>
+                        <input type="text" class="form-control"
+                               id="expert_modal_search_major_input">
+                        <button type="button" id="search_expert_major_button"
+                                class="btn btn-default" onclick="search_expert_major()">查询
+                        </button>
+                    </div>
+
+                    <table id="expert_modal_major_table_from" data-height="168"
+                           class="table table-striped table-bordered table-hover">
+                    </table>
+                </fieldset>
+            </div>
+            <div class="col-md-6">
+                <fieldset>
+                    <legend>区域设置</legend>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="set_region" value="0">
+                            大连市区及高新园区
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="set_region" value="1">
+                            金州
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="set_region" value="2">
+                            瓦房店
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="set_region" value="3">
+                            开发区
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="set_region" value="4">
+                            庄河
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="set_region" value="5">
+                            普兰店
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="set_region" value="6">
+                            旅顺
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="set_region" value="7">
+                            保税区
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="set_region" value="8">
+                            长海县
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="set_region" value="9">
+                            外省市
+                        </label>
+                    </div>
+                </fieldset>
+                <fieldset style="margin-top: 25px;">
+                    <legend>所属专业</legend>
+                    <table id="expert_modal_major_table_to" data-height="168"
+                           class="table table-striped table-bordered table-hover">
+                    </table>
+
+                </fieldset>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button id="" type="button" class="btn btn-primary"
+                onclick="saveExpert()">提交
+        </button>
+    </div>
+</div><!-- end body -->
