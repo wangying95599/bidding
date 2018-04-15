@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.quetzaco.experts.app.biz.ExpertService;
 import org.quetzaco.experts.enums.RecordFlag;
 import org.quetzaco.experts.model.Udexpert;
-import org.quetzaco.experts.model.UdexpertExample;
 import org.quetzaco.experts.model.User;
 import org.quetzaco.experts.model.api.APIEntity;
 import org.quetzaco.experts.util.config.ExpertsProperties;
@@ -96,8 +95,6 @@ public class ExpertController extends BaseRestContoller {
 		}
 		return buildEntity(APIEntity.create(null), HttpStatus.OK);
 	}
-
-	
 	 
 	@RequestMapping("/fileUpload/expert")
 	// @ResponseBody

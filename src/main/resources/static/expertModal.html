@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <label for="" class="col-sm-2 control-label">专家编号</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="expert_no_input" name="no">
+                            <input type="text" class="form-control" id="expert_no_input" name="no" >
                         </div>
                     </div>
                     <div class="form-group">
@@ -52,17 +52,17 @@
                     <div id="expert_major_from_toolbar" class="form-inline"
                          style="margin-bottom: 15px;">
                         <label class="radio-inline">
-                            <input type="radio" name="search_set_major_radio"
-                                   value="name"> 名称
+                            <input type="radio" name="search_expert_major_radio"
+                                   value="name" checked> 名称
                         </label>
                         <label class="radio-inline" style="padding-right:20px;">
-                            <input type="radio" name="search_set_major_radio"
+                            <input type="radio" name="search_expert_major_radio"
                                    value="code"> 编号
                         </label>
                         <input type="text" class="form-control"
                                id="expert_modal_search_major_input">
-                        <button type="button" id="expert_modal_search_major_button"
-                                class="btn btn-default">查询
+                        <button type="button" id="search_expert_major_button"
+                                class="btn btn-default" onclick="search_expert_major()">查询
                         </button>
                     </div>
 

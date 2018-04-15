@@ -36,6 +36,50 @@ const expert_table_cols = [{
     visible: false
 }];
 
+var expert_col_major_from = [
+    {
+        field: 'id',
+        visible: false
+    },
+    {
+        title: '编码',
+        field: 'majorCode',
+        align: 'center',
+        sortable: true
+    },
+    {
+        title: '专业名称',
+        field: 'majorName',
+        align: 'center',
+        sortable: true
+    },
+    {
+        field: 'removerow',
+        title: '',
+        align: 'center',
+        formatter: expert_delete_major_from
+    }
+];
+
+var expert_col_major_to = [
+    {
+        field: 'id',
+        visible: false
+    },
+    {
+        title: '专业名称',
+        field: 'majorName',
+        align: 'center',
+        sortable: true
+    },
+    {
+        field: 'removerow',
+        title: '',
+        align: 'center',
+        formatter: expert_delete_major_to
+    }
+];
+
 function toggleExpertRelatedButton() {
     const selectedNum = $('#expert_table').bootstrapTable('getSelections').length;
     if (selectedNum === 0) {
@@ -81,6 +125,52 @@ function showExpertModal() {
     });
 }
 
+function setMajorTable() {
+    const fromOptions = {
+        pagination: false,
+        clickToSelect: true,
+        uniqueId: 'majorCode',//唯一的标识
+        searchAlign: 'left',
+        columns: expert_col_major_from,
+        toolbar: '#expert_major_from_toolbar'
+    };
+
+    $('#expert_modal_major_table_from').bootstrapTable(fromOptions);
+    const toOptions = {
+        pagination: false,
+        clickToSelect: true,
+        uniqueId: 'majorCode',//唯一的标识
+        columns: expert_col_major_to,
+        onEditableSave: function (field, row, oldValue, $el) {
+        }
+    };
+    $('#expert_modal_major_table_to').bootstrapTable(toOptions);
+}
+
+function search_expert_major() {
+    var val = $("#expert_modal_search_major_input").val();
+    if (!val) {
+        return;
+    }
+    var urlValue = "/major/search/name/";
+    if ("code" == $("input:radio[name='search_expert_major_radio']:checked").val()) {
+        urlValue = "/major/search/code/";
+    }
+    urlValue += val;
+
+    $('#expert_modal_major_table_from').bootstrapTable('showLoading');
+
+    $.ajax({
+        type: 'GET',
+        url: urlValue,
+        success: function (json) {
+            // console.log(json.content);
+            $('#expert_modal_major_table_from').bootstrapTable("load", json.content);
+            $('#expert_modal_major_table_from').bootstrapTable('hideLoading');
+        }
+    });
+}
+
 function setupExpertPage() {
     $('#expert_table').bootstrapTable({
         columns: expert_table_cols,
@@ -103,13 +193,13 @@ function setupExpertPage() {
             modal.find('.modal-title').text("新建专家");
             setModalData(modal, expert_modal_mapper);
         }
-        initExpertTable('expert_modal_major_table_from', null, "expert_major_from_toolbar", 'expert_modal_major_table_to');
+        // initExpertTable('expert_modal_major_table_from', null, "expert_major_from_toolbar", 'expert_modal_major_table_to');
+        setMajorTable();
     });
 
-    $('#expertModal').on('hidden.bs.modal',function (event) {
+    $('#expertModal').on('hidden.bs.modal', function (event) {
         $(this).removeData("bs.modal");
     });
-
 
     $('#input-1a').fileinput({
         language: 'zh', //设置语言
@@ -139,13 +229,44 @@ function setupExpertPage() {
         console.log("宋建强3" + "1" + event + "2" + data + "3" + msg);
     });
 
-
     //同步上传成功结果处理
     $('#input-1a').on('filebatchuploadsuccess', function (event, data, reviewId, index) {
-
         console.log("sync success");
         console.log("宋建强4" + "1" + event + "2" + data + "4" + index);
     });
+}
+function expert_remove(tableName, id, idKey) {
+    $("#" + tableName).bootstrapTable('remove', {field: idKey, values: [id]});
+
+};
+function expert_add(id) {
+    row = $("#expert_modal_major_table_from").bootstrapTable('getRowByUniqueId', id);
+    // console.log(row);
+    if (row) {
+        $("#expert_modal_major_table_from").bootstrapTable('remove', {field: 'majorCode', values: [id]});
+        $("#expert_modal_major_table_to").bootstrapTable('append', row);
+    }
+};
+function expert_add_common(id) {
+    var result = [
+        '<button  type="button" class="btn btn-link btn-xs" onclick="expert_add(\'' + id + '\')">选择</button>',]
+        .join('');
+    return result;
+}
+function expert_delete_major_from(value, row, index) {
+    return expert_delete_major('expert_modal_major_table_from', row.majorCode) + expert_add_common(row.majorCode);
+}
+
+function expert_delete_major_to(value, row, index) {
+    return expert_delete_major('expert_modal_major_table_to', row.majorCode);
+}
+
+function expert_delete_major(tableName, id) {
+    var result = [
+        '<button  type="button" class="btn btn-link btn-xs" onclick="expert_remove(\'' + tableName + '\',\'' + id + '\',\'majorCode\')">删除</button>',]
+        .join('');
+    // console.log(result);
+    return result;
 }
 
 function saveExpert() {
@@ -164,8 +285,10 @@ function saveExpert() {
     }
     expert.regionList = regionList;
 
-    let majorList = [];
-    expert.majorList = majorList;
+    const selectedMajor = $("#expert_modal_major_table_to").bootstrapTable("getData");
+
+    // let majorList = [];
+    expert.majorList = selectedMajor;
     if (expert.expertId) {//update
         $.axx({
             type: 'put',
