@@ -1,5 +1,6 @@
 package org.quetzaco.experts.app.biz.Impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.quetzaco.experts.app.biz.MajorService;
@@ -42,6 +43,11 @@ public class MajorServiceImpl implements MajorService {
 		}else{
 			return majorMapper.selectMajorCodeTree(major.getMajorCode());
 		}
-		
+	}
+
+	@Override
+	public List<Udmajor> selectMajorByCodeList(List<String> codeList) {
+		List<Udmajor> result = majorMapper.selectMajorListByMajorCodeList(codeList);
+		return result;
 	}
 }

@@ -184,9 +184,27 @@ function setupExpertPage() {
     });
 
     $('#expertModal').on('shown.bs.modal', function (event) {
+
         var modal = $(this);
+        setMajorTable();
         let selectedExpert = $('#expert_table').bootstrapTable('getSelections')[0];
         if (selectedExpert) {
+            const expertMajorCodes = selectedExpert.majorList.map(function (major) {
+                return major.majorCode;
+            });
+            $.axx({
+                type: 'post',
+                url: '/major/codes',
+                contentType: 'application/json',
+                data: JSON.stringify(expertMajorCodes),
+                success: function (json) {
+                    const result = json.content;
+                    $('#expert_modal_major_table_to').bootstrapTable("load", json.content);
+                },
+                error: function (res) {
+                    console.log(res);
+                }
+            });
             modal.find('.modal-title').text("编辑专家");
             setModalData(modal, expert_modal_mapper, selectedExpert);
         } else {
@@ -194,7 +212,7 @@ function setupExpertPage() {
             setModalData(modal, expert_modal_mapper);
         }
         // initExpertTable('expert_modal_major_table_from', null, "expert_major_from_toolbar", 'expert_modal_major_table_to');
-        setMajorTable();
+
     });
 
     $('#expertModal').on('hidden.bs.modal', function (event) {
@@ -235,10 +253,12 @@ function setupExpertPage() {
         console.log("宋建强4" + "1" + event + "2" + data + "4" + index);
     });
 }
+
 function expert_remove(tableName, id, idKey) {
     $("#" + tableName).bootstrapTable('remove', {field: idKey, values: [id]});
 
 };
+
 function expert_add(id) {
     row = $("#expert_modal_major_table_from").bootstrapTable('getRowByUniqueId', id);
     // console.log(row);
@@ -247,12 +267,14 @@ function expert_add(id) {
         $("#expert_modal_major_table_to").bootstrapTable('append', row);
     }
 };
+
 function expert_add_common(id) {
     var result = [
         '<button  type="button" class="btn btn-link btn-xs" onclick="expert_add(\'' + id + '\')">选择</button>',]
         .join('');
     return result;
 }
+
 function expert_delete_major_from(value, row, index) {
     return expert_delete_major('expert_modal_major_table_from', row.majorCode) + expert_add_common(row.majorCode);
 }
