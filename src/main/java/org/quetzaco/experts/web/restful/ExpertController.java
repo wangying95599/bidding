@@ -83,7 +83,12 @@ public class ExpertController extends BaseRestContoller {
 	@RequestMapping(value = "expert", method = RequestMethod.PUT)
 	public HttpEntity<APIEntity> updateProject(@SessionAttribute(WebSecurityConfig.SESSION_KEY) User user,
 			@RequestBody Udexpert expert) {
-		Udexpert updated = expertService.updateExpert(expert);
+		Udexpert updated = expert;
+		try {
+			updated = expertService.updateExpert(expert);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return buildEntity(APIEntity.create(updated), HttpStatus.OK);
 	}
 

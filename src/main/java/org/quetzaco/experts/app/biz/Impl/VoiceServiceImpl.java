@@ -146,7 +146,10 @@ public class VoiceServiceImpl implements VoiceService {
 		long confirmNumber = resultMapper.countByExample(example);
 		if(confirmNumber == 5) {
 			//TODO
-			
+			Udprojects project =new Udprojects();
+			project.setId(projectId);
+			project.setProjectStatus(ProjectStatus.CONFIRMED.getValue());
+			projectMapper.updateByPrimaryKeySelective(project);
 		}else {
 			//TODO 状态为已通知
 			Udprojects project =new Udprojects();
