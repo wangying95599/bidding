@@ -61,6 +61,7 @@ public class ExpertController extends BaseRestContoller {
 	@RequestMapping(value = "expert", method = RequestMethod.POST)
 	public HttpEntity<APIEntity> create(@SessionAttribute(WebSecurityConfig.SESSION_KEY) User user,
 			@RequestBody Udexpert expert) {
+		expert.setRecordFlag(RecordFlag.CREATE.getValue());
 		Udexpert created = expertService.createExpert(expert);
 		return buildEntity(APIEntity.create(created), HttpStatus.OK);
 	}
