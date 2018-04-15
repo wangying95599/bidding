@@ -1,5 +1,6 @@
 package org.quetzaco.experts.web.restful;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.quetzaco.experts.app.biz.MajorService;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -54,7 +54,13 @@ public class MajorController extends BaseRestContoller {
 	// used by expert modal, get expert majors by major codes
 	@RequestMapping(value = "/major/codes", method = RequestMethod.POST)
 	HttpEntity<APIEntity<List<Udmajor>>> selectMajorByCodeList(@RequestBody List<String> codeList) {
-		List<Udmajor> list = majorService.selectMajorByCodeList(codeList);
+		List<Udmajor> list =new ArrayList<Udmajor> ();
+		try {
+			if(codeList!=null &&codeList.size()>0)
+			list = majorService.selectMajorByCodeList(codeList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return buildEntity(APIEntity.create(list), HttpStatus.OK);
 	}
 }
