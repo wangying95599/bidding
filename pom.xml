@@ -16,6 +16,7 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>1.5.4.RELEASE</version>
+   
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
@@ -114,6 +115,7 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-aop</artifactId>
+      
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -203,12 +205,12 @@
       <artifactId>guava</artifactId>
       <version>${guava.version}</version>
     </dependency>
-<!--
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-tomcat</artifactId>
-      <scope>test</scope>
-    </dependency>-->
+       <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
