@@ -42,7 +42,9 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public List<Udprojects> getAllProjects() {
-		return projectMapper.selectByExample(null);
+		UdprojectsExample e = new UdprojectsExample();
+		e.setOrderByClause("bidding_time desc");
+		return projectMapper.selectByExample(e);
 	}
 
 	@Override

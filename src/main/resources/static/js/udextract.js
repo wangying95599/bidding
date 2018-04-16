@@ -247,9 +247,11 @@ function extractOk(assigneeId) {
         data: JSON.stringify(griddata),
         contentType: 'application/json',        //有关不能传递复杂类型的问题：这个要设置
         success: function (json) {
-            alert("设置成功");
-            // $("#turnOver").removeClass("hidden").hide().fadeIn(500).siblings().addClass("hidden");
-            //getTurnOverFromMe1();
+            alert("抽取成功");
+           
+            $('#extractExpert').hide();
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
         }
     });
 }

@@ -259,6 +259,9 @@ function set_extract_submit() {
             alert("设置成功");
             // $("#turnOver").removeClass("hidden").hide().fadeIn(500).siblings().addClass("hidden");
             //getTurnOverFromMe1();
+            $('#extractSet').hide();
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
         }
     });
 }
