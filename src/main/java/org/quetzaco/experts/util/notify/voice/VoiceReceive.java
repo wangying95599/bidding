@@ -27,7 +27,8 @@ import com.google.gson.Gson;
  * 
  * 
  */
-@Component
+//TODO 语音功能暂时注释了。
+//@Component
 public class VoiceReceive  implements CommandLineRunner{
 	
 
