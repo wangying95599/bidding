@@ -24,7 +24,7 @@ function getMajorTree() {
 function TreeModel(text, id, node) {
     this.text = text;
     this.id = id;
-    this.href = '#';
+    this.href = '#majorTab';
     this.nodes = node;
 }
 
@@ -45,6 +45,7 @@ function initMajorTree(depart) {
     $('#majorTree').on('nodeSelected', function (event, data) {
         if (data.nodes != null) {
             var select_node = $('#majorTree').treeview('getSelected');
+            $('#tabNav a[href="#majorTab"]').tab('show');
             if (select_node[0].state.expanded) {
                 $('#majorTree').treeview('collapseNode', select_node);
                 select_node[0].state.selected = false;
